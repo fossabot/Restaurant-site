@@ -14,8 +14,10 @@ $(function(){
         $(window).scroll(function(){
                 if( $(window).scrollTop() > stickyHeaderTop ) {
                         $('.header').css({position: 'fixed', top: '0px'});
+                        $('.header-before-const').addClass('header-const');
                 } else {
                         $('.header').css({position: 'static', top: '0px'});
+                        $('.header-const').removeClass('header-const');
                 }
         });
   });
