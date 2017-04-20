@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
 html{
 	overflow-x: hidden;
 }
@@ -18,19 +20,35 @@ html,body {
 	background-position: center;
 }
 
-.menu-promo{
+#menu-promo{
 	position: relative;
 	display: block;
-	background-image: url(images/men.jpg);
-	
-}
+	background-image: url(images/alvaro-serrano-133d380.jpg);	
+} 
 
 .header, .header-const{
 	z-index: 1;
 	display: flex;
 	width: 100%;
 	height: 10%;
-	background-color: grey;
+	background-color: #fff;
+}
+
+.logo{
+	display: block;
+	position: relative;
+	height: 100%;
+	width: 40%;
+	font-size: 30px;
+	bottom: 0;
+	padding-left: 5%;
+	padding-top: 0.5%;
+}
+
+.logo a{	
+	color: black;
+	font-family: 'Oswald';
+	text-decoration: none;
 }
 
 /*.headerFixedTop{
@@ -42,15 +60,12 @@ html,body {
     top:0;
 }*/
 
-.logo{
-	width: 40%;
-	font-size: 23px;
-}
-
 .header ul {
 	display:flex;  
  	list-style:none;
   	width: 60%;
+  	padding-top:0.5%;
+  	margin-left: 5%;
   	flex-direction: row-reverse;
 }
 
@@ -60,27 +75,78 @@ html,body {
 
 .header ul li a{
 	text-decoration: none;
+	color: black;
 }
 
 #about{
 	background-image: url(images/About.jpg);
 	background-size: cover;
 	margin: 0;
+	position: relative;
 }
 
-#location{
-	background-image: url(images/menu-header.jpg);
+#about div{
+	display: block;
+	position: relative;
+	width: 40%;
+	top: 10%;
+	margin-left: 50%;
+	padding: 2%;
+	padding-left: 3%;
+	background: #fff; 
+	opacity: 0.95;
+}
+
+#about div h1{
+	margin: 0;
+}
+
+#location-text{
+	height: 100%;
+	width: 50%;
+	float: left;
+	margin:0;
+	background-image: url(images/StockSnap_J2W0D3CO2L.jpg);
+	background-size: cover;
+	background-position: center;
+}
+
+#location-text div{
+	display: block;
+	position: relative;
+	width: 40%;
+	margin-left: 5%;
+	margin-top: 5%;
+	padding: 2%;
+	padding-left: 3%;
+	background: #fff; 
+	opacity: 0.95;
 }
 
 #map {
-    z-index: 0;
-    float: right;
     height: 100%;
     width: 50%;
+    z-index: 0;
+    float: right;
 }
 
 #delivery{
+	margin: 0;
+	padding-top: 5%;
 	background-image: url(images/menu-header-compressed.jpg);
+}
+
+#delivery div{
+	display: block;
+	position: relative;
+	width: 85%;
+	height: 85%;
+	margin-left: 5%;
+	margin-right: 5%; 
+	padding-top: 2%;
+	padding-left: 3%;
+	background: #fff; 
+	opacity: 0.95;
 }
 
 #menu{
