@@ -94,7 +94,8 @@ html,body {
 	padding: 2%;
 	padding-left: 3%;
 	background: #fff; 
-	opacity: 0.95;
+	opacity: 0.9;
+	font-size: 3vh;
 }
 
 #about div h1{
@@ -120,7 +121,7 @@ html,body {
 	padding: 2%;
 	padding-left: 3%;
 	background: #fff; 
-	opacity: 0.95;
+	opacity: 0.9;
 }
 
 #map {
@@ -130,14 +131,13 @@ html,body {
     float: right;
 }
 
-#delivery{
+/*#delivery{
 	margin: 0;
 	padding-top: 5%;
 	background-image: url(images/menu-header-compressed.jpg);
 }
 
 #delivery div{
-	display: block;
 	position: relative;
 	width: 85%;
 	height: 85%;
@@ -147,12 +147,66 @@ html,body {
 	padding-left: 3%;
 	background: #fff; 
 	opacity: 0.95;
-}
+}*/
 
 #menu{
 	background-image: url(images/StockSnap_OOOHVWYCR8.jpg);
 }
 
+#menu div{
+	position: relative;
+	width: 85%;
+	height: 85%;
+	margin-left: 5%;
+	margin-right: 5%; 
+	padding-top: 2%;
+	padding-left: 3%;
+	top: 5%;
+	background: #fff; 
+	opacity: 0.95;
+}
+
 #contact{
 	background-image: url(images/StockSnap_ODTWJA91CN.jpg);
+}
+
+#contact h1{
+	margin-top: 0;
+	text-align:center;
+	padding-top: 2%;
+	color: white;
+}
+
+.social-contact{
+	display: inline-block;
+	position: relative;
+	top: 5%; 
+	margin-left: 4%;
+	height: 55%;
+	width: 20%;
+	background: #fff; 
+	opacity: 0.9;
+	text-align: center;
+}
+
+.social-contact a{
+	font-size:30vh;
+	color: black;
+}
+
+footer{
+ 	color:black;
+ 	display: block;
+  	position:relative;
+  	text-align:center;
+	height: 2%;
+ 	width:100%;
+ 	top: 27%;
+  	font-size:10px;
+ 	flex: 0 0 auto;
+}
+
+footer a{
+	text-decoration:none; 
+  	color:black;
 }
