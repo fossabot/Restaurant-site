@@ -1,12 +1,4 @@
 
-/*$(window).scroll(function () {
-    if( $(window).scrollTop() > $('.header').offset().top && !($('.header').hasClass('headerFixedTop'))){
-    $('.header').addClass('headerFixedTop');
-    } else if ($(window).scrollTop() == 0){
-    $('.header').removeClass('headerFixedTop');
-    }
-});*/
-
 $(function(){
         // Check the initial Poistion of the Sticky Header
         var stickyHeaderTop = $('.header').offset().top;
@@ -26,8 +18,8 @@ var map;
 var restourantPoint={lat:50.745151, lng:25.322764}
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 50.7472, lng: 25.3254},
-          zoom: 15
+          center: {lat: 50.744973, lng: 25.322932},
+          zoom: 17
         });
 
         var marker = new google.maps.Marker({
@@ -40,21 +32,13 @@ var restourantPoint={lat:50.745151, lng:25.322764}
 $(document).ready(function(){
   // Add smooth scrolling to all links
   $("a").on('click', function(event) {
-
-    // Make sure this.hash has a value before overriding default behavior
     if (this.hash !== "") {
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      var hash = this.hash;// Store hash
       $('html, body').animate({
         scrollTop: $(hash).offset().top
       }, 1000, function(){
-   
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
+        window.location.hash = hash;// Add hash (#) to URL when done scrolling (default click behavior)
       });
-    } // End if
+    }
   });
 });

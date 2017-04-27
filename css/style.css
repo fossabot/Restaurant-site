@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+@import url('https://fonts.googleapis.com/css?family=Oxygen');
 
 html{
 	overflow-x: hidden;
@@ -51,15 +53,6 @@ html,body {
 	text-decoration: none;
 }
 
-/*.headerFixedTop{
-	display: flex;
-	width: 100%;
-	height: 10%;
-    position:fixed;
-    margin-top: 0;
-    top:0;
-}*/
-
 .header ul {
 	display:flex;  
  	list-style:none;
@@ -67,6 +60,7 @@ html,body {
   	padding-top:0.5%;
   	margin-left: 5%;
   	flex-direction: row-reverse;
+  	font-family: 'Oxygen';
 }
 
 .header ul li{
@@ -170,13 +164,6 @@ html,body {
 	background-image: url(images/StockSnap_ODTWJA91CN.jpg);
 }
 
-#contact h1{
-	margin-top: 0;
-	text-align:center;
-	padding-top: 2%;
-	color: white;
-}
-
 .social-contact{
 	display: inline-block;
 	position: relative;
@@ -191,7 +178,7 @@ html,body {
 
 .social-contact a{
 	font-size:30vh;
-	color: black;
+	text-decoration:none;
 }
 
 footer{
@@ -209,4 +196,42 @@ footer{
 footer a{
 	text-decoration:none; 
   	color:black;
+}
+
+.title{
+	margin-top: 0;
+	text-align:center;
+	font-family: 'Dosis', sans-serif;
+	font-weight: 100;
+}
+
+#contact .title{
+	padding-top: 2%;
+	color: white;
+}
+
+#contact div .title{
+	padding-top: 10%;
+	color: black;
+}
+
+.fa:hover{
+	transition: all 200ms ease-in;
+    transform: scale(1.1);
+}
+
+.fa-facebook{
+	color: #3b5999;
+}
+
+.fa-twitter{
+	color: #55acee;
+}
+
+.fa-instagram{
+	color: #e4405f;
+}
+
+.fa-envelope-o{
+	color: #dd4b39;
 }
