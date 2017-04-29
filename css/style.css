@@ -96,7 +96,14 @@ html,body {
 	margin: 0;
 }
 
-#location-text{
+.title{
+	margin-top: 0;
+	text-align:center;
+	font-family: 'Dosis', sans-serif;
+	font-weight: 100;
+}
+
+/*#location-text{
 	height: 100%;
 	width: 50%;
 	float: left;
@@ -125,7 +132,7 @@ html,body {
     float: right;
 }
 
-/*#delivery{
+#delivery{
 	margin: 0;
 	padding-top: 5%;
 	background-image: url(images/menu-header-compressed.jpg);
@@ -164,55 +171,87 @@ html,body {
 	background-image: url(images/StockSnap_ODTWJA91CN.jpg);
 }
 
-.social-contact{
-	display: inline-block;
-	position: relative;
-	top: 5%; 
-	margin-left: 4%;
-	height: 55%;
-	width: 20%;
-	background: #fff; 
-	opacity: 0.9;
-	text-align: center;
-}
-
-.social-contact a{
-	font-size:30vh;
-	text-decoration:none;
-}
-
-footer{
- 	color:black;
- 	display: block;
-  	position:relative;
-  	text-align:center;
-	height: 2%;
- 	width:100%;
- 	top: 27%;
-  	font-size:10px;
- 	flex: 0 0 auto;
-}
-
-footer a{
-	text-decoration:none; 
-  	color:black;
-}
-
-.title{
-	margin-top: 0;
-	text-align:center;
-	font-family: 'Dosis', sans-serif;
-	font-weight: 100;
-}
-
 #contact .title{
+	height: 5%;
 	padding-top: 2%;
 	color: white;
 }
 
 #contact div .title{
-	padding-top: 10%;
+	padding-top: 3%;
 	color: black;
+}
+
+.social-container{
+	height: 85%;
+	width: 100%;
+}
+
+.medium-social-container{
+	display: inline-block;
+	position:relative;
+	height: 50%;
+	width: 65%;
+}
+
+.medium-social-container:nth-child(2){
+	margin-top: 50%;
+}
+
+.social-contact{
+	display: inline-block;
+	position: relative;
+	top: 4%;
+	margin-left: 5%;
+	height: 90%;
+	width: 35%;
+	background: #fff; 
+	opacity: 0.9;
+	text-align: center;
+}
+
+.social-contact:first-child{
+	margin-left: 20%;
+}
+
+.social-contact a{
+	font-size:20vh;
+	text-decoration:none;
+}
+
+.medium-contact-container{
+	height: 49%;
+	width: 35%;
+	float: right;
+}
+
+.time-of-work{
+	display: inline-block;
+	position: relative;
+	top: 4%;
+	margin-left: 1%;
+	height: 90%;
+	width: 60%;
+	background: #fff; 
+	opacity: 0.9;
+	text-align: center;
+}
+
+.text-center{
+    width: 90%;
+    padding: 5%; 
+}
+
+.text-center p{
+	margin: 5% 0;
+}
+
+.text-location{
+	margin-top: 15%;
+}
+
+.fa{
+	padding-top: 12%;
 }
 
 .fa:hover{
@@ -234,4 +273,27 @@ footer a{
 
 .fa-envelope-o{
 	color: #dd4b39;
+}
+
+.location-container{
+	width: 50%;
+	height: 100;
+	float: right;
+}
+
+footer{
+ 	color:black;
+ 	display: block;
+  	position:relative;
+  	text-align:center;
+	height: 2%;
+ 	width:100%;
+ 	/*top: 27%;*/
+  	font-size:10px;
+ 	flex: 0 0 auto;
+}
+
+footer a{
+	text-decoration:none; 
+  	color:black;
 }
