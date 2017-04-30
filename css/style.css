@@ -16,6 +16,7 @@ html,body {
 }
 
 .big-size{
+	position: relative;
 	width: 100%;
 	height: 90%;
 	background-size: cover;
@@ -123,16 +124,16 @@ html,body {
 	padding-left: 3%;
 	background: #fff; 
 	opacity: 0.9;
-}
+}*/
 
 #map {
-    height: 100%;
-    width: 50%;
-    z-index: 0;
-    float: right;
+	position: absolute;
+	top: 280%;
+	margin-left:100%;
+  	z-index: 10000;
 }
 
-#delivery{
+/*#delivery{
 	margin: 0;
 	padding-top: 5%;
 	background-image: url(images/menu-header-compressed.jpg);
@@ -246,7 +247,7 @@ html,body {
 	margin: 5% 0;
 }
 
-.text-location{
+#text-location{
 	margin-top: 15%;
 }
 
@@ -277,7 +278,7 @@ html,body {
 
 .location-container{
 	width: 50%;
-	height: 100;
+	height: 100%;
 	float: right;
 }
 

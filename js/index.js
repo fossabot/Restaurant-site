@@ -35,10 +35,11 @@ $(document).ready(function(){
     if (this.hash !== "") {
       var hash = this.hash;// Store hash
       $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 1000, function(){
-        window.location.hash = hash;// Add hash (#) to URL when done scrolling (default click behavior)
-      });
-    }
+        scrollTop: $(hash).offset().top-$('.header').height()
+      }, 1000, function(){});
+    };
+  });
+  $('#text-location').click(function() {
+    $('#map').animate({marginLeft: '0'},800,function(){});
   });
 });
