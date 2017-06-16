@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
 	<title>Restaurant</title>
-	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'>
+
 	<link href="css/style.css" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEgnNcLXu3TxudcgyN9DnQ7uUwWy1hIpI&callback=initMap" type="text/javascript"></script>
 	<script src="js/index.js"></script>
+	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'>
 	
 </head>
 
@@ -21,8 +22,8 @@
 		<ul>
 			<li id="contact-scroll"><a href="#contact"> Contact us 	</a></li>
 			<li id="contact-scroll"><a href="#menu">	Menu	</a></li>
-			<!--<li id="contact-scroll"><a href="#delivery">Delivery</a></li>
-			<li id="contact-scroll"><a href="#location">Location</a></li>-->
+			<!--<li id="contact-scroll"><a href="#delivery">Delivery</a></li>-->
+			
 			<li id="contact-scroll"><a href="#about">	About	</a></li>
 		</ul>
 	</header>   
@@ -34,17 +35,7 @@
 			<p>Nestled in the heart of Lutsk, Barillia provides an inviting pub-style experience, offering authentic casual cuisine using fresh locally sourced ingredients.</p>
 		</div>
 	</div>
-	<!--<div id="location" class="big-size">
-		<div id="location-text">
-			<div class="content-block">
-				<h1 class="title">Location</h1>
-				<p>Kriviy Val Street, 31</p>
-				<p>Lutsk, Volyn region, Ukraine</p>
-			</div>
-		</div>
-		<div id="map"></div>	
-	</div>
-	<div id="delivery" class="big-size">
+	<!--<div id="delivery" class="big-size">
 		<div class="conten-full">
 			<h1>Lorem ipsum </h1>
 			<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -76,9 +67,9 @@
 					<div class="text-center">
 						<p>Weekdays 11 am - late</p>
 						<p>Weekends 11 am - 2 am</p>
-						<p>Weekend Brunch</p> 
+						<!--<p>Weekend Brunch</p> 
 						<p>Saturday & Sunday</p>
-						<p>11 am - 2 pm</p>
+						<p>11 am - 2 pm</p>-->
 					</div>
 				</div>
 			</div>
@@ -95,11 +86,9 @@
 			<div class="medium-contact-container">
 				<div class="time-of-work">
 					<h1 class="title">Location</h1>
-					<div class="text-center" >
-						<button id="text-location">
-							<p>Kriviy Val Street, 31</p>
-							<p>Lutsk, Volyn region, Ukraine</p>
-						</button>
+					<div class="text-center" id="text-location">
+						<p>Kriviy Val Street, 31</p>
+						<p>Lutsk, Volyn region, Ukraine</p>
 					</div>
 				</div>
 			</div>
@@ -109,6 +98,9 @@
 	</div>
 
 	<div id="map" class="big-size"></div>
+	<div class="map-return">
+				<i class="fa fa-chevron-right" aria-hidden="true"></i>
+	</div>
 </body>
 
 </html>
