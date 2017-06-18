@@ -1,8 +1,37 @@
 
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+    if (this.hash !== "") {
+      var hash = this.hash;// Store hash
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top-$('.header').height()
+      }, 1000, function(){});
+    }
+  });
+
+  //map, that sliding from right side
+  $('#text-location').click(function() {
+    $('#map').animate({marginLeft: '0'},800,function(){});
+    $('.map-return').animate({marginLeft: '1%'},800,function(){});
+  });
+  //map, that sliding to right side
+  $('.map-return').click(function() {
+    $('#map').animate({marginLeft: '100%'},800,function(){});
+    $('.map-return').animate({marginLeft: '101%'},800,function(){});
+  });
+});
+
+
 $(function(){
   // Check the initial posistion of the Sticky Header
-  var stickyHeaderTop = $('.header').offset().top;
-
+  stickyHeaderTop = $('.header').offset().top;
+  //If page open not top, then header must be top 
+  if( $(window).scrollTop() > stickyHeaderTop ) {
+      $('.header').css({position: 'fixed', top: '0px'});
+      $('.header-before-const').addClass('header-const');
+  }
+  //Sticky Header when scrolling
   $(window).scroll(function(){
     if( $(window).scrollTop() > stickyHeaderTop ) {
       $('.header').css({position: 'fixed', top: '0px'});
@@ -29,30 +58,3 @@ function initMap() {
     title: 'Our Restaurant'
   });
 }
-
-$(document).ready(function(){
-  // Add smooth scrolling to all links
-  $("a").on('click', function(event) {
-    if (this.hash !== "") {
-      var hash = this.hash;// Store hash
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top-$('.header').height()
-      }, 1000, function(){});
-    }
-  });
-
-   $('.fa').mouseout(function(){
-    this.animate({transition: 'all 200ms ease-in',transform: 'scale(1.2)'});
-  });
-
-  //map, that sliding from right side
-  $('#text-location').click(function() {
-    $('#map').animate({marginLeft: '0'},800,function(){});
-    $('.map-return').animate({marginLeft: '1%'},800,function(){});
-  });
-  //map, that sliding to right side
-  $('.map-return').click(function() {
-    $('#map').animate({marginLeft: '100%'},800,function(){});
-    $('.map-return').animate({marginLeft: '100%'},800,function(){});
-  });
-});

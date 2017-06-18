@@ -26,7 +26,6 @@ body
     width: 100%;
     height: 90%;
 
-    background-attachment: fixed;
     background-position: center;
     background-size: cover;
 }
@@ -180,8 +179,7 @@ body
     padding-top: 2%;
     padding-left: 3%;
 
-    opacity: .95;
-    background: #fff;
+    background: rgba(255,255,255, .95);
 }
 
 #contact
@@ -238,8 +236,7 @@ body
 
     text-align: center;
 
-    opacity: .9;
-    background: #fff;
+    background: rgba(255,255,255, .9);
 }
 
 .social-contact:first-child
@@ -274,15 +271,16 @@ body
     margin-left: 1%;
 
     text-align: center;
-
-    opacity: .9;
-    background: #fff;
+    
+    background: rgba(255,255,255, .9);
 }
 
 .text-center
 {
     width: 90%;
-    padding: 5%;
+    padding: 5%; 
+
+    margin-top: 15%;
 }
 
 .text-center p
@@ -306,6 +304,12 @@ body
     -webkit-transform: scale(1.2);
         -ms-transform: scale(1.2);
             transform: scale(1.2);
+}
+
+.fa:not( :hover )
+{ 
+    transition: all 200ms ease-in;
+    transform: scale(1);
 }
 
 .fa-facebook
@@ -375,9 +379,9 @@ body
     left: .4em;
     top: .04em;
     font-size: 3em;
+}
 
-footer
-{
+footer {
     /*top: 27%;*/
     font-size: 10px;
 
