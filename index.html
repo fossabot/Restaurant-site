@@ -7,41 +7,32 @@
 	
 	<link href="css/style.css" rel="stylesheet">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEgnNcLXu3TxudcgyN9DnQ7uUwWy1hIpI&callback=initMap" type="text/javascript"></script>
-	<script src="js/index.js"></script>
 	
 </head>
 
 <body>
 	
-	<div id="menu-promo" class="big-size"></div>
+	<section id="menu-promo" class="big-size"></section>
 
-	<header class="header">
-		<div class="logo"><a href="#menu-promo">Barillia</a></div>
-		<ul>
-			<li id="contact-scroll"><a href="#contact"> Contact us 	</a></li>
-			<li id="contact-scroll"><a href="#menu">	Menu	</a></li>
-			<!--<li id="contact-scroll"><a href="#delivery">Delivery</a></li>-->
-			
-			<li id="contact-scroll"><a href="#about">	About	</a></li>
-		</ul>
+	<header>
+		<div class="logo"><a class="navigation" href="#menu-promo">Barillia</a></div>
+		<nav>
+			<a class="navigation" href="#contact">Contact us</a>
+			<a class="navigation" href="#menu">Menu</a>
+			<!--<li><a href="#delivery">Delivery</a></li>-->
+			<a class="navigation" href="#about">About</a>
+		</nav>
 	</header>   
 	<div class="header-before-const"></div>
 
-	<div id="about" class="big-size">
+	<section id="about" class="big-size">
 		<div class="content-block">
 			<h1 class="title">About us</h1>
 			<p>Nestled in the heart of Lutsk, Barillia provides an inviting pub-style experience, offering authentic casual cuisine using fresh locally sourced ingredients.</p>
 		</div>
-	</div>
-	<!--<div id="delivery" class="big-size">
-		<div class="conten-full">
-			<h1>Lorem ipsum </h1>
-			<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		</div>
-	</div>-->
-	<div id="menu" class="big-size">
+	</section>
+
+	<section id="menu" class="big-size">
 		<div class="big-menu-container">
 			<h1 class="title">Menu</h1>
 			<div class="medium-menu-container">
@@ -54,7 +45,7 @@
 						<div class="false-container"></div>
 						<h1>Soups</h1>
 					</div>
-					<div class="small-menu-container" id="main_dishes">
+					<div class="small-menu-container" id="main-dishes">
 						<div class="false-container"></div>
 						<h1>Main dishes</h1>
 					</div>
@@ -77,9 +68,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 
-	<div id="contact" class="big-size">
+	<section id="contact" class="big-size">
 		<h1 class="title">Contact us</h1>
 		<div class="social-container">
 			<div class="medium-social-container">
@@ -126,12 +117,16 @@
 		</div>
 		
 		<footer>Copyright 2017 <a href="https://github.com/Syarol">Oleg Yaroshchuck</a></footer>
-	</div>
+	</section>
 
 	<div id="map" class="big-size"></div>
 	<div class="map-return">
-				<i class="fa fa-chevron-right" aria-hidden="true"></i>
+		<i class="fa fa-chevron-right" aria-hidden="true"></i>
 	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEgnNcLXu3TxudcgyN9DnQ7uUwWy1hIpI&callback=initMap" type="text/javascript"></script>
+	<script src="js/index.js"></script>
 </body>
 
 </html>

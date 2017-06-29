@@ -39,10 +39,10 @@ body
     background-image: url(images/alvaro-serrano-133d380.jpg);
 }
 
-.header,
+header,
 .header-const
 {
-    z-index: 1;
+    z-index: 100;
 
     display: flex;
 
@@ -76,7 +76,7 @@ body
     color: black;
 }
 
-.header ul
+header nav
 {
     font-family: 'Oxygen';
 
@@ -85,20 +85,12 @@ body
 
     width: 60%;
     margin-left: 5%;
-    padding-top: .5%;
-
-    list-style: none;
 }
 
-.header ul li
-{
-    margin-right: 4%;
-}
-
-.header ul li a
+header nav a
 {
     text-decoration: none;
-
+    margin: auto 4% auto 0;
     color: black;
 }
 
@@ -139,7 +131,7 @@ body
 {
     font-family: 'Dosis', sans-serif;
     font-weight: 100;
-
+    font-size: 2em;
     margin-top: 0;
     margin-right: 0;
 
@@ -208,7 +200,7 @@ body
     position: relative;
 
     display: inline-block;
-
+    
     width: 25%;
     height: 85%;
     margin: 0 auto;
@@ -230,6 +222,7 @@ body
 {
     font-family: 'Dosis', sans-serif;
     font-weight: 100;
+    font-size: 2em;
     color: white;
     position: absolute;
     top: 0;
@@ -256,6 +249,7 @@ body
     transition: all .7s;
     font-size: 2.5em;
     text-shadow: 1px 1px 5px rgba(97,97,97 ,1);
+    cursor: pointer; 
 }
 
 .small-menu-container:not(:hover) .false-container{
@@ -279,7 +273,7 @@ body
     background-size: cover;
 }
 
-#main_dishes{
+#main-dishes{
     background: url(images/Main_Dishes.jpg) center;
     background-size: cover; 
 }
@@ -407,6 +401,7 @@ body
 #text-location
 {
     margin-top: 15%;
+    cursor: pointer; 
 }
 
 .fa
@@ -420,6 +415,7 @@ body
     -webkit-transform: scale(1.2);
         -ms-transform: scale(1.2);
             transform: scale(1.2);
+    cursor: pointer; 
 }
 
 .fa:not( :hover )
