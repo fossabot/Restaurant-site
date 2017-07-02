@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
   // Add smooth scrolling to all links
   $(".navigation").click(function() {
       var hash = this.hash;// Store hash
@@ -7,8 +7,33 @@ $(document).ready(function(){
       }, 1000, function(){});
   });
 
+  function loadGoogleMapAPI(){
+    var script = document.createElement("script");
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAEgnNcLXu3TxudcgyN9DnQ7uUwWy1hIpI&callback=loadMaps";
+    script.type = "text/javascript";
+    script.id ="googleMap";
+    document.getElementsByTagName("body")[0].append(script);
+  }
+
+  window.loadMaps = function (){
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 50.744973, lng: 25.322932},
+      zoom: 17
+    });
+
+    var marker = new google.maps.Marker({
+      position: {lat:50.745151, lng:25.322764},
+      map: map,
+      title: 'Our Restaurant'
+    });
+  }
+ 
   //map, that sliding from right side
   $('#text-location').click(function() {
+    if(document.getElementById('googleMap')===null)
+    {
+      loadGoogleMapAPI();
+    };
     $('#map').animate({marginLeft: '0'},800);
     $('.map-return').animate({marginLeft: '1%'},800);
   });
@@ -17,22 +42,7 @@ $(document).ready(function(){
     $('#map').animate({marginLeft: '100%'},800);
     $('.map-return').animate({marginLeft: '101%'},800);
   });
-});
-
-var map;
-  var restourantPoint={lat:50.745151, lng:25.322764};
-  function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 50.744973, lng: 25.322932},
-      zoom: 17
-    });
-
-    var marker = new google.maps.Marker({
-      position: restourantPoint,
-      map: map,
-      title: 'Our Restaurant'
-    });
-  };
+}); 
 
 $(function(){
   // Check the initial posistion of the Sticky Header
@@ -71,13 +81,15 @@ $(function(){
     $(titleM).fadeToggle(1000, function(){
       
     });
-  };  
+  }  
 
   menuF.click(function() {
-    fadeMenuTypes();
+    fadeMenuTypes(); 
   });
   menuT.click(function() {
     fadeMenuTypes(); 
   });
 });
+
+
 

@@ -89,8 +89,10 @@ header nav
 
 header nav a
 {
-    text-decoration: none;
     margin: auto 4% auto 0;
+
+    text-decoration: none;
+
     color: black;
 }
 
@@ -130,42 +132,26 @@ header nav a
 .title
 {
     font-family: 'Dosis', sans-serif;
-    font-weight: 100;
     font-size: 2em;
+    font-weight: 100;
+
     margin-top: 0;
     margin-right: 0;
 
     text-align: center;
 }
 
-/*#delivery{
-    margin: 0;
-    padding-top: 5%;
-    background-image: url(images/menu-header-compressed.jpg);
-}
-
-#delivery div{
-    position: relative;
-    width: 85%;
-    height: 85%;
-    margin-left: 5%;
-    margin-right: 5%; 
-    padding-top: 2%;
-    padding-left: 3%;
-    background: #fff; 
-    opacity: 0.95;
-}*/
-
 #menu
 {
-    background-image: url(images/StockSnap_OOOHVWYCR8.jpg);
     display: flex;
+
+    background-image: url(images/StockSnap_OOOHVWYCR8.jpg);
 }
 
 .big-menu-container
 {
     position: relative;
-    
+
     width: 90%;
     height: 90%;
     margin: auto 5%;
@@ -173,23 +159,30 @@ header nav a
     background: rgba(255,255,255, .95);
 }
 
-.big-menu-container .title{
+.big-menu-container .title
+{
     display: inline-block;
-    height: 10%;
+
     width: 100%;
+    height: 10%;
     margin: 0 ;
     padding-top: 1%;
+
     align-items: center;
 }
 
-.medium-menu-container{
+.medium-menu-container
+{
     display: flex;
+
     width: 100%;
     height: 44%;
 }
 
-.center-container{
+.center-container
+{
     display: flex;
+
     width: 90%;
     height: 100%;
     margin: 0 auto;
@@ -198,99 +191,124 @@ header nav a
 .small-menu-container
 {
     position: relative;
+    z-index: 3;
 
     display: inline-block;
-    
+
     width: 25%;
     height: 85%;
     margin: 0 auto;
-    z-index: 3;
-    text-align: center;  
+
+    text-align: center;
 }
 
-.false-container{
-    z-index: 5;
+.false-container
+{
     position: relative;
+    z-index: 5;
+
     display: inline-block;
-    height: 100%;
+
     width: 100%;
-    background: rgba(158,158,158,.6); 
+    height: 100%;
+
     opacity: 0;
+    background: rgba(158,158,158,.6);
 }
 
 .small-menu-container h1
 {
     font-family: 'Dosis', sans-serif;
-    font-weight: 100;
     font-size: 2em;
-    color: white;
+    font-weight: 100;
+    line-height: 100%;
+
     position: absolute;
+    z-index: 6;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 6;
+
     display: block;
 
     width: 100%;
     height: 20%;
-    line-height: 100%;
+    margin: auto;
+
     text-align: center;
-    margin: auto;    
+
+    color: white;
 }
 
-.small-menu-container:hover .false-container{
+.small-menu-container:hover .false-container
+{
+    cursor: pointer;
+    transition: all .7s;
+
     opacity: .5;
-    transition: all .7s;
-    cursor: pointer;    
 }
 
-.small-menu-container:hover > h1{
-    transition: all .7s;
+.small-menu-container:hover > h1
+{
     font-size: 2.5em;
+
+    cursor: pointer;
+    transition: all .7s;
+
     text-shadow: 1px 1px 5px rgba(97,97,97 ,1);
-    cursor: pointer; 
 }
 
-.small-menu-container:not(:hover) .false-container{
+.small-menu-container:not(:hover) .false-container
+{
+    transition: all .7s;
+
     opacity: 0;
-    transition: all .7s;
 }
 
-.small-menu-container:not(:hover) > h1{
-    transition: all .7s;
+.small-menu-container:not(:hover) > h1
+{
     font-size: 2em;
+
+    transition: all .7s;
+
     text-shadow: 0 0 0 rgba(97,97,97 ,1);
 }
 
-#salads{
-    background: url(images/Salads.jpg) center; 
+#salads
+{
+    background: url(images/Salads.jpg) center;
     background-size: cover;
 }
 
-#soups{
-    background: url(images/Soups.jpg) center; 
+#soups
+{
+    background: url(images/Soups.jpg) center;
     background-size: cover;
 }
 
-#main-dishes{
+#main-dishes
+{
     background: url(images/Main_Dishes.jpg) center;
-    background-size: cover; 
-}
-
-#appetizer{
-    background: url(images/Appetizer.jpg) center; 
     background-size: cover;
 }
 
-#desserts{
-    background: url(images/Desserts.jpg) center;
-    background-size: cover; 
+#appetizer
+{
+    background: url(images/Appetizer.jpg) center;
+    background-size: cover;
 }
 
-#beverages{
+#desserts
+{
+    background: url(images/Desserts.jpg) center;
+    background-size: cover;
+}
+
+#beverages
+{
     background: url(images/Beverages.jpg) center;
-    background-size: cover; 
+    background-size: cover;
 }
 
 #contact
@@ -401,7 +419,56 @@ header nav a
 #text-location
 {
     margin-top: 15%;
-    cursor: pointer; 
+
+    cursor: pointer;
+}
+
+#text-location dfn
+{
+    font-style: normal;
+}
+
+#text-location dfn:after
+{
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5em;
+
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+
+    display: inline;
+
+    width: 70%;
+    margin: 0 -40%;
+    padding: .5em .8em;
+
+    content: attr(data-info);
+
+    opacity: 0;
+    color: #fff;
+    background: rgba(0,0,0,.8);
+
+    clip-path: polygon(0 10%, 5% 10%, 7.5% 0, 10% 10%, 100% 10%, 100% 100%, 0 100%);
+}
+
+#text-location dfn:hover::after
+{
+    top: 70%;
+
+    transition: opacity 250ms, top 250ms;
+
+    opacity: 1;
+}
+
+#text-location dfn:not(:hover):after
+{
+    top: 50%;
+
+    transition: opacity 250ms, top 250ms;
+
+    opacity: 0;
 }
 
 .fa
@@ -411,11 +478,9 @@ header nav a
 
 .fa:hover
 {
+    cursor: pointer;
     transition: all 200ms ease-in;
-    -webkit-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-            transform: scale(1.2);
-    cursor: pointer; 
+    transform: scale(1.2);
 }
 
 .fa:not( :hover )
