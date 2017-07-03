@@ -315,165 +315,60 @@ header nav a
 {
     background-image: url(images/StockSnap_ODTWJA91CN.jpg);
 }
-
-#contact .title
-{
-    height: 5%;
-    padding-top: 2%;
-
+    
+#contact .title{
+    height: 8%;
+    min-height: 8%;
+    width: 50%;
+    display: flex;
+    top: 0;
+    margin: 0 auto;
+    justify-content: center;
     color: white;
+    padding-top: 2%;
 }
 
-#contact div .title
-{
-    padding-top: 3%;
-
-    color: black;
+.medium-contact-container{
+    width: 80%;
+    height: 42.5%;
+    min-height: 42.5%;
+    display: flex;
+    margin: 0 auto;
 }
 
-.social-container
-{
-    width: 100%;
-    height: 85%;
-}
-
-.medium-social-container
-{
-    position: relative;
-
-    display: inline-block;
-
-    width: 65%;
-    height: 50%;
-}
-
-.medium-social-container:nth-child(2)
-{
-    margin-top: 50%;
-}
-
-.social-contact
-{
-    position: relative;
-    top: 4%;
-
-    display: inline-block;
-
-    width: 35%;
-    height: 90%;
-    margin-left: 5%;
-
-    text-align: center;
-
+.social-contact{
     background: rgba(255,255,255, .9);
+    width: 30%;
+    height: 90%;
+    min-height: 90%;
+    margin: 0 auto auto auto;
+    display: block;
 }
 
-.social-contact:first-child
-{
-    margin-left: 20%;
+.social-contact-title{
+    color: black;
+    display: flex;
+    height: 18%;
+    min-height: 18%;
+    width: 100%;
+    min-width: 100%;
+    margin: 0;
+    justify-content: center;
+    padding-top: 2%;
+    font-weight: 100;
+    font-family: 'Dosis', sans-serif;
+    font-size: 1.8em;
 }
+
 
 .social-contact a
-{
-    font-size: 20vh;
-
-    text-decoration: none;
-}
-
-.medium-contact-container
-{
-    float: right;
-
-    width: 35%;
-    height: 49%;
-}
-
-.time-of-work
-{
-    position: relative;
-    top: 4%;
-
-    display: inline-block;
-
-    width: 60%;
-    height: 90%;
-    margin-left: 1%;
-
+{   
     text-align: center;
-
-    background: rgba(255,255,255, .9);
-}
-
-.text-center
-{
-    width: 90%;
-    margin-top: 15%;
-    padding: 5%;
-}
-
-.text-center p
-{
-    margin: 5% 0;
-}
-
-#text-location
-{
-    margin-top: 15%;
-
-    cursor: pointer;
-}
-
-#text-location dfn
-{
-    font-style: normal;
-}
-
-#text-location dfn:after
-{
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1.5em;
-
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-
-    display: inline;
-
-    width: 70%;
-    margin: 0 -40%;
-    padding: .5em .8em;
-
-    content: attr(data-info);
-
-    opacity: 0;
-    color: #fff;
-    background: rgba(0,0,0,.8);
-
-    clip-path: polygon(0 10%, 5% 10%, 7.5% 0, 10% 10%, 100% 10%, 100% 100%, 0 100%);
-}
-
-#text-location dfn:hover::after
-{
-    top: 70%;
-
-    transition: opacity 250ms, top 250ms;
-
-    opacity: 1;
-}
-
-#text-location dfn:not(:hover):after
-{
-    top: 50%;
-
-    transition: opacity 250ms, top 250ms;
-
-    opacity: 0;
-}
-
-.fa
-{
-    padding-top: 12%;
+    min-height: 60%;
+    margin: 5% auto; 
+    font-size: 20vh;
+    display: block;
+    text-decoration: none;
 }
 
 .fa:hover
@@ -509,12 +404,71 @@ header nav a
     color: #dd4b39;
 }
 
-.location-container
+.text-center
 {
-    float: right;
+    width: 90%;
+    height: 60%;
+    display: flex;
+     justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin: auto 5%;
+}
 
-    width: 50%;
-    height: 100%;
+.text-center p{
+    margin: 2.5% 0;
+}
+
+#text-location
+{
+    cursor: pointer;
+}
+
+#text-location dfn
+{
+    font-style: normal;
+}
+
+#text-location dfn:after
+{
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5em;
+
+    position: absolute;
+    z-index: 2;
+
+    display: inline;
+
+    width: 12%;
+    margin: 0 -7%;
+    padding: .5em .8em;
+
+    content: attr(data-info);
+
+    opacity: 0;
+    color: #fff;
+    background: rgba(0,0,0,.8);
+
+    clip-path: polygon(0 10%, 5% 10%, 7.5% 0, 10% 10%, 100% 10%, 100% 100%, 0 100%);
+}
+
+#text-location dfn:hover::after
+{
+    top: 80%;
+
+    transition: opacity 500ms, top 500ms;
+
+    opacity: 1;
+}
+
+#text-location dfn:not(:hover):after
+{
+    top: 90%;
+
+    transition: opacity 500ms, top 500ms;
+
+    opacity: 0;
 }
 
 #map
@@ -532,7 +486,7 @@ header nav a
     z-index: 1000;
     top: 325%;
 
-    display: block;
+    display: flex;
 
     width: 4em;
     height: 4em;
@@ -552,10 +506,9 @@ header nav a
     font-size: 3em;
 
     position: relative;
-    top: .04em;
-    left: .4em;
+    
 
-    margin: 0;
+    margin: auto;
 
     color: #fff;
 }
