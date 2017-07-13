@@ -1,12 +1,4 @@
 $(function(){
-  // Add smooth scrolling to all links
-  $(".navigation").click(function() {
-      var hash = this.hash;// Store hash
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top-$('header').height()
-      }, 1000, function(){});
-  });
-
   function loadGoogleMapAPI(){
     var script = document.createElement("script");
     script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAEgnNcLXu3TxudcgyN9DnQ7uUwWy1hIpI&callback=loadMaps";
@@ -27,7 +19,6 @@ $(function(){
       title: 'Our Restaurant'
     });
   }
- 
   //map, that sliding from right side
   $('#text-location').click(function() {
     if(document.getElementById('googleMap')===null)
@@ -91,5 +82,23 @@ $(function(){
   });
 });
 
+//smooth scrolling by sections
+$(function() {
+  $.scrollify({
+    section : ".big-size",
+    easing : "swing",
+    scrollSpeed : 1000,
+    setHeights : false,
+    offset : -$(window).height()*0.1,
+    overflowScroll: true,
+    updateHash : true,
+  });
 
-
+  //Smooth scrolling to all links
+  $(".navigation").click(function(event) {
+    var hash = this.hash;// Store hash
+    $('html, body').animate({
+      scrollTop: $(hash).offset().top-$('header').height()
+    }, 'slow', function(){});
+  });
+});

@@ -30,7 +30,7 @@ body
     background-size: cover;
 }
 
-#menu-promo
+#head-section
 {
     position: relative;
 
@@ -57,13 +57,11 @@ header,
     font-size: 30px;
 
     position: relative;
-    bottom: 0;
 
-    display: block;
+    display: flex;
 
     width: 40%;
-    height: 90%;
-    padding-top: .5%;
+    margin: auto;
     padding-left: 5%;
 }
 
@@ -96,17 +94,17 @@ header nav a
     color: black;
 }
 
-#about
+#about-section
 {
     position: relative;
 
     margin: 0;
 
-    background-image: url(images/About.jpg);
+    background-image: url(images/About.jpeg);
     background-size: cover;
 }
 
-#about div
+#about-section div
 {
     font-size: 3vh;
 
@@ -124,7 +122,7 @@ header nav a
     background: #fff;
 }
 
-#about div h1
+#about-section div h1
 {
     margin: 0;
 }
@@ -141,7 +139,7 @@ header nav a
     text-align: center;
 }
 
-#menu
+#menu-section
 {
     display: flex;
 
@@ -311,12 +309,12 @@ header nav a
     background-size: cover;
 }
 
-#contact
+#contact-section
 {
     background-image: url(images/StockSnap_ODTWJA91CN.jpg);
 }
     
-#contact .title{
+#contact-section .title{
     height: 8%;
     min-height: 8%;
     width: 50%;
@@ -473,10 +471,12 @@ header nav a
 
 #map
 {
+    width: 100%;
+    height: 90%;
     position: absolute;
     z-index: 100;
     top: 280%;
-
+    background-color: grey;
     margin-left: 100%;
 }
 
@@ -496,18 +496,16 @@ header nav a
     text-decoration: none;
 
     opacity: .9;
-    border: 2px #d8d8d8 solid;
+   
     border-radius: 100%;
     background: rgba(0, 0, 0, .7);
+    box-shadow: 0 0 5px #000;
 }
 
 .map-return i
 {
-    font-size: 3em;
-
-    position: relative;
-    
-
+    line-height: normal;
+    font-size: 2.7em;
     margin: auto;
 
     color: #fff;
@@ -515,7 +513,6 @@ header nav a
 
 footer
 {
-    /*top: 27%;*/
     font-size: 10px;
 
     position: relative;
@@ -524,10 +521,7 @@ footer
 
     width: 100%;
     height: 2%;
-
     text-align: center;
-
-    color: black;
 
     flex: 0 0 auto;
 }
