@@ -18,13 +18,13 @@ $(function(){
       map: map,
       title: 'Our Restaurant'
     });
-  }
+  };
   //map, that sliding from right side
   $('#text-location').click(function() {
     if(document.getElementById('googleMap')===null)
     {
       loadGoogleMapAPI();
-    };
+    }
     $('#map').animate({marginLeft: '0'},800);
     $('.map-return').animate({marginLeft: '1%'},800);
   });
@@ -82,8 +82,20 @@ $(function(){
   });
 });
 
-//smooth scrolling by sections
-$(function() {
+;(function() {
+  var bLazy = new Blazy({
+    breakpoints: [
+      {
+        width: 1200, 
+        src: 'data-src-medium'
+      }
+    ],
+    offset: 1000
+  });
+})();
+
+/*//smooth scrolling by sections
+$(function scrollScroll() {
   $.scrollify({
     section : ".big-size",
     easing : "swing",
@@ -94,11 +106,17 @@ $(function() {
     updateHash : true,
   });
 
+  scrollScroll();
+
   //Smooth scrolling to all links
-  $(".navigation").click(function(event) {
+  $(".navigation").click(function() {
     var hash = this.hash;// Store hash
-    $('html, body').animate({
-      scrollTop: $(hash).offset().top-$('header').height()
-    }, 'slow', function(){});
+    $('html, body').animate({function(){
+      scrollTop: $(hash).offset().top-$('header').height();
+      $.scrollify({
+        standardScrollElements: "window"
+      });}
+    }, 1000, function(){});
+    scrollScroll();
   });
-});
+});*/

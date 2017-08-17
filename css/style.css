@@ -26,19 +26,26 @@ body
     width: 100%;
     height: 90%;
 
-    background-position: center;
     background-size: cover;
+    background-position: center;
 }
+/*
+.b-lazy {
+    opacity:0;
+    transition: all 500ms;
+}
+
+.b-loaded {
+    opacity:1;
+}*/
 
 #head-section
 {
     position: relative;
 
-    display: block;
-
-    background-image: url(images/alvaro-serrano-133d380.jpg);
+    background-image: url(images/Head_Small.jpg);
 }
-
+   
 header,
 .header-const
 {
@@ -100,8 +107,7 @@ header nav a
 
     margin: 0;
 
-    background-image: url(images/About.jpeg);
-    background-size: cover;
+    background-image: url(images/About_Small.jpg);
 }
 
 #about-section div
@@ -143,7 +149,7 @@ header nav a
 {
     display: flex;
 
-    background-image: url(images/StockSnap_OOOHVWYCR8.jpg);
+    background-image: url(images/Menu_Small.jpg);
 }
 
 .big-menu-container
@@ -275,43 +281,43 @@ header nav a
 
 #salads
 {
-    background: url(images/Salads.jpg) center;
+    background: url(images/Salads_Small.jpg);
     background-size: cover;
 }
 
 #soups
 {
-    background: url(images/Soups.jpg) center;
+    background: url(images/Soups_Small.jpg);
     background-size: cover;
 }
 
 #main-dishes
 {
-    background: url(images/Main_Dishes.jpg) center;
+    background: url(images/Main_Dishes_Small.jpg);
     background-size: cover;
 }
 
 #appetizer
 {
-    background: url(images/Appetizer.jpg) center;
+    background: url(images/Appetizer_Small.jpg);
     background-size: cover;
 }
 
 #desserts
 {
-    background: url(images/Desserts.jpg) center;
+    background: url(images/Desserts_Small.jpg);
     background-size: cover;
 }
 
 #beverages
 {
-    background: url(images/Beverages.jpg) center;
+    background: url(images/Beverages_Small.jpg);
     background-size: cover;
 }
 
 #contact-section
 {
-    background-image: url(images/StockSnap_ODTWJA91CN.jpg);
+    background-image: url(images/Contact_Small.jpg);
 }
     
 #contact-section .title{
