@@ -26,18 +26,9 @@ body
     width: 100%;
     height: 90%;
 
-    background-size: cover;
     background-position: center;
+    background-size: cover;
 }
-/*
-.b-lazy {
-    opacity:0;
-    transition: all 500ms;
-}
-
-.b-loaded {
-    opacity:1;
-}*/
 
 #head-section
 {
@@ -45,7 +36,7 @@ body
 
     background-image: url(images/Head_Small.jpg);
 }
-   
+
 header,
 .header-const
 {
@@ -317,61 +308,81 @@ header nav a
 
 #contact-section
 {
+    z-index: 10;
+
     background-image: url(images/Contact_Small.jpg);
 }
-    
-#contact-section .title{
+
+#contact-section .title
+{
+    top: 0;
+
+    display: flex;
+
+    width: 50%;
     height: 8%;
     min-height: 8%;
-    width: 50%;
-    display: flex;
-    top: 0;
     margin: 0 auto;
-    justify-content: center;
-    color: white;
     padding-top: 2%;
+
+    color: white;
+
+    justify-content: center;
 }
 
-.medium-contact-container{
+.medium-contact-container
+{
+    display: flex;
+
     width: 80%;
     height: 42.5%;
     min-height: 42.5%;
-    display: flex;
     margin: 0 auto;
 }
 
-.social-contact{
-    background: rgba(255,255,255, .9);
+.social-contact
+{
+    display: block;
+
     width: 30%;
     height: 90%;
     min-height: 90%;
     margin: 0 auto auto auto;
-    display: block;
+
+    background: rgba(255,255,255, .9);
 }
 
-.social-contact-title{
-    color: black;
-    display: flex;
-    height: 18%;
-    min-height: 18%;
-    width: 100%;
-    min-width: 100%;
-    margin: 0;
-    justify-content: center;
-    padding-top: 2%;
-    font-weight: 100;
+.social-contact-title
+{
     font-family: 'Dosis', sans-serif;
     font-size: 1.8em;
+    font-weight: 100;
+
+    display: flex;
+
+    width: 100%;
+    min-width: 100%;
+    height: 18%;
+    min-height: 18%;
+    margin: 0;
+    padding-top: 2%;
+
+    color: black;
+
+    justify-content: center;
 }
 
 
 .social-contact a
-{   
-    text-align: center;
-    min-height: 60%;
-    margin: 5% auto; 
+{
     font-size: 20vh;
+
     display: block;
+
+    min-height: 60%;
+    margin: 5% auto;
+
+    text-align: center;
     text-decoration: none;
 }
 
@@ -410,16 +421,20 @@ header nav a
 
 .text-center
 {
+    display: flex;
+    flex-direction: column;
+
     width: 90%;
     height: 60%;
-    display: flex;
-     justify-content: center;
-    flex-direction: column;
-    text-align: center;
     margin: auto 5%;
+
+    text-align: center;
+
+    justify-content: center;
 }
 
-.text-center p{
+.text-center p
+{
     margin: 2.5% 0;
 }
 
@@ -440,7 +455,7 @@ header nav a
     line-height: 1.5em;
 
     position: absolute;
-    z-index: 2;
+    z-index: 11;
 
     display: inline;
 
@@ -475,46 +490,71 @@ header nav a
     opacity: 0;
 }
 
-#map
+.map-wrapper
 {
-    width: 100%;
-    height: 90%;
     position: absolute;
-    z-index: 100;
+    z-index: 5;
     top: 280%;
-    background-color: grey;
+
+    display: flex;
+
+    min-width: 100%;
+    min-height: 90%;
+}
+
+#map_canvas
+{
+    min-width: 0;
+    min-height: 100%;
     margin-left: 100%;
+
+    transition: width 1.7s, margin-left 1.7s;
+
+    background-color: grey;
+}
+
+.map-button
+{
+    position: absolute;
+    z-index: 20;
+    top: 280%;
+
+    display: flex;
+
+    height: 90%;
+    margin-left: -10%;
+
+    transition: margin-left 2.5s;
 }
 
 .map-return
 {
-    position: absolute;
-    z-index: 1000;
-    top: 325%;
+    z-index: 20;
 
     display: flex;
 
     width: 4em;
     height: 4em;
-    margin-top: -2.5%;
-    margin-left: 100%;
-
-    text-decoration: none;
+    margin: auto;
 
     opacity: .9;
-   
-    border-radius: 100%;
+    border-radius: 2em;
     background: rgba(0, 0, 0, .7);
     box-shadow: 0 0 5px #000;
 }
 
 .map-return i
 {
-    line-height: normal;
     font-size: 2.7em;
+
     margin: auto;
 
     color: #fff;
+}
+
+.fa-chevron-right
+{
+    transition: transform 1s;
 }
 
 footer
@@ -527,6 +567,7 @@ footer
 
     width: 100%;
     height: 2%;
+
     text-align: center;
 
     flex: 0 0 auto;

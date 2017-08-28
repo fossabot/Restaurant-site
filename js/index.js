@@ -1,4 +1,4 @@
-$(function(){
+
   function loadGoogleMapAPI(){
     var script = document.createElement("script");
     script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAEgnNcLXu3TxudcgyN9DnQ7uUwWy1hIpI&callback=loadMaps";
@@ -8,7 +8,7 @@ $(function(){
   }
 
   window.loadMaps = function (){
-    var map = new google.maps.Map(document.getElementById('map'), {
+    var map = new google.maps.Map(document.getElementById('map_canvas'), {
       center: {lat: 50.744973, lng: 25.322932},
       zoom: 17
     });
@@ -18,22 +18,42 @@ $(function(){
       map: map,
       title: 'Our Restaurant'
     });
+
+    google.maps.event.addListenerOnce(map, 'idle', function() {
+      google.maps.event.trigger(map, 'resize');
+    });
   };
+
+function changeZIndex(IndexZ){
+  var mapIndex = document.getElementsByClassName('map-wrapper'); 
+  if (mapIndex.length > 0) {
+    mapIndex[0].style.zIndex = IndexZ;
+  }
+}
+
   //map, that sliding from right side
   $('#text-location').click(function() {
-    if(document.getElementById('googleMap')===null)
-    {
+    changeZIndex(11);
+    $('#map_canvas').css({marginLeft:'0', width:'100%'});
+
+    if(document.getElementById('googleMap')===null){
       loadGoogleMapAPI();
-    }
-    $('#map').animate({marginLeft: '0'},800);
-    $('.map-return').animate({marginLeft: '1%'},800);
+    };
+    $('.map-button').css({marginLeft: '2.5%'});
   });
+
   //map, that sliding to right side
   $('.map-return').click(function() {
-    $('#map').animate({marginLeft: '100%'},800);
-    $('.map-return').animate({marginLeft: '101%'},800);
+    $('#map_canvas').css({width: '0', marginLeft: '100%'});
+    setTimeout(function(){
+      changeZIndex(5);
+    },1700);
+    $('.fa-chevron-right').css({transform: 'rotate(180deg)'});
+    $('.map-button').css({marginLeft: '-10%'});
+    setTimeout(function(){
+       $('.fa-chevron-right').css({transform: 'rotate(0deg)'});
+    },1500);
   });
-}); 
 
 $(function(){
   // Check the initial posistion of the Sticky Header
@@ -53,6 +73,7 @@ $(function(){
       $('.header-const').removeClass('header-const');
     }
   });
+});
 
   var menuF = $('.false-container');
   var menuT = $('.small-menu-container > h1');
@@ -80,7 +101,7 @@ $(function(){
   menuT.click(function() {
     fadeMenuTypes(); 
   });
-});
+
 
 ;(function() {
   var bLazy = new Blazy({
