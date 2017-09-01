@@ -22,7 +22,6 @@ body
 .big-size
 {
     position: relative;
-
     width: 100%;
     height: 90%;
 
@@ -32,22 +31,22 @@ body
 
 #head-section
 {
-    position: relative;
-
     background-image: url(images/Head_Small.jpg);
 }
 
 header,
 .header-const
 {
-    z-index: 100;
-
     display: flex;
 
     width: 100%;
     height: 10%;
 
     background-color: #fff;
+}
+
+header{
+    z-index: 1000;
 }
 
 .logo
@@ -90,6 +89,11 @@ header nav a
     text-decoration: none;
 
     color: black;
+}
+
+.navigation-active{
+    color:grey;
+    font-weight: bold;
 }
 
 #about-section
