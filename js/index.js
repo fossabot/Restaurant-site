@@ -71,29 +71,30 @@ $('.map-return').click(function() {
   },1500);
 });
 
+//Check the initial posistion of the Sticky Header
+var stickyHeaderTop = $('header').offset().top;
+  
+//If page open not top, then header must be top 
 $(function(){
-  //Check the initial posistion of the Sticky Header
-  var stickyHeaderTop = $('header').offset().top;
-  //If page open not top, then header must be top 
   if( $(window).scrollTop() > stickyHeaderTop ) {
     $('header').css({position: 'fixed', top: '0px'});
     $('.header-before-const').addClass('header-const');
   }
   
   highlighting ();
+});
 
-  $(window).scroll(function(){
-    //Sticky Header when scrolling
-    if( $(window).scrollTop() > stickyHeaderTop ) {
-      $('header').css({position: 'fixed', top: '0px'});
-      $('.header-before-const').addClass('header-const');
-    } else {
-      $('header').css({position: 'static'});
-      $('.header-const').removeClass('header-const');
-    };
+$(window).scroll(function(){
+  //Sticky Header when scrolling
+  if( $(window).scrollTop() > stickyHeaderTop ) {
+    $('header').css({position: 'fixed', top: '0px'});
+    $('.header-before-const').addClass('header-const');
+  } else {
+    $('header').css({position: 'static'});
+    $('.header-const').removeClass('header-const');
+  };
 
-    highlighting();
-  });
+  highlighting();
 });
 
 var menuF = $('.false-container');
@@ -126,13 +127,32 @@ menuT.click(function() {
 //Lazy-load of images
 ;(function() {
   var bLazy = new Blazy({
+    success: function(){
+          $('.salads').css({backgroundPosition : '0 79.646429%'});
+          $('.soups').css({backgroundPosition : '0 99.744127%'});
+          $('.main-dishes').css({backgroundPosition : '0 61%'});/*59.792388%*/
+          $('.appetizer').css({backgroundPosition : '0 0%'});
+          $('.desserts').css({backgroundPosition : '0 40.195394%'});
+          $('.beverages').css({backgroundPosition : '0 20.097697%'});
+          $('.small-menu-container').css({backgroundSize: 'auto 625%'});
+        },
     breakpoints: [
       {
         width: 1200, 
-        src: 'data-src-medium'
+        src: 'data-src-medium',
+        success: function(){
+          $('.salads').css({backgroundPosition : '0 79.436828%'});
+          $('.soups').css({backgroundPosition : '0 99.592442%'});
+          $('.main-dishes').css({backgroundPosition : '0 61%'});/*59.977949%*/
+          $('.appetizer').css({backgroundPosition : '0 0%'});
+          $('.desserts').css({backgroundPosition : '0 40.311226%'});
+          $('.beverages').css({backgroundPosition : '0 20.155613%'});
+          $('.small-menu-container').css({backgroundSize: 'auto 625%'});
+        }
       }
     ],
-    offset: 1000
+    offset: 1000,
+    
   });
 })();
 

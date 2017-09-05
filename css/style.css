@@ -55,8 +55,6 @@ header{
 
     position: relative;
 
-    display: flex;
-
     width: 40%;
     margin: auto;
     padding-left: 5%;
@@ -79,7 +77,6 @@ header nav
     flex-direction: row-reverse;
 
     width: 60%;
-    margin-left: 5%;
 }
 
 header nav a
@@ -166,8 +163,6 @@ header nav a
     height: 10%;
     margin: 0 ;
     padding-top: 1%;
-
-    align-items: center;
 }
 
 .medium-menu-container
@@ -191,22 +186,20 @@ header nav a
 {
     position: relative;
     z-index: 3;
-
-    display: inline-block;
-
+  
     width: 25%;
     height: 85%;
     margin: 0 auto;
-
-    text-align: center;
+    
+    background-image: url(images/Dishes_sprite_Small.jpg);
+    background-size: 145.454545%;
+    background-repeat:no-repeat;
 }
 
 .false-container
 {
     position: relative;
     z-index: 5;
-
-    display: inline-block;
 
     width: 100%;
     height: 100%;
@@ -274,40 +267,35 @@ header nav a
     text-shadow: 0 0 0 rgba(97,97,97 ,1);
 }
 
-#salads
+.salads
 {
-    background: url(images/Salads_Small.jpg);
-    background-size: cover;
+    background-position: 0 75.294118%;
 }
 
-#soups
-{
-    background: url(images/Soups_Small.jpg);
-    background-size: cover;
+.soups
+{   
+    background-position: 0 94.117647%; 
 }
 
-#main-dishes
+.main-dishes
 {
-    background: url(images/Main_Dishes_Small.jpg);
-    background-size: cover;
+    background-position: 0 56.470588%; 
+    background-size: 141.176471%;
 }
 
-#appetizer
+.appetizer
 {
-    background: url(images/Appetizer_Small.jpg);
-    background-size: cover;
+    background-position: 0 0%; 
 }
 
-#desserts
+.desserts
 {
-    background: url(images/Desserts_Small.jpg);
-    background-size: cover;
+    background-position: 0 37.647059%;  
 }
 
-#beverages
+.beverages
 {
-    background: url(images/Beverages_Small.jpg);
-    background-size: cover;
+    background-position: 0 18.823529%; 
 }
 
 #contact-section
@@ -320,8 +308,6 @@ header nav a
 #contact-section .title
 {
     top: 0;
-
-    display: flex;
 
     width: 50%;
     height: 8%;
@@ -573,8 +559,6 @@ footer
     height: 2%;
 
     text-align: center;
-
-    flex: 0 0 auto;
 }
 
 footer a
