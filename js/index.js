@@ -7,7 +7,7 @@ function loadGoogleMapAPI(){
 }
 
 window.loadMaps = function (){
-  var map = new google.maps.Map(document.getElementById('map_canvas'), {
+  var map = new google.maps.Map(document.getElementById('map-canvas'), {
     center: {lat:50.745151, lng:25.322764},
     zoom: 17,
     streetViewControl: false,
@@ -50,7 +50,7 @@ function highlighting  (){
 //map, that sliding from right side
 $('#text-location').click(function() {
   changeZIndex(11);
-  $('#map_canvas').css({marginLeft:'0', width:'100%'});
+  $('#map-canvas').css({marginLeft:'0', width:'100%'});
 
   if(document.getElementById('googleMap')===null){
     loadGoogleMapAPI();
@@ -60,38 +60,37 @@ $('#text-location').click(function() {
 
 //map, that sliding to right side
 $('.map-return').click(function() {
-  $('#map_canvas').css({width: '0', marginLeft: '100%'});
+  $('#map-canvas').css({width: '0', marginLeft: '100%'});
   setTimeout(function(){
     changeZIndex(5);
   },1700);
   $('.fa-chevron-right').css({transform: 'rotate(180deg)'});
-  $('.map-button').css({marginLeft: '-10%'});
+  $('.map-button').css({marginLeft: '-20%'});
   setTimeout(function(){
     $('.fa-chevron-right').css({transform: 'rotate(0deg)'});
   },1500);
 });
 
 //Check the initial posistion of the Sticky Header
-var stickyHeaderTop = $('header').offset().top;
+var stickyHeaderTop = $('.header-before-const').offset().top;
   
 //If page open not top, then header must be top 
 $(function(){
   if( $(window).scrollTop() > stickyHeaderTop ) {
-    $('header').css({position: 'fixed', top: '0px'});
-    $('.header-before-const').addClass('header-const');
+    $('#header').css({position: 'fixed', top: '0px'});
+  } else{
+    $('#header').css({position: 'absolute', top: '90%'});
   }
   
-  highlighting ();
+  highlighting();
 });
 
 $(window).scroll(function(){
   //Sticky Header when scrolling
   if( $(window).scrollTop() > stickyHeaderTop ) {
-    $('header').css({position: 'fixed', top: '0px'});
-    $('.header-before-const').addClass('header-const');
+    $('#header').css({position:'fixed',top: '0px'});
   } else {
-    $('header').css({position: 'static'});
-    $('.header-const').removeClass('header-const');
+    $('#header').css({position:'absolute',top: '90%'});
   };
 
   highlighting();
@@ -130,11 +129,11 @@ menuT.click(function() {
     success: function(){
           $('.salads').css({backgroundPosition : '0 79.646429%'});
           $('.soups').css({backgroundPosition : '0 99.744127%'});
-          $('.main-dishes').css({backgroundPosition : '0 61%'});/*59.792388%*/
+          $('.main-dishes').css({backgroundPosition : '0 59.792388%'});
           $('.appetizer').css({backgroundPosition : '0 0%'});
           $('.desserts').css({backgroundPosition : '0 40.195394%'});
           $('.beverages').css({backgroundPosition : '0 20.097697%'});
-          $('.small-menu-container').css({backgroundSize: 'auto 625%'});
+          $('.small-menu-container').css({backgroundSize: '110%'});
         },
     breakpoints: [
       {
@@ -143,11 +142,11 @@ menuT.click(function() {
         success: function(){
           $('.salads').css({backgroundPosition : '0 79.436828%'});
           $('.soups').css({backgroundPosition : '0 99.592442%'});
-          $('.main-dishes').css({backgroundPosition : '0 61%'});/*59.977949%*/
+          $('.main-dishes').css({backgroundPosition : '0 59.977949%'});
           $('.appetizer').css({backgroundPosition : '0 0%'});
           $('.desserts').css({backgroundPosition : '0 40.311226%'});
           $('.beverages').css({backgroundPosition : '0 20.155613%'});
-          $('.small-menu-container').css({backgroundSize: 'auto 625%'});
+          $('.small-menu-container').css({backgroundSize: '100%'});
         }
       }
     ],
@@ -156,24 +155,24 @@ menuT.click(function() {
   });
 })();
 
-//Smooth scrolling by sections
+/*//Smooth scrolling by sections
 $(function scrollScroll() {
   $.scrollify({
     section : ".big-size",
     easing : "swing",
     scrollSpeed : 1000,
     setHeights : false,
-    offset : -$('header').height(),
+    offset : -$('#header').height(),
     overflowScroll: true,
     updateHash : true,
   });
-});
+});*/
 
 //Smooth scrolling to all links
 $(".navigation").click(function() {
   var hash = this.hash;// Store hash
   $('html, body').animate({
-    scrollTop: $(hash).offset().top-$('header').height()
+    scrollTop: $(hash).offset().top-$('#header').height()
    }, 'slow', function(){});
 });
 
