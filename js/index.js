@@ -58,7 +58,7 @@ $('#text-location').click(function() {
   $('.map-button').css({marginLeft: '2.5%'});
 });
 
-//map, that sliding to right side
+/*map, that sliding to right side*/
 $('.map-return').click(function() {
   $('#map-canvas').css({width: '0', marginLeft: '100%'});
   setTimeout(function(){
