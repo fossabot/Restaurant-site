@@ -124,36 +124,39 @@ menuT.click(function() {
 });
 
 //Lazy-load of images
-;(function() {
-  var bLazy = new Blazy({
-    success: function(){
-          $('.salads').css({backgroundPosition : '0 79.646429%'});
-          $('.soups').css({backgroundPosition : '0 99.744127%'});
-          $('.main-dishes').css({backgroundPosition : '0 59.792388%'});
-          $('.appetizer').css({backgroundPosition : '0 0%'});
-          $('.desserts').css({backgroundPosition : '0 40.195394%'});
-          $('.beverages').css({backgroundPosition : '0 20.097697%'});
-          $('.small-menu-container').css({backgroundSize: '110%'});
-        },
-    breakpoints: [
-      {
-        width: 1200, 
-        src: 'data-src-medium',
-        success: function(){
-          $('.salads').css({backgroundPosition : '0 79.436828%'});
-          $('.soups').css({backgroundPosition : '0 99.592442%'});
-          $('.main-dishes').css({backgroundPosition : '0 59.977949%'});
-          $('.appetizer').css({backgroundPosition : '0 0%'});
-          $('.desserts').css({backgroundPosition : '0 40.311226%'});
-          $('.beverages').css({backgroundPosition : '0 20.155613%'});
-          $('.small-menu-container').css({backgroundSize: '100%'});
+function lazyLoad(){
+  ;(function() {
+    var bLazy = new Blazy({
+      success: function(){
+            $('.salads').css({backgroundPosition : '0 79.646429%'});
+            $('.soups').css({backgroundPosition : '0 99.744127%'});
+            $('.main-dishes').css({backgroundPosition : '0 59.792388%'});
+            $('.appetizer').css({backgroundPosition : '0 0%'});
+            $('.desserts').css({backgroundPosition : '0 40.195394%'});
+            $('.beverages').css({backgroundPosition : '0 20.097697%'});
+            $('.small-menu-container').css({backgroundSize: '110%'});
+          },
+      breakpoints: [
+        {
+          width: 1200, 
+          src: 'data-src-medium',
+          success: function(){
+            $('.salads').css({backgroundPosition : '0 79.436828%'});
+            $('.soups').css({backgroundPosition : '0 99.592442%'});
+            $('.main-dishes').css({backgroundPosition : '0 59.977949%'});
+            $('.appetizer').css({backgroundPosition : '0 0%'});
+            $('.desserts').css({backgroundPosition : '0 40.311226%'});
+            $('.beverages').css({backgroundPosition : '0 20.155613%'});
+            $('.small-menu-container').css({backgroundSize: '100%'});
+          }
         }
-      }
-    ],
-    offset: 1000,
-    
-  });
-})();
+      ],
+      offset: 1000
+    });
+  })();
+}
+
+lazyLoad();
 
 /*//Smooth scrolling by sections
 $(function scrollScroll() {
@@ -176,19 +179,62 @@ $(".navigation").click(function() {
    }, 'slow', function(){});
 });
 
-var elMenu = document.getElementById('container-menu');
-var elContact = document.getElementById('container-contact');
 
-console.log(elMenu);
 
-removeContainer(elMenu);
-removeContainer(elContact);
 
-/*remove #Container if screen width bigger than 1024px or less than 320px and if screen orientation in landscape mode*/
-function removeContainer(el){
+var cloneMenuContainer, cloneContactContainer;
+
+var mediumMenuContainer = document.getElementById('medium-menu-container');
+var mediumContactContainer = document.getElementById('medium-contact-container');
+
+var menuContainer = document.getElementById('container-menu');
+var contactContainer = document.getElementById('container-contact');
+
+$(function(){
+  cloneMenuContainer = menuContainer.cloneNode(true);
+  cloneContactContainer = contactContainer.cloneNode(true);
+  if(window.screen.orientation.type == 'portrait-primary'){
+    var elMenu = document.getElementById('container-menu');
+    var elContact = document.getElementById('container-contact');
+
+    cloneMenu = elMenu.cloneNode();
+    cloneContact = elContact.cloneNode();
+
+    unwrapContainer(elMenu);
+    unwrapContainer(elContact);
+  }
+});
+
+window.addEventListener('orientationchange', function(){
+  console.log(window.screen.orientation.type);
+  if(window.screen.orientation.type == 'portrait-primary'){
+    var menuContainer = document.getElementById('container-menu');
+    var contactContainer = document.getElementById('container-contact');
+    
+    cloneMenuContainer = menuContainer.cloneNode(true);
+    cloneContactContainer = contactContainer.cloneNode(true);
+
+    var elMenu = document.getElementById('container-menu');
+    var elContact = document.getElementById('container-contact');
+
+    unwrapContainer(elMenu);
+    unwrapContainer(elContact);
+  } else {
+    replaceToPrevious(mediumMenuContainer, cloneMenuContainer);
+    replaceToPrevious(mediumContactContainer, cloneContactContainer);
+  }
+  lazyLoad();
+}, false);
+
+/*remove Container if screen orientation in landscape mode*/
+function unwrapContainer(el){
   var parent = el.parentNode;
-  if((window.innerWidth <= 320 || window.innerWidth >= 1024) && window.screen.orientation.type == 'landscape-primary' ){
-    while (el.firstChild) parent.insertBefore(el.firstChild, el);
-    parent.removeChild(el);
-  } else parent.appendChild(el);
+  while (el.firstChild) parent.insertBefore(el.firstChild, el);
+  parent.removeChild(el);
+}
+
+/*Return Container for portrait mode*/
+function  replaceToPrevious(parent, newNode){
+  parent.innerHTML = '';//clear parent inner node
+  parent.appendChild(newNode);//append old node instead empty place
 }
