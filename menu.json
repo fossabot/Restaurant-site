@@ -1,0 +1,328 @@
+{
+	"menu" :[
+ 		[
+			{
+				"name": "Fuji Apple Chicken Salad",
+				"image": "css/images/FujiAppleChickenSalad.jpg",
+				"ingredients": "Chicken breasts, salt, mixed greens, tomatoes, red onion, pecan, gorgonzola, apple chips, fuji apple",
+				"calories": "570 cal",
+				"weight": " — ",
+				"price": "$3.99"
+			},
+			{
+				"name": "Caesar Salad",
+				"image": "css/images/Caesar.jpg",
+				"ingredients": "Romaine lettuce, croutons, parmesan cheese, lemon juice, olive oil, egg, worcestershire sauce, black pepper",
+				"calories": "132 cal",
+				"weight": "300 g",
+				"price": "$2.50"
+			},
+			{
+				"name": "Golden Beet and Arugula",
+				"image": "css/images/Golden_Beet_and_Arugula.jpg",
+				"ingredients": "Diced golden beets, arugula, red onions, strawberry vinaigrette, goat cheese, toasted almonds, dried cranberries",
+				"calories": "120 cal",
+				"weight": " — ",
+				"price": "$4.25"
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			}
+		],
+		[
+			{
+				"name": "Fuji Apple Chicken Salad",
+				"image": "css/images/FujiAppleChickenSalad.jpg",
+				"ingredients": "Chicken breasts, salt, mixed greens, tomatoes, red onion, pecan, gorgonzola, apple chips, fuji apple",
+				"calories": "570 cal",
+				"weight": " — ",
+				"price": "$3.99"
+			},
+			{
+				"name": "Caesar Salad",
+				"image": "css/images/Caesar.jpg",
+				"ingredients": "Romaine lettuce, croutons, parmesan cheese, lemon juice, olive oil, egg, worcestershire sauce, black pepper",
+				"calories": "132 cal",
+				"weight": "300 g",
+				"price": "$2.50"
+			},
+			{
+				"name": "Golden Beet and Arugula",
+				"image": "css/images/Golden_Beet_and_Arugula.jpg",
+				"ingredients": "Diced golden beets, arugula, red onions, strawberry vinaigrette, goat cheese, toasted almonds, dried cranberries",
+				"calories": "120 cal",
+				"weight": " — ",
+				"price": "$4.25"
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			}
+		],
+		[
+			{
+				"name": "Fuji Apple Chicken Salad",
+				"image": "css/images/FujiAppleChickenSalad.jpg",
+				"ingredients": "Chicken breasts, salt, mixed greens, tomatoes, red onion, pecan, gorgonzola, apple chips, fuji apple",
+				"calories": "570 cal",
+				"weight": " — ",
+				"price": "$3.99"
+			},
+			{
+				"name": "Caesar Salad",
+				"image": "css/images/Caesar.jpg",
+				"ingredients": "Romaine lettuce, croutons, parmesan cheese, lemon juice, olive oil, egg, worcestershire sauce, black pepper",
+				"calories": "132 cal",
+				"weight": "300 g",
+				"price": "$2.50"
+			},
+			{
+				"name": "Golden Beet and Arugula",
+				"image": "css/images/Golden_Beet_and_Arugula.jpg",
+				"ingredients": "Diced golden beets, arugula, red onions, strawberry vinaigrette, goat cheese, toasted almonds, dried cranberries",
+				"calories": "120 cal",
+				"weight": " — ",
+				"price": "$4.25"
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			}
+		],
+		[
+			{
+				"name": "Fuji Apple Chicken Salad",
+				"image": "css/images/FujiAppleChickenSalad.jpg",
+				"ingredients": "Chicken breasts, salt, mixed greens, tomatoes, red onion, pecan, gorgonzola, apple chips, fuji apple",
+				"calories": "570 cal",
+				"weight": " — ",
+				"price": "$3.99"
+			},
+			{
+				"name": "Caesar Salad",
+				"image": "css/images/Caesar.jpg",
+				"ingredients": "Romaine lettuce, croutons, parmesan cheese, lemon juice, olive oil, egg, worcestershire sauce, black pepper",
+				"calories": "132 cal",
+				"weight": "300 g",
+				"price": "$2.50"
+			},
+			{
+				"name": "Golden Beet and Arugula",
+				"image": "css/images/Golden_Beet_and_Arugula.jpg",
+				"ingredients": "Diced golden beets, arugula, red onions, strawberry vinaigrette, goat cheese, toasted almonds, dried cranberries",
+				"calories": "120 cal",
+				"weight": " — ",
+				"price": "$4.25"
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			}
+		],
+		[
+			{
+				"name": "Fuji Apple Chicken Salad",
+				"image": "css/images/FujiAppleChickenSalad.jpg",
+				"ingredients": "Chicken breasts, salt, mixed greens, tomatoes, red onion, pecan, gorgonzola, apple chips, fuji apple",
+				"calories": "570 cal",
+				"weight": " — ",
+				"price": "$3.99"
+			},
+			{
+				"name": "Caesar Salad",
+				"image": "css/images/Caesar.jpg",
+				"ingredients": "Romaine lettuce, croutons, parmesan cheese, lemon juice, olive oil, egg, worcestershire sauce, black pepper",
+				"calories": "132 cal",
+				"weight": "300 g",
+				"price": "$2.50"
+			},
+			{
+				"name": "Golden Beet and Arugula",
+				"image": "css/images/Golden_Beet_and_Arugula.jpg",
+				"ingredients": "Diced golden beets, arugula, red onions, strawberry vinaigrette, goat cheese, toasted almonds, dried cranberries",
+				"calories": "120 cal",
+				"weight": " — ",
+				"price": "$4.25"
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			}
+		],
+		[
+			{
+				"name": "Fuji Apple Chicken Salad",
+				"image": "css/images/FujiAppleChickenSalad.jpg",
+				"ingredients": "Chicken breasts, salt, mixed greens, tomatoes, red onion, pecan, gorgonzola, apple chips, fuji apple",
+				"calories": "570 cal",
+				"weight": " — ",
+				"price": "$3.99"
+			},
+			{
+				"name": "Caesar Salad",
+				"image": "css/images/Caesar.jpg",
+				"ingredients": "Romaine lettuce, croutons, parmesan cheese, lemon juice, olive oil, egg, worcestershire sauce, black pepper",
+				"calories": "132 cal",
+				"weight": "300 g",
+				"price": "$2.50"
+			},
+			{
+				"name": "Golden Beet and Arugula",
+				"image": "css/images/Golden_Beet_and_Arugula.jpg",
+				"ingredients": "Diced golden beets, arugula, red onions, strawberry vinaigrette, goat cheese, toasted almonds, dried cranberries",
+				"calories": "120 cal",
+				"weight": " — ",
+				"price": "$4.25"
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			},
+			{
+				"name": "Greek",
+				"image": "",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": " "
+			}
+		]
+	]	
+}

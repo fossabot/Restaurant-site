@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald|Dosis|Oxygen|Raleway|Montserrat|Mukta+Malar');
+@import url('https://fonts.googleapis.com/css?family=Oswald|Alegreya+Sans|Dosis|Oxygen|Raleway|Montserrat|Mukta+Malar');
 
 html{
     overflow-x: hidden; 
@@ -96,6 +96,7 @@ a{
 
 .big-menu-container{
     display: grid;
+    position: relative;
     grid-template-rows: 15% 85%;
     width: 90%;
     height: 90%;
@@ -105,7 +106,10 @@ a{
 
 #medium-menu-container{
     display: grid;
-    grid-template-columns: repeat(3 , 1fr);
+    position: relative;
+    /* grid-template-columns: repeat(2 , 1fr); */
+    grid-template-columns: repeat(3 , 1fr); 
+    /* grid-template-rows: 1fr;  */   
     grid-auto-rows: auto;   
 }
 
@@ -118,11 +122,6 @@ a{
     grid-template-columns: repeat(6, 75%) 15%;
     align-items: center;
     justify-items: center;
-    -ms-overflow-style: none;   
-}
-
-#container-menu::-webkit-scrollbar, #container-contact::-webkit-scrollbar { 
-    display: none; 
 }
 
 .empty-small-menu-container{
@@ -138,7 +137,7 @@ a{
     margin: auto;
     margin-top: 0;
     background: url(images/Dishes_sprite_Small.jpg);
-    background-size: 145.454545% !important;
+    background-size: 120% auto;
 }
 
 .false-container{
@@ -195,7 +194,7 @@ a{
 
 .main-dishes{
     background-position: 0 56.470588%; 
-    background-size: 155% !important;
+    background-size: 155% ;
 }
 
 .appetizer{
@@ -556,3 +555,103 @@ a{
         font-size: .6em;
     }
 }
+ 
+#menu-dish-photo-container{
+    display: none;
+    /* display: flex; */
+    position: relative;
+}
+
+#menu-dish-photo{
+    height: 90%;
+    width: 90%;
+    margin: auto;
+    background-size: cover;
+}
+
+#menu-dish-ingredients{
+    position: absolute;
+    display: flex;
+    width: 90%;
+    height: 20%;
+    bottom: 5%;
+    left: 5%;
+    right: 5%;
+}
+
+#menu-dish-ingredients p{
+    width: 90%;
+    margin: auto;
+    text-align: justify;
+    font-family: 'Alegreya Sans', sans-serif;
+}
+
+#menu-dish-list-container{
+    display: none;
+    /* display: flex; */
+    height: 100%;
+    width: 100%;
+}
+
+#menu-dish-list{
+    overflow-y: scroll;
+    list-style-type: none;
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    padding: 0;
+}
+
+.menu-dish-list-item{
+    position: relative;
+    display: grid;
+    grid-template-columns: 75% 15% 10%;
+    font-family: 'Alegreya Sans', sans-serif;
+    margin: 2.5%;
+    padding: 2.5%;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.menu-dish-list-item p{
+    margin: 0;
+}
+
+.menu-dish-list-item:hover{
+    background-color: #b6b6b6b3;
+    border-radius: 3px;
+}
+
+#menu-back-button {
+    position: absolute;
+    cursor: pointer;
+    /* display: inline-block; */
+    display: none;
+    margin: 0;
+    transition: all .7s ease;
+    top: 2.5%;
+    left: 2.5%;
+}
+
+.bar {
+   height: 4px;
+   width: 40px;
+   background: black;
+   margin: 10px auto;
+   transition: all .7s ease;
+}
+
+.arrow-top-r {
+   transform: rotateZ(-45deg) translateY(11px);
+   width: 21px;
+}
+ 
+.arrow-middle-r {
+   transform: translateX(21px);
+}
+ 
+.arrow-bottom-r {
+   transform: rotateZ(45deg) translateY(-11px);
+   width: 21px;
+}
+ 

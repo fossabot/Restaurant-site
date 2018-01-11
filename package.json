@@ -1,0 +1,9 @@
+{
+  "name": "Restaurant-site",
+  "version": "1.0.0",
+  "description": "Site for non-existen restaurant",
+  "main": "/js",
+  "repository": "https://github.com/Syarol/Restaurant-site",
+  "author": "Oleh Yaroshchuk",
+  "license": "MIT",
+}
