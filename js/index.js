@@ -236,7 +236,9 @@ menuDishList.onmouseover = function(e){
     if (target.tagName == 'LI') {
       var overIndex = getElementIndex(target);//index of mouseover li element
       if (overIndex != -1) { 
-        showIngedientsPanel(overIndex);
+        if (menuMainTitle.textContent != 'Beverages') {
+          showIngedientsPanel(overIndex);
+        }
         changePhoto(overIndex);
       }
       return;
@@ -348,7 +350,7 @@ function createMenuPoint(i){
   var dishPrice = document.createElement('p');
 
   dishName.textContent = menuList.menu[containerIndex][i].name;
-  dishWeight.textContent = menuList.menu[containerIndex][i].weight;
+  dishWeight.textContent = menuList.menu[containerIndex][i].calories;
   dishPrice.textContent = menuList.menu[containerIndex][i].price;
 
   menuDishList.appendChild(dish);

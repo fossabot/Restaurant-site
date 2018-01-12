@@ -5,7 +5,7 @@
 				"name": "Fuji Apple Chicken Salad",
 				"image": "css/images/FujiAppleChickenSalad.jpg",
 				"ingredients": "Chicken breasts, salt, mixed greens, tomatoes, red onion, pecan, gorgonzola, apple chips, fuji apple",
-				"calories": "570 cal",
+				"calories": "570 calories",
 				"weight": " — ",
 				"price": "$3.99"
 			},
@@ -13,315 +13,283 @@
 				"name": "Caesar Salad",
 				"image": "css/images/Caesar.jpg",
 				"ingredients": "Romaine lettuce, croutons, parmesan cheese, lemon juice, olive oil, egg, worcestershire sauce, black pepper",
-				"calories": "132 cal",
-				"weight": "300 g",
+				"calories": "132 calories",
+				"weight": "",
 				"price": "$2.50"
 			},
 			{
 				"name": "Golden Beet and Arugula",
 				"image": "css/images/Golden_Beet_and_Arugula.jpg",
 				"ingredients": "Diced golden beets, arugula, red onions, strawberry vinaigrette, goat cheese, toasted almonds, dried cranberries",
-				"calories": "120 cal",
+				"calories": "120 calories",
 				"weight": " — ",
 				"price": "$4.25"
 			},
 			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "Tomato-Peach Salad",
+				"image": "css/images/Tomato-Peach_Salad.jpg",
+				"ingredients": "Red onion, ripe peaches, tomatoes, cherry, sherry vinegar, olive oil, honey, salt, black pepper, feta cheese, basil",
+				"calories": "75 calories",
 				"weight": "",
-				"price": " "
+				"price": "$3.45"
 			},
 			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "Champagne Greens",
+				"image": "css/images/Champagne_Greens.jpg",
+				"ingredients": "Dijon mustard, Champagne vinegar, honey, olive oil, shallot, Bibb lettuce, dill, parsley, tarragon, chives, chervil ",
+				"calories": "255 calories",
 				"weight": "",
-				"price": " "
+				"price": "$5.35"
 			},
 			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "Southwestern Cobb",
+				"image": "css/images/Southwestern_Cobb.jpg",
+				"ingredients": "Grilled chicken, fire-roasted corn and poblano pepper relish, guacamole, cheddar-jack, tomatoes and tortilla chips all over a bed of lettuce for tons of flavor.",
+				"calories": "570 calories",
 				"weight": "",
-				"price": " "
+				"price": "$8.00"
 			},
 			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "Taco salad",
+				"image": "css/images/Taco_salad.jpg",
+				"ingredients": "Chili, tortilla chips, cheddar-jack, jalapeños, red onions, tomatoes, guacamole and sour cream.",
+				"calories": "940 calories",
 				"weight": "",
-				"price": " "
+				"price": "$7.55 "
 			},
 			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "Garden salad",
+				"image": "css/images/Garden_salad.jpg",
+				"ingredients": "Fresh flavors of lettuce, tomatoes, cucumbers, cheddar-jack, and croutons",
+				"calories": "310 calories",
 				"weight": "",
-				"price": " "
+				"price": "$3.05"
 			},
 			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "Panzanella",
+				"image": "css/images/Panzanella.jpg",
+				"ingredients": "Ciabatta loaf, tomatoes, sea salt, black pepper, capers, red onion, red peppers, anchovy fillets in oil, red wine vinegar, extra virgin olive oil, a bunch of fresh basil ",
+				"calories": "370 calories",
 				"weight": "",
-				"price": " "
+				"price": "$4.65"
 			}
 		],
 		[
 			{
-				"name": "Fuji Apple Chicken Salad",
-				"image": "css/images/FujiAppleChickenSalad.jpg",
-				"ingredients": "Chicken breasts, salt, mixed greens, tomatoes, red onion, pecan, gorgonzola, apple chips, fuji apple",
-				"calories": "570 cal",
+				"name": "Creamy Chicken Poblano",
+				"image": "css/images/Creamy_Chicken_Poblano.jpg",
+				"ingredients": "Olive oil, carrots, onions, celery, garlic, peppers, salt, pepper, cumin, thyme, chicken, cilantro, butter, flour, hot pepper sauce, heavy cream",
+				"calories": "240 calories",
 				"weight": " — ",
-				"price": "$3.99"
+				"price": "$7.35"
 			},
 			{
-				"name": "Caesar Salad",
-				"image": "css/images/Caesar.jpg",
-				"ingredients": "Romaine lettuce, croutons, parmesan cheese, lemon juice, olive oil, egg, worcestershire sauce, black pepper",
-				"calories": "132 cal",
-				"weight": "300 g",
-				"price": "$2.50"
+				"name": "Broccoli Cheese Soup",
+				"image": "css/images/Broccoli_cheese_soup.jpg",
+				"ingredients": "Butter, onion, broccoli, chicken broth, milk, garlic powder, cornstarch",
+				"calories": "160 calories",
+				"weight": "",
+				"price": "$5.75"
 			},
 			{
-				"name": "Golden Beet and Arugula",
-				"image": "css/images/Golden_Beet_and_Arugula.jpg",
-				"ingredients": "Diced golden beets, arugula, red onions, strawberry vinaigrette, goat cheese, toasted almonds, dried cranberries",
-				"calories": "120 cal",
+				"name": "Ukrainian Borsch",
+				"image": "css/images/Borsch.jpg",
+				"ingredients": "Beets, potatoes, oil, onion, carrots, cabbage, beans, bay leaves, chicken broth, ketchup, lemon juice, pepper, dill",
+				"calories": "320 calories",
 				"weight": " — ",
-				"price": "$4.25"
+				"price": "$7.25"
 			},
 			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "Southwest Chicken Chili",
+				"image": "css/images/Southwest_Chicken_Chili.jpg",
+				"ingredients": "Chicken thighs, olive oil, smoked ham hock, northern beans, chicken broth, green chiles, onion, cilantro, garlic powder, ground cumin, dried oregano, red pepper, sour cream",
+				"calories": "320 calories",
 				"weight": "",
-				"price": " "
-			},
-			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
-				"weight": "",
-				"price": " "
-			},
-			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
-				"weight": "",
-				"price": " "
+				"price": "$5.50"
 			}
 		],
 		[
 			{
-				"name": "Fuji Apple Chicken Salad",
-				"image": "css/images/FujiAppleChickenSalad.jpg",
-				"ingredients": "Chicken breasts, salt, mixed greens, tomatoes, red onion, pecan, gorgonzola, apple chips, fuji apple",
-				"calories": "570 cal",
-				"weight": " — ",
-				"price": "$3.99"
-			},
-			{
-				"name": "Caesar Salad",
-				"image": "css/images/Caesar.jpg",
-				"ingredients": "Romaine lettuce, croutons, parmesan cheese, lemon juice, olive oil, egg, worcestershire sauce, black pepper",
-				"calories": "132 cal",
-				"weight": "300 g",
-				"price": "$2.50"
-			},
-			{
-				"name": "Golden Beet and Arugula",
-				"image": "css/images/Golden_Beet_and_Arugula.jpg",
-				"ingredients": "Diced golden beets, arugula, red onions, strawberry vinaigrette, goat cheese, toasted almonds, dried cranberries",
-				"calories": "120 cal",
-				"weight": " — ",
-				"price": "$4.25"
-			},
-			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "Beef Enchiladas",
+				"image": "css/images/Beef_Enchiladas.jpg",
+				"ingredients": "Garlic,  chili, cumin, coriander, sugar, salt, chuck steaks, vegetable oil, onions, tomato sauce, Monterey Jack cheese, sharp cheddar cheese, cilantro, pickled jalapeños, corn tortillas",
+				"calories": "470 calories",
 				"weight": "",
-				"price": " "
+				"price": "$7.80"
 			},
 			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "Slow Cooker Kielbasa and Sauerkraut",
+				"image": "css/images/Slow_Cooker_Kielbasa_and_Sauerkraut.jpg",
+				"ingredients": "Beer, brown sugar, polish kielbasa, sauerkraut",
+				"calories": "435 calories",
 				"weight": "",
-				"price": " "
+				"price": "$3.75"
 			},
 			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "Coconut Shrimp with Mango Dipping Sauce",
+				"image": "css/images/Coconut_Shrimp_with_Mango_Dipping_Sauce.jpg",
+				"ingredients": "Shrimp, flour, paprika, white pepper, cayenne pepper, salt, sugar, eggs, water, coconut, bread crumbs, vegetable oil, mango chunks, mayonnaise, cilantro, honey, lemon juice, Sriracha sauce",
+				"calories": "540 calories",
 				"weight": "",
-				"price": " "
+				"price": "$5.40"
+			},
+			{
+				"name": "Crab Cakes with Remoulade Sauce",
+				"image": "css/images/Crab_cake_and_remoulade_sauce.jpg",
+				"ingredients": "Bread crumbs, salt, pepper, celery, onion, garlic, butter, shrimp, heavy cream, Dijon mustard, lemon juice, hot pepper sauce, Old Bay seasoning, lump crab meat, vegetable oil, mayonnaise, pickle relish, hot sauce, parsley, capers",
+				"calories": "150 calories",
+				"weight": "",
+				"price": "$4.80"
+			},
+			{
+				"name": "Meatloaf",
+				"image": "css/images/Meatloaf.jpg",
+				"ingredients": "Ketchup, light brown sugar, vinegar, vegetable oil, onion, garlic, minced, eggs, Dijon mustard, Worcestershire sauce, salt, black pepper, dried thyme, cayenne pepper, milk, beef, pork, veal, saltine crackers, parsley",
+				"calories": "370 calories",
+				"weight": "",
+				"price": "$5.20"
+			},
+			{
+				"name": "Frito Chili Pie",
+				"image": "css/images/Frito_Pie.jpg",
+				"ingredients": "Vegetable oil, yellow onions, red pepper, chili powder, ground cumin, cayenne pepper, salt, garlic, beef, dark red kidney beans, tomatoes, tomato puree, corn chips, sharp cheddar cheese, green onions",
+				"calories": "540 calories",
+				"weight": "",
+				"price": "$3.70"
+			},
+			{
+				"name": "General Tso’s Chicken",
+				"image": "css/images/General_Tso’s_Chicken.jpg",
+				"ingredients": "Hoisin sauce, white vinegar, soy sauce, sugar, cornstarch, water, chicken breasts, vegetable oil, garlic, ginger, red pepper flakes, egg whites, cornstarch, flour, baking soda, green onions",
+				"calories": "630 calories",
+				"weight": "",
+				"price": "$4.40"
+			},
+			{
+				"name": "Greek Lamb Gyros",
+				"image": "css/images/Greek_Lamb_Gyros.jpg",
+				"ingredients": "Lamb, salt, black pepper, oregano leaves, yellow onion, garlic, bacon (or 5 slices sliced bacon)",
+				"calories": "730 calories",
+				"weight": "",
+				"price": "$4.00"
 			}
 		],
 		[
 			{
-				"name": "Fuji Apple Chicken Salad",
-				"image": "css/images/FujiAppleChickenSalad.jpg",
-				"ingredients": "Chicken breasts, salt, mixed greens, tomatoes, red onion, pecan, gorgonzola, apple chips, fuji apple",
-				"calories": "570 cal",
-				"weight": " — ",
-				"price": "$3.99"
-			},
-			{
-				"name": "Caesar Salad",
-				"image": "css/images/Caesar.jpg",
-				"ingredients": "Romaine lettuce, croutons, parmesan cheese, lemon juice, olive oil, egg, worcestershire sauce, black pepper",
-				"calories": "132 cal",
-				"weight": "300 g",
-				"price": "$2.50"
-			},
-			{
-				"name": "Golden Beet and Arugula",
-				"image": "css/images/Golden_Beet_and_Arugula.jpg",
-				"ingredients": "Diced golden beets, arugula, red onions, strawberry vinaigrette, goat cheese, toasted almonds, dried cranberries",
-				"calories": "120 cal",
-				"weight": " — ",
-				"price": "$4.25"
-			},
-			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "Beer Dip",
+				"image": "css/images/Beer_Dip.jpg",
+				"ingredients": "Cream cheese, beer, ranch salad, cheddar cheese, pretzels ",
+				"calories": "89 calories",
 				"weight": "",
-				"price": " "
+				"price": "$1.30"
 			},
 			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "Fiesta Pinwheels",
+				"image": "css/images/Fiesta_Pinwheels.jpg",
+				"ingredients": "Cream cheese, sour cream, picante sauce, taco seasoning, garlic, olives, green chilies, cheddar cheese, green onions, tortillas, salsa",
+				"calories": "170 calories",
 				"weight": "",
-				"price": " "
+				"price": "$1.90"
 			},
 			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "Chocolate Chip Cheese Ball",
+				"image": "css/images/Chocolate_Chip_Cheese_Ball.jpg",
+				"ingredients": "Cream cheese, butter, vanilla extract, confectioners' sugar, brown sugar, chocolate chips, pecans, graham crackers",
+				"calories": "100 calories",
 				"weight": "",
-				"price": " "
+				"price": "$1.50"
+			},
+			{
+				"name": "Caprese Salad Kabobs",
+				"image": "css/images/Caprese_Salad_Kabobs.jpg",
+				"ingredients": "Tomatoes, mozzarella, basil, olive oil, vinegar ",
+				"calories": "45 calories",
+				"weight": "",
+				"price": "$1.25"
+			},
+			{
+				"name": "Cucumber shrimp appetizers",
+				"image": "css/images/Cucumber_shrimp_appetizers.jpg",
+				"ingredients": "Pineapple, shrimp, mayonnaise, green onion, Dijon mustard, dill, cucumber ",
+				"calories": "15 calories",
+				"weight": "",
+				"price": "$1.80"
 			}
 		],
 		[
 			{
-				"name": "Fuji Apple Chicken Salad",
-				"image": "css/images/FujiAppleChickenSalad.jpg",
-				"ingredients": "Chicken breasts, salt, mixed greens, tomatoes, red onion, pecan, gorgonzola, apple chips, fuji apple",
-				"calories": "570 cal",
-				"weight": " — ",
-				"price": "$3.99"
-			},
-			{
-				"name": "Caesar Salad",
-				"image": "css/images/Caesar.jpg",
-				"ingredients": "Romaine lettuce, croutons, parmesan cheese, lemon juice, olive oil, egg, worcestershire sauce, black pepper",
-				"calories": "132 cal",
-				"weight": "300 g",
-				"price": "$2.50"
-			},
-			{
-				"name": "Golden Beet and Arugula",
-				"image": "css/images/Golden_Beet_and_Arugula.jpg",
-				"ingredients": "Diced golden beets, arugula, red onions, strawberry vinaigrette, goat cheese, toasted almonds, dried cranberries",
-				"calories": "120 cal",
-				"weight": " — ",
-				"price": "$4.25"
-			},
-			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "White chocolate cheesecake",
+				"image": "css/images/White_chocolate_cheesecake.jpg",
+				"ingredients": "White chocolate, cream cheese, double cream, lemon juice, vanilla extract, gingernut biscuits, butter",
+				"calories": "1100 calories",
 				"weight": "",
-				"price": " "
+				"price": "$8.00"
 			},
 			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "Messy cookie sandwich",
+				"image": "css/images/Messy_cookie_sandwich.jpg",
+				"ingredients": "Oats, flour, baking powder, baking soda, salt, butter, golden brown sugar, granulated sugar, eggs, almond extract, chocolate chips, almonds, vanilla ice cream, amaretto liqueur",
+				"calories": "1680 calories",
 				"weight": "",
-				"price": " "
+				"price": "$11.80"
 			},
 			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
+				"name": "Roadhouse apple berry crisp",
+				"image": "css/images/Roadhouse_apple_berry_crisp.jpg",
+				"ingredients": "Golden brown sugar, flour, apples, raspberries, oats, cinnamon, salt, butter, vanilla ice cream",
+				"calories": "1320 calories",
 				"weight": "",
-				"price": " "
+				"price": "$8.80"
+			},
+			{
+				"name": "Chocolate butterscotch pot",
+				"image": "css/images/Chocolate_Butterscotch_Pot.jpeg",
+				"ingredients": "Heavy cream, milk, egg yolks, bittersweet chocolate, milk chocolate, vanilla bean, dark brown sugar, water, granulated sugar, sea salt, coconut flakes, confectioners' sugar, vanilla extract",
+				"calories": "610 calories",
+				"weight": "",
+				"price": "$7.90"
 			}
 		],
 		[
 			{
-				"name": "Fuji Apple Chicken Salad",
-				"image": "css/images/FujiAppleChickenSalad.jpg",
-				"ingredients": "Chicken breasts, salt, mixed greens, tomatoes, red onion, pecan, gorgonzola, apple chips, fuji apple",
-				"calories": "570 cal",
-				"weight": " — ",
-				"price": "$3.99"
+				"name": "Beer",
+				"image": "css/images/Beer.jpg",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": "$5.00"
 			},
 			{
-				"name": "Caesar Salad",
-				"image": "css/images/Caesar.jpg",
-				"ingredients": "Romaine lettuce, croutons, parmesan cheese, lemon juice, olive oil, egg, worcestershire sauce, black pepper",
-				"calories": "132 cal",
-				"weight": "300 g",
+				"name": "Juice",
+				"image": "css/images/Juice.jpg",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": "$2.00"
+			},
+			{
+				"name": "Tea",
+				"image": "css/images/Tea.jpg",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
+				"price": "$2.25"
+			},			
+			{
+				"name": "Coffee",
+				"image": "css/images/Coffee.jpg",
+				"ingredients": "",
+				"calories": "",
+				"weight": "",
 				"price": "$2.50"
 			},
 			{
-				"name": "Golden Beet and Arugula",
-				"image": "css/images/Golden_Beet_and_Arugula.jpg",
-				"ingredients": "Diced golden beets, arugula, red onions, strawberry vinaigrette, goat cheese, toasted almonds, dried cranberries",
-				"calories": "120 cal",
-				"weight": " — ",
-				"price": "$4.25"
-			},
-			{
-				"name": "Greek",
-				"image": "",
+				"name": "Ale",
+				"image": "css/images/Ale.jpg",
 				"ingredients": "",
 				"calories": "",
 				"weight": "",
-				"price": " "
-			},
-			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
-				"weight": "",
-				"price": " "
-			},
-			{
-				"name": "Greek",
-				"image": "",
-				"ingredients": "",
-				"calories": "",
-				"weight": "",
-				"price": " "
+				"price": "$5.50"
 			}
 		]
 	]	
