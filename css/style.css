@@ -2,6 +2,7 @@
 
 html{
     overflow-x: hidden; 
+    transition-duration: .8s;
 }
 
 body{
@@ -58,8 +59,8 @@ a{
     justify-items: center;
 }
 
-.navigation-active{
-    font-weight: bold;
+.navigation{
+    cursor: pointer;
 }
 
 #about-section{
@@ -136,8 +137,10 @@ a{
     height: 75%;
     margin: auto;
     margin-top: 0;
-    background: url(images/Dishes_sprite_Small.jpg);
-    background-size: 120% auto;
+   /*  background: url(images/Dishes_sprite_Small.jpg); */
+    /* background-size: 120% auto; */
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .false-container{
@@ -184,11 +187,24 @@ a{
     text-shadow: 0 0 0 rgba(97,97,97 ,1);
 }
 
-.salads{
+/* .appetizer, .beverages, .desserts, .main-dishes, .salads, 
+.soups
+{ max-width: 100%; background-size: 100%; background-image: url('images/Dishes_sprite_v2.jpg'); }
+ 
+.appetizer { background-position: 0 0%; background-size: 100%; }
+.beverages { background-position: 0 20.188014%; background-size: 100%; }
+.desserts { background-position: 0 40.352526%; background-size: cover; }
+.main-dishes { background-position: 0 60.009322%; background-size: 100%; }
+.salads { background-position: 0 79.835488%; background-size: 100%; }
+.soups { background-position: 0 100%; background-size: 100%; } */
+
+/* .salads{
+    background-image: url(images/Salads.jpg);
     background-position: 0 75.294118%;
 }
 
 .soups{   
+    background-image: : url(images/Soups.jpg);
     background-position: 0 94.117647%; 
 }
 
@@ -207,6 +223,30 @@ a{
 
 .beverages{
     background-position: 0 18.823529%; 
+} */
+
+.salads{
+    background-image: url(images/Salads.jpg);
+}
+
+.soups{   
+    background-image: url(images/Soups.jpg);
+}
+
+.main-dishes{
+    background-image: url(images/Main_Dishes.jpg);
+}
+
+.appetizer{
+    background-image: url(images/Appetizer.jpg);
+}
+
+.desserts{
+    background-image: url(images/Desserts.jpg);
+}
+
+.beverages{
+    background-image: url(images/Beverages.jpg);
 }
 
 #contact-section{
@@ -338,7 +378,7 @@ a{
     min-height: 90%;
 }
 
-#map-canvas{
+#map-container{
     width: 100%;
     min-height: 100%;
     margin-left: 100%;
@@ -346,7 +386,7 @@ a{
     background-color: grey;
 }
 
-.map-button{
+#map-return-button{
     position: absolute;
     z-index: 20;
     top: 280%;
@@ -356,7 +396,7 @@ a{
     transition: 2.5s;
 }
 
-.map-return{
+#map-return-arrow-container{
     z-index: 20;
     display: flex;
     width: 4em;
@@ -434,7 +474,7 @@ a{
     }
 
     .small-menu-container{
-        background-size: 170% auto !important;
+        /* background-size: 170% auto !important; */
     }
 
     #medium-contact-container{
@@ -567,6 +607,7 @@ a{
     width: 90%;
     margin: auto;
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 #menu-dish-ingredients{

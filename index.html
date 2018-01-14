@@ -16,14 +16,14 @@
 	<section id="head-section" class="b-lazy big-size-section" data-section-name="head" data-src="css/images/Head.jpg" data-src-medium="css/images/Head_Medium.jpg"></section>
 
 	<header id="header">
-		<div class="logo"><a class="navigation" href="#head-section">Barillia</a></div>
+		<div class="logo"><a class="navigation" scrollTo="#head-section">Barillia</a></div>
 		<nav>
-			<a class="navigation" href="#about-section">About</a>
-			<a class="navigation" href="#menu-section">Menu</a>
-			<a class="navigation" href="#contact-section">Contact us</a>
+			<a class="navigation" scrollTo="#about-section">About</a>
+			<a class="navigation" scrollTo="#menu-section">Menu</a>
+			<a class="navigation" scrollTo="#contact-section">Contact us</a>
 		</nav>
 	</header>   
-	<div class="header-before-const"></div>
+	<div id="header-before-const"></div>
 
 	<section id="about-section" class="b-lazy big-size-section" data-section-name="about" data-src="css/images/About.jpeg" data-src-medium="css/images/About_Medium.jpg">
 		<div class="about-content-block">
@@ -42,27 +42,27 @@
 			<h1 class="titles" id="menu-main-title">Menu</h1>
 			<div id="medium-menu-container">
 				<div id="container-menu">
-					<div class="b-lazy small-menu-container salads" data-src="css/images/Dishes_sprite.jpg" data-src-medium="css/images/Dishes_sprite_Medium.jpg">
+					<div class="small-menu-container salads" >
 						<div class="false-container"></div>
 						<h1 class="menu-titles">Salads</h1>
 					</div>
-					<div class="b-lazy small-menu-container soups" data-src="css/images/Dishes_sprite.jpg" data-src-medium="css/images/Dishes_sprite_Medium.jpg">
+					<div class="small-menu-container soups">
 						<div class="false-container"></div>
 						<h1 class="menu-titles">Soups</h1>
 					</div>
-					<div class="b-lazy small-menu-container main-dishes" data-src="css/images/Dishes_sprite.jpg" data-src-medium="css/images/Dishes_sprite_Medium.jpg">
+					<div class="small-menu-container main-dishes">
 						<div class="false-container"></div>
 						<h1 class="menu-titles">Main dishes</h1>
 					</div>
-					<div class="b-lazy small-menu-container appetizer" data-src="css/images/Dishes_sprite.jpg" data-src-medium="css/images/Dishes_sprite_Medium.jpg">
+					<div class="small-menu-container appetizer">
 						<div class="false-container"></div>
 						<h1 class="menu-titles">Appetizer</h1>
 					</div>
-					<div class="b-lazy small-menu-container desserts" data-src="css/images/Dishes_sprite.jpg" data-src-medium="css/images/Dishes_sprite_Medium.jpg">
+					<div class="small-menu-container desserts">
 						<div class="false-container"></div>
 						<h1 class="menu-titles">Desserts</h1>
 					</div>
-					<div class="b-lazy small-menu-container beverages" data-src="css/images/Dishes_sprite.jpg" data-src-medium="css/images/Dishes_sprite_Medium.jpg">
+					<div class="small-menu-container beverages">
 						<div class="false-container"></div>
 						<h1 class="menu-titles">Beverages</h1>
 					</div>
@@ -128,14 +128,14 @@
 		</div>	
 	</section>
 
-	<div class="map-button">
-		<div class="map-return">
+	<div id="map-return-button">
+		<div id="map-return-arrow-container">
 			<i class="fa fa-chevron-right" aria-hidden="true"></i>
 		</div>
 	</div>	
 	
 	<div class="map-wrapper">
-		<div id="map-canvas"></div>
+		<div id="map-container"></div>
 	</div>
 
 	<footer class="footer">
@@ -150,8 +150,6 @@
 
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.2/blazy.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.17/jquery.scrollify.min.js"></script> -->
 	<script src="js/index.js"></script>
 </body>
 
