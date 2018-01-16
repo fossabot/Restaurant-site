@@ -1,5 +1,5 @@
 /**
- * Simple Graphic Editor
+ * Site for non-existen restaurant
  *
  * @Author Oleh Yaroshchuk 
  */
@@ -10,25 +10,19 @@
 var textLocation = document.getElementById('text-location');
 var mapContainer = document.getElementById('map-container');
 var mapReturnButton = document.getElementById('map-return-button');
-
-var mapReturnArrowContainer = document.getElementById('map-return-arrow-container');
 var chevronRight = document.getElementsByClassName('fa-chevron-right');
-
 var headerBeforeConst = document.getElementById('header-before-const');
 var header = document.getElementById('header');  
 
 var stickyHeaderTop = headerBeforeConst.offsetTop; //Check the initial posistion of the Sticky Header
 
 var navigation = document.getElementsByClassName('navigation');
-
-var cloneMenuContainer, cloneContactContainer;
-
+var cloneMenuContainer; 
+var cloneContactContainer;
 var mediumMenuContainer = document.getElementById('medium-menu-container');
 var mediumContactContainer = document.getElementById('medium-contact-container');
-
 var menuContainer = document.getElementById('container-menu');
 var contactContainer = document.getElementById('container-contact');
-
 var backMenuButton = document.getElementById('menu-back-button');
 var menuPhotoContainer = document.getElementById('menu-dish-photo-container');
 var menuListContainer = document.getElementById('menu-dish-list-container');
@@ -44,6 +38,7 @@ var containerIndex;
 var menuRequest;
 var containerMenu = document.getElementById('container-menu');
 var smallEmptyMenuContainer = document.getElementsByClassName('empty-small-menu-container');
+var mapWrapper = document.getElementById('map-wrapper');
 
 menuRequest = new XMLHttpRequest();
 menuRequest.open('GET', 'menu.json');
@@ -60,13 +55,6 @@ function loadGoogleMap(){
   script.type = "text/javascript";
   script.id ="googleMap";
   document.getElementsByTagName("body")[0].append(script);
-}
-
-function changeZIndex(IndexZ){
-  var mapIndex = document.getElementsByClassName('map-wrapper'); 
-  if (mapIndex.length > 0) {
-    mapIndex[0].style.zIndex = IndexZ;
-  }
 }
 
 function fixHeader(){
@@ -97,21 +85,32 @@ function unwrapContainer(el){
   parent.removeChild(el);
 }
 
-/*Return Container for portrait mode*/
+/*Return Container*/
 function  replaceToPrevious(parent, newNode){
   parent.innerHTML = '';//clear parent inner node
   parent.appendChild(newNode);//append old node instead empty place
+}
+
+function wrapContainers(){
+  replaceToPrevious(mediumMenuContainer, cloneMenuContainer);
+  replaceToPrevious(mediumContactContainer, cloneContactContainer);
+}
+
+function saveNodes(){
+  cloneMenuContainer = menuContainer.cloneNode(true);
+  cloneContactContainer = contactContainer.cloneNode(true);
 }
 
 function saveNodeAndUnwrapContainers (){
   var menuContainer = document.getElementById('container-menu');
   var contactContainer = document.getElementById('container-contact');
     
-  cloneMenuContainer = menuContainer.cloneNode(true);
-  cloneContactContainer = contactContainer.cloneNode(true);
+  saveNodes();
 
   unwrapContainer(menuContainer);
-  unwrapContainer(contactContainer);
+  if(document.getElementById('container-contact')){
+    unwrapContainer(contactContainer);
+  }
 }
 
 function changeMenuMainTitle(targetChildren){
@@ -122,9 +121,10 @@ function changeMenuMainTitle(targetChildren){
   }
 }
 
+/*Get index of child element inside node*/
 function getElementIndex(node) {
   var index = 0;
-  while ( (node = node.previousElementSibling) ) {
+  while (node = node.previousElementSibling){
     index++;
   }
   return index;
@@ -163,12 +163,27 @@ function createMenuPoint(i){
   dish.setAttribute('class', 'menu-dish-list-item');
 }
 
+function checkAndResizeGrids(){
+  if(window.innerWidth < '600'){
+    mediumMenuContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    mediumMenuContainer.style.gridTemplateRows = 'repeat(3, 1fr)';
+    mediumMenuContainer.style.gridAutoRows = 'auto';
+    smallEmptyMenuContainer[0].style.display = 'none';
+  } else if(window.innerWidth <= '1024' && window.innerWidth >= '600'){
+    mediumMenuContainer.style.gridTemplateColumns = '20% 60% 20%';
+    smallEmptyMenuContainer[0].style.display = 'block';
+  } else {
+    mediumMenuContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
+    mediumMenuContainer.style.gridAutoRows = '50%';
+  }
+}
+
 /**
  * Event Listeners
 */
 
 window.loadMaps = function (){
-  var map = new google.maps.Map(document.getElementById('map-canvas'), {
+  var map = new google.maps.Map(document.getElementById('map-container'), {
     center: {lat:50.745151, lng:25.322764},
     zoom: 17,
     streetViewControl: false,
@@ -189,7 +204,7 @@ window.loadMaps = function (){
 
 //map, that sliding from right side
 textLocation.addEventListener('click', function(){
-  changeZIndex(11);
+  mapWrapper.style.zIndex = 11;
   mapContainer.style.marginLeft = 0;
   mapContainer.style.width = '100%';
 
@@ -200,16 +215,16 @@ textLocation.addEventListener('click', function(){
 });
 
 /*map, that sliding to right side*/
-mapReturnArrowContainer.addEventListener('click', function() {
+mapReturnButton.addEventListener('click', function() {
   mapContainer.style.width = '0';
   mapContainer.style.marginLeft = '100%';
   setTimeout(function(){
-    changeZIndex(5);
+    mapWrapper.style.zIndex = 5;
   },1700);
   for (var i = 0; i < chevronRight.length; i++) {
     chevronRight[i].style.transform = 'rotate(180deg)';
   }
-  mapReturnArrowContainer.style.marginLeft = '-20%';
+  mapReturnButton.style.marginLeft = '-20%';
   setTimeout(function(){
     for (var i = 0; i < chevronRight.length; i++) {
       chevronRight[i].style.transform = 'rotate(0deg)';
@@ -240,12 +255,14 @@ header.onclick = function(e){
 
 document.addEventListener('DOMContentLoaded', function(){
   console.log(window.screen.orientation.type);
-  cloneMenuContainer = menuContainer.cloneNode(true);
-  cloneContactContainer = contactContainer.cloneNode(true);
   console.log(window.innerWidth);
-  if(window.screen.orientation.type == 'portrait-primary' || window.innerWidth >= 1024){
+  saveNodes();
+
+  if(window.screen.orientation.type == 'portrait-primary' || window.innerWidth >= '1024' || window.innerWidth < '600'){
     saveNodeAndUnwrapContainers();
   }
+
+  checkAndResizeGrids();
 });
 
 window.addEventListener('orientationchange', function(){
@@ -253,8 +270,7 @@ window.addEventListener('orientationchange', function(){
   if(window.screen.orientation.type == 'portrait-primary'){
     saveNodeAndUnwrapContainers();
   } else {
-    replaceToPrevious(mediumMenuContainer, cloneMenuContainer);
-    replaceToPrevious(mediumContactContainer, cloneContactContainer);
+    wrapContainers();
   }
   lazyLoad();
 }, false);
@@ -285,61 +301,71 @@ mediumMenuContainer.onclick = function(e){
     if (target.classList.contains('small-menu-container')) {
       containerIndex = getElementIndex(target);//get index of clicked element
 
+      if(window.innerWidth < '600' || window.innerWidth > '1024'){
+        containerIndex -= 2;
+      }
+
       containerMenu.style.display = 'none';
+
+      /*Hide menu parts of choosing*/
       for (var i = 0; i < smallMenuContainer.length; i++) {
         smallMenuContainer[i].style.display = 'none';
       }
-
       smallEmptyMenuContainer[0].style.display = 'none';
 
       backMenuButton.style.display = 'inline-block';
       menuPhotoContainer.style.display = 'flex';
       menuListContainer.style.display = 'flex';
+
+      changeMenuMainTitle(target.children);
+
       mediumMenuContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
       mediumMenuContainer.style.gridAutoRows = '100%';
 
-      var targetChildren = target.children;
-      changeMenuMainTitle(targetChildren);
-
       menuDishList.innerHTML = '';//clear list
-
       for (i = 0; i < menuList.menu[containerIndex].length; i++){
         createMenuPoint(i);
       }
 
       photoContainer.style.backgroundImage = window.getComputedStyle(target).getPropertyValue('background-image');
+
+      /*For narrow ones screens*/
+      if (window.innerWidth < '600') {
+        mediumMenuContainer.style.gridTemplateColumns = '1fr';
+        mediumMenuContainer.style.gridTemplateRows = '50% 50%'
+        dishIngredients.style.height = '30%';
+        dishIngredients.fontSize = '5px';
+      }
+
       return;
     } 
     target = target.parentNode;
-    console.log(target);
   }
 };
 
 backMenuButton.addEventListener('click', function(){
-  this.style.display = 'none';
-  menuMainTitle.textContent = 'Menu';
   containerMenu.style.display = 'grid';
-  menuPhotoContainer.style.display = 'none';
-  menuListContainer.style.display = 'none';
-  console.log(window.innerWidth);
-  
+
   for (var i = 0; i < smallMenuContainer.length; i++) {
     smallMenuContainer[i].style.display = 'block';
   }
+  smallEmptyMenuContainer[0].style.display = 'block';
 
+  this.style.display = 'none';
+  menuPhotoContainer.style.display = 'none';
+  menuListContainer.style.display = 'none';
+
+  menuMainTitle.textContent = 'Menu';
+
+  checkAndResizeGrids();
+
+  //hide and clear ingredients panel
   dishIngredients.innerHTML = '';
   dishIngredients.style.backgroundColor = 'rgba(182, 182, 182, 0)';
+});
 
-  if(window.innerWidth < '600'){
-    mediumMenuContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
-  } else if(window.innerWidth <= '1024' && window.innerWidth >= '600'){
-    mediumMenuContainer.style.gridTemplateColumns = '20% 60% 20%';
-    smallEmptyMenuContainer[0].style.display = 'block';
-  } else {
-    mediumMenuContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
-  }
-
-  mediumMenuContainer.style.gridAutoRows = 'auto';
+window.addEventListener('resize', function(){
+  console.log(window.innerWidth);
 });
 
 /**
@@ -374,7 +400,7 @@ function lazyLoad(){
           }
         }
       ],*/
-      offset: 1000
+      offset: 100
     });
   })();
 }
