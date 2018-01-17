@@ -39,6 +39,7 @@ var menuRequest;
 var containerMenu = document.getElementById('container-menu');
 var smallEmptyMenuContainer = document.getElementsByClassName('empty-small-menu-container');
 var mapWrapper = document.getElementById('map-wrapper');
+var footer = document.getElementById('footer');
 
 menuRequest = new XMLHttpRequest();
 menuRequest.open('GET', 'menu.json');
@@ -178,6 +179,16 @@ function checkAndResizeGrids(){
   }
 }
 
+function smoothScroll(e){
+  var target = e.target;
+  while (target != this) {
+    if (target.classList.contains('navigation')) {
+      scrollTo(document.querySelector(target.getAttribute('scrollTo')));
+      return;
+    } else target = target.parentNode;
+  }
+}
+
 /**
  * Event Listeners
 */
@@ -244,13 +255,12 @@ window.onscroll = function(){
 
 //Smooth scrolling to links from header
 header.onclick = function(e){
-  var target = e.target;
-  while (target != this) {
-    if (target.classList.contains('navigation')) {
-      scrollTo(document.querySelector(target.getAttribute('scrollTo')));
-      return;
-    } else target = target.parentNode;
-  }
+  smoothScroll(e);
+};
+
+//Smooth scrolling to links from footer
+footer.onclick = function(e){
+  smoothScroll(e);
 };
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -267,11 +277,11 @@ document.addEventListener('DOMContentLoaded', function(){
 
 window.addEventListener('orientationchange', function(){
   console.log(window.screen.orientation.type);
-  if(window.screen.orientation.type == 'portrait-primary'){
+  /*if(window.screen.orientation.type == 'portrait-primary'){
     saveNodeAndUnwrapContainers();
   } else {
     wrapContainers();
-  }
+  }*/
   lazyLoad();
 }, false);
 

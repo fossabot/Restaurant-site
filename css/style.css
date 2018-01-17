@@ -246,6 +246,7 @@ a{
 .text-center{
     position: absolute;
     height: 100%;
+    width: 100%;
     display: grid;
     margin: 0;
     align-items: center;
@@ -381,7 +382,7 @@ a{
     transform: : scale(1);
 }
 
-.footer{
+#footer{
     display: grid;
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: 20% 60% 20%;
@@ -405,7 +406,7 @@ a{
     font-size: .75em;
 }
 
-.footer .navigation, .copyright, .copyright a{
+#footer .navigation, .copyright, .copyright a{
     color: #bfb5b5;
 }
 
@@ -417,19 +418,32 @@ a{
     #header{
         grid-template-columns: 30% 20% 45% 5%;
     }
-    
-    .contact-logos{
-        font-size: 5.5em;
-    }
 
     .about-content-block{
         width: 80%;
         margin: auto;
     }
 
-    .small-contact-container{
-        width: 70%;
+@media screen and (max-width: 840px) and (orientation:landscape){
+    .contact-logos{
+        font-size: 5.5em;
     }
+
+   .small-contact-container{
+        width: 70%;
+    } 
+}
+
+@media screen and (max-width: 840px) and (orientation:portrait){
+    .contact-logos{
+        font-size: 5em;
+    }
+
+   .small-contact-container{
+        width: 80%;
+        height: 80%;
+        margin: auto; 
+    } 
 }
 
 @media screen and (max-width: 720px) {
@@ -437,7 +451,7 @@ a{
         font-size: 1.5em;
     } 
 
-    #header nav, .text-center, .footer{
+    #header nav, .text-center, #footer{
         font-size: .75em;
     }
 
@@ -455,7 +469,7 @@ a{
         grid-template-columns: 30% 10% 55% 5%;
     }
 
-    #header nav, .text-center, .footer{
+    #header nav, .text-center, #footer{
         font-size: .65em;
     }
     
@@ -477,11 +491,11 @@ a{
         font-size: .75em;
     }
 
-    .footer{
+    #footer{
         grid-template-columns: 15% 70% 15%;
     }
 
-    .text-center, .footer{
+    .text-center, #footer{
         font-size: .5em;
     }
 }
