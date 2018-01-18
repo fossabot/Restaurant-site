@@ -45,7 +45,7 @@ menuRequest = new XMLHttpRequest();
 menuRequest.open('GET', 'menu.json');
 menuRequest.responseType = 'text';
 menuRequest.send();
-
+saveNodes();
 /**
  * Functions
 */
@@ -87,31 +87,27 @@ function unwrapContainer(el){
 }
 
 /*Return Container*/
-function  replaceToPrevious(parent, newNode){
-  parent.innerHTML = '';//clear parent inner node
-  parent.appendChild(newNode);//append old node instead empty place
+function  replaceToPrevious(oldNode, newNode){
+  oldNode = newNode;//replace old node by new
 }
 
 function wrapContainers(){
+  console.log('wrap');
   replaceToPrevious(mediumMenuContainer, cloneMenuContainer);
   replaceToPrevious(mediumContactContainer, cloneContactContainer);
 }
 
 function saveNodes(){
-  cloneMenuContainer = menuContainer.cloneNode(true);
-  cloneContactContainer = contactContainer.cloneNode(true);
+  console.log('saved');
+  cloneMenuContainer = mediumMenuContainer.cloneNode(true);
+  cloneContactContainer = mediumContactContainer.cloneNode(true);
 }
 
 function saveNodeAndUnwrapContainers (){
-  var menuContainer = document.getElementById('container-menu');
-  var contactContainer = document.getElementById('container-contact');
-    
   saveNodes();
 
   unwrapContainer(menuContainer);
-  if(document.getElementById('container-contact')){
-    unwrapContainer(contactContainer);
-  }
+  unwrapContainer(contactContainer);
 }
 
 function changeMenuMainTitle(targetChildren){
@@ -170,9 +166,10 @@ function checkAndResizeGrids(){
     mediumMenuContainer.style.gridTemplateRows = 'repeat(3, 1fr)';
     mediumMenuContainer.style.gridAutoRows = 'auto';
     smallEmptyMenuContainer[0].style.display = 'none';
-  } else if(window.innerWidth <= '1024' && window.innerWidth >= '600'){
+  } else if(window.innerWidth >= '600' && window.innerWidth <= '1024'){
     mediumMenuContainer.style.gridTemplateColumns = '20% 60% 20%';
     smallEmptyMenuContainer[0].style.display = 'block';
+    wrapContainers();
   } else {
     mediumMenuContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
     mediumMenuContainer.style.gridAutoRows = '50%';
@@ -277,11 +274,13 @@ document.addEventListener('DOMContentLoaded', function(){
 
 window.addEventListener('orientationchange', function(){
   console.log(window.screen.orientation.type);
-  /*if(window.screen.orientation.type == 'portrait-primary'){
+  if(window.screen.orientation.type == 'portrait-primary'){
     saveNodeAndUnwrapContainers();
   } else {
     wrapContainers();
-  }*/
+  }
+
+  checkAndResizeGrids();
   lazyLoad();
 }, false);
 
@@ -376,6 +375,7 @@ backMenuButton.addEventListener('click', function(){
 
 window.addEventListener('resize', function(){
   console.log(window.innerWidth);
+  checkAndResizeGrids();
 });
 
 /**
