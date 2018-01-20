@@ -16,9 +16,6 @@ var header = document.getElementById('header');
 
 var stickyHeaderTop = headerBeforeConst.offsetTop; //Check the initial posistion of the Sticky Header
 
-var navigation = document.getElementsByClassName('navigation');
-var cloneMenuContainer; 
-var cloneContactContainer;
 var mediumMenuContainer = document.getElementById('medium-menu-container');
 var mediumContactContainer = document.getElementById('medium-contact-container');
 var menuContainer = document.getElementById('container-menu');
@@ -30,14 +27,12 @@ var menuMainTitle = document.getElementById('menu-main-title');
 var photoContainer = document.getElementById('menu-dish-photo');
 var dishIngredients = document.getElementById('menu-dish-ingredients');
 var menuDishList = document.getElementById('menu-dish-list');
-var menuListItem = document.getElementsByClassName('menu-dish-list-item');
 var containerMenu = document.getElementById('container-menu');
 var smallMenuContainer = document.getElementsByClassName('small-menu-container');
 var menuList; 
 var containerIndex; 
 var menuRequest;
 var containerMenu = document.getElementById('container-menu');
-var smallEmptyMenuContainer = document.getElementsByClassName('empty-small-menu-container');
 var mapWrapper = document.getElementById('map-wrapper');
 var footer = document.getElementById('footer');
 
@@ -45,7 +40,7 @@ menuRequest = new XMLHttpRequest();
 menuRequest.open('GET', 'menu.json');
 menuRequest.responseType = 'text';
 menuRequest.send();
-saveNodes();
+
 /**
  * Functions
 */
@@ -86,32 +81,33 @@ function unwrapContainer(el){
   parent.removeChild(el);
 }
 
-/*Return Container*/
-function  replaceToPrevious(oldNode, newNode){
-  oldNode = newNode;//replace old node by new
-}
-
 function wrapContainers(){
-  console.log('wrap');
-  replaceToPrevious(mediumMenuContainer, cloneMenuContainer);
-  replaceToPrevious(mediumContactContainer, cloneContactContainer);
-}
+  if (!document.getElementById('container-menu')){
+    var dv = document.createElement('div');
+    dv.setAttribute('id', 'container-menu');
 
-function saveNodes(){
-  console.log('saved');
-  cloneMenuContainer = mediumMenuContainer.cloneNode(true);
-  cloneContactContainer = mediumContactContainer.cloneNode(true);
-}
+    var divs = document.getElementsByClassName('small-menu-container');
+    for (var i = 0; i < divs.length; ){
+      dv.appendChild(divs[i]);
+    }
 
-function saveNodeAndUnwrapContainers (){
-  saveNodes();
+    mediumMenuContainer.appendChild(dv);
+  }
 
-  unwrapContainer(menuContainer);
-  unwrapContainer(contactContainer);
+  if (!document.getElementById('container-contact')){
+    var dvC = document.createElement('div');
+    dvC.setAttribute('id', 'container-contact');
+
+    var divsC = document.getElementsByClassName('small-contact-container');
+    for (var j = 0; j < divsC.length; ){
+      dvC.appendChild(divsC[j]);
+    }
+    mediumContactContainer.appendChild(dvC);
+  }
 }
 
 function changeMenuMainTitle(targetChildren){
-  for (i = 0; i < targetChildren.length; i++) {
+  for (var i = 0; i < targetChildren.length; i++) {
     if(targetChildren[i].classList.contains('menu-titles')){
       menuMainTitle.textContent = targetChildren[i].textContent;
     }
@@ -121,7 +117,7 @@ function changeMenuMainTitle(targetChildren){
 /*Get index of child element inside node*/
 function getElementIndex(node) {
   var index = 0;
-  while (node = node.previousElementSibling){
+  while ( (node = node.previousElementSibling) ){
     index++;
   }
   return index;
@@ -162,17 +158,32 @@ function createMenuPoint(i){
 
 function checkAndResizeGrids(){
   if(window.innerWidth < '600'){
-    mediumMenuContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
-    mediumMenuContainer.style.gridTemplateRows = 'repeat(3, 1fr)';
-    mediumMenuContainer.style.gridAutoRows = 'auto';
-    smallEmptyMenuContainer[0].style.display = 'none';
+    if (document.getElementById('menu-dish-photo-container').style.display == 'flex') {
+      mediumMenuContainer.style.gridTemplateColumns = '1fr';
+      mediumMenuContainer.style.gridTemplateRows = '50% 50%';
+      dishIngredients.style.height = '30%';
+      dishIngredients.fontSize = '5px';
+    } else{
+      mediumMenuContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+      mediumMenuContainer.style.gridTemplateRows = 'repeat(3, 1fr)';
+      mediumMenuContainer.style.gridAutoRows = 'auto';
+    }
   } else if(window.innerWidth >= '600' && window.innerWidth <= '1024'){
-    mediumMenuContainer.style.gridTemplateColumns = '20% 60% 20%';
-    smallEmptyMenuContainer[0].style.display = 'block';
-    wrapContainers();
+    if (document.getElementById('menu-dish-photo-container').style.display == 'flex') {
+      mediumMenuContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+      mediumMenuContainer.style.gridTemplateRows = '100%';
+    } else{
+      mediumMenuContainer.style.gridTemplateColumns = '20% 60% 20%';
+      mediumMenuContainer.style.gridTemplateRows = '1fr';
+    }
   } else {
-    mediumMenuContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
-    mediumMenuContainer.style.gridAutoRows = '50%';
+    if (document.getElementById('menu-dish-photo-container').style.display == 'flex') {
+      mediumMenuContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+      mediumMenuContainer.style.gridTemplateRows = '100%';
+    } else{
+      mediumMenuContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
+      mediumMenuContainer.style.gridTemplateRows = 'repeat(2, 1fr)';
+    }
   }
 }
 
@@ -241,9 +252,9 @@ mapReturnButton.addEventListener('click', function() {
 });
 
 //If page open not top, then header must be top 
-window.onload = function(){
+window.addEventListener('DOMContentLoaded', function(){
   fixHeader();
-};
+});
 
 //Sticky Header when scrolling
 window.onscroll = function(){
@@ -260,29 +271,30 @@ footer.onclick = function(e){
   smoothScroll(e);
 };
 
-document.addEventListener('DOMContentLoaded', function(){
-  console.log(window.screen.orientation.type);
+window.onload = function(){
+  //console.log(window.screen.orientation.type);
   console.log(window.innerWidth);
-  saveNodes();
-
-  if(window.screen.orientation.type == 'portrait-primary' || window.innerWidth >= '1024' || window.innerWidth < '600'){
-    saveNodeAndUnwrapContainers();
-  }
+  console.log(screen.orientation.angle);
 
   checkAndResizeGrids();
-});
 
-window.addEventListener('orientationchange', function(){
-  console.log(window.screen.orientation.type);
-  if(window.screen.orientation.type == 'portrait-primary'){
-    saveNodeAndUnwrapContainers();
-  } else {
+  if(window.innerWidth >= '1024' || window.innerWidth < '600'){
+    unwrapContainer(menuContainer);
+    unwrapContainer(contactContainer);
+  }
+};
+
+window.addEventListener("orientationchange", function() {
+  if(screen.orientation.angle == '0'){
     wrapContainers();
+  } else if (screen.orientation.angle == '90' || screen.orientation.angle == '270'){
+    menuContainer = document.getElementById('container-menu');
+    contactContainer = document.getElementById('container-contact');
+    unwrapContainer(menuContainer);
+    unwrapContainer(contactContainer);
   }
-
-  checkAndResizeGrids();
-  lazyLoad();
-}, false);
+  //checkAndResizeGrids();
+});
 
 menuRequest.addEventListener('load', function(e){
   menuList = JSON.parse(menuRequest.response); // convert it to an object
@@ -320,16 +332,12 @@ mediumMenuContainer.onclick = function(e){
       for (var i = 0; i < smallMenuContainer.length; i++) {
         smallMenuContainer[i].style.display = 'none';
       }
-      smallEmptyMenuContainer[0].style.display = 'none';
 
       backMenuButton.style.display = 'inline-block';
       menuPhotoContainer.style.display = 'flex';
       menuListContainer.style.display = 'flex';
 
       changeMenuMainTitle(target.children);
-
-      mediumMenuContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
-      mediumMenuContainer.style.gridAutoRows = '100%';
 
       menuDishList.innerHTML = '';//clear list
       for (i = 0; i < menuList.menu[containerIndex].length; i++){
@@ -341,9 +349,12 @@ mediumMenuContainer.onclick = function(e){
       /*For narrow ones screens*/
       if (window.innerWidth < '600') {
         mediumMenuContainer.style.gridTemplateColumns = '1fr';
-        mediumMenuContainer.style.gridTemplateRows = '50% 50%'
+        mediumMenuContainer.style.gridTemplateRows = '50% 50%';
         dishIngredients.style.height = '30%';
         dishIngredients.fontSize = '5px';
+      } else {
+        mediumMenuContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+        mediumMenuContainer.style.gridTemplateRows = '100%';
       }
 
       return;
@@ -358,7 +369,6 @@ backMenuButton.addEventListener('click', function(){
   for (var i = 0; i < smallMenuContainer.length; i++) {
     smallMenuContainer[i].style.display = 'block';
   }
-  smallEmptyMenuContainer[0].style.display = 'block';
 
   this.style.display = 'none';
   menuPhotoContainer.style.display = 'none';

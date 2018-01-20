@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald|Alegreya+Sans|Dosis|Oxygen|Raleway|Montserrat|Mukta+Malar');
 
 html{
-    overflow-x: hidden; 
+    overflow-x: hidden !important; 
 }
 
 body{
@@ -9,6 +9,7 @@ body{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 90% 10% repeat(3, 90%) 15%; 
+    height: 100%;
 }
 
 html, body{
