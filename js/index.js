@@ -396,30 +396,6 @@ window.addEventListener('resize', function(){
 function lazyLoad(){
   ;(function() {
     var bLazy = new Blazy({
-      /*success: function(){
-            $('.salads').css({backgroundPosition : '0 79.646429%'});
-            $('.soups').css({backgroundPosition : '0 99.744127%'});
-            $('.main-dishes').css({backgroundPosition : '0 59.792388%'});
-            $('.appetizer').css({backgroundPosition : '0 0%'});
-            $('.desserts').css({backgroundPosition : '0 40.195394%'});
-            $('.beverages').css({backgroundPosition : '0 20.097697%'});
-            $('.small-menu-container').css({backgroundSize: '110%'});
-          },
-      breakpoints: [
-        {
-          width: 1200, 
-          src: 'data-src-medium',
-          success: function(){
-            $('.salads').css({backgroundPosition : '0 79.436828%'});
-            $('.soups').css({backgroundPosition : '0 99.592442%'});
-            $('.main-dishes').css({backgroundPosition : '0 59.977949%'});
-            $('.appetizer').css({backgroundPosition : '0 0%'});
-            $('.desserts').css({backgroundPosition : '0 40.311226%'});
-            $('.beverages').css({backgroundPosition : '0 20.155613%'});
-            $('.small-menu-container').css({backgroundSize: '100%'});
-          }
-        }
-      ],*/
       offset: 100
     });
   })();
