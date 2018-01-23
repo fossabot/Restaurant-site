@@ -35,6 +35,7 @@ var menuRequest;
 var containerMenu = document.getElementById('container-menu');
 var mapWrapper = document.getElementById('map-wrapper');
 var footer = document.getElementById('footer');
+var orientationAngle;
 
 menuRequest = new XMLHttpRequest();
 menuRequest.open('GET', 'menu.json');
@@ -272,29 +273,17 @@ footer.onclick = function(e){
 };
 
 window.onload = function(){
-  //console.log(window.screen.orientation.type);
-  console.log(window.innerWidth);
-  console.log(screen.orientation.angle);
-
+  orientationAngle = screen.orientation.angle;
   checkAndResizeGrids();
+
+  var menuContainer = document.getElementById('container-menu');
+  var contactContainer = document.getElementById('container-contact');
 
   if(window.innerWidth >= '1024' || window.innerWidth < '600'){
     unwrapContainer(menuContainer);
     unwrapContainer(contactContainer);
   }
 };
-
-window.addEventListener("orientationchange", function() {
-  if(screen.orientation.angle == '0'){
-    wrapContainers();
-  } else if (screen.orientation.angle == '90' || screen.orientation.angle == '270'){
-    menuContainer = document.getElementById('container-menu');
-    contactContainer = document.getElementById('container-contact');
-    unwrapContainer(menuContainer);
-    unwrapContainer(contactContainer);
-  }
-  //checkAndResizeGrids();
-});
 
 menuRequest.addEventListener('load', function(e){
   menuList = JSON.parse(menuRequest.response); // convert it to an object
@@ -385,6 +374,14 @@ backMenuButton.addEventListener('click', function(){
 
 window.addEventListener('resize', function(){
   console.log(window.innerWidth);
+  if(screen.orientation.angle == '0'){
+    menuContainer = document.getElementById('container-menu');
+    contactContainer = document.getElementById('container-contact');
+    unwrapContainer(menuContainer);
+    unwrapContainer(contactContainer);
+  } else{
+    wrapContainers();
+  }
   checkAndResizeGrids();
 });
 

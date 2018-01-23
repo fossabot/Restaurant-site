@@ -388,6 +388,20 @@ a {
   } 
 }
 
+@media screen and (max-width: 360px){
+  .tooltip:before{
+      margin-left: -40px;
+  }
+
+  .tooltip:hover:before{
+      top: 15px;
+  }
+
+  .tooltip:hover:after{
+      top: 59px;
+  }
+}
+
 #map-wrapper {
   position: absolute;
   z-index: 5;
@@ -632,7 +646,7 @@ a {
     grid-template-columns: 30% 10% 57.5% 2.5%; 
   }
 
-  .menu-titles {
+  .logo, .menu-titles {
     font-size: 1.25em; 
   }
 
@@ -669,8 +683,11 @@ a {
     grid-template-columns: 30% 10% 57.5% 2.5%; 
   }
 
+  .logo{
+    font-size: 1.25em; 
+  }
+
   .about-content-block {
-    font-size: 1.2em;
     width: 80%;
     margin: auto; 
   }
