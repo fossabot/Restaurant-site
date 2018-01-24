@@ -35,7 +35,6 @@ var menuRequest;
 var containerMenu = document.getElementById('container-menu');
 var mapWrapper = document.getElementById('map-wrapper');
 var footer = document.getElementById('footer');
-var orientationAngle;
 
 menuRequest = new XMLHttpRequest();
 menuRequest.open('GET', 'menu.json');
@@ -273,7 +272,6 @@ footer.onclick = function(e){
 };
 
 window.onload = function(){
-  orientationAngle = screen.orientation.angle;
   checkAndResizeGrids();
 
   var menuContainer = document.getElementById('container-menu');
