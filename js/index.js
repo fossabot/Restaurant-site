@@ -36,11 +36,6 @@ var containerMenu = document.getElementById('container-menu');
 var mapWrapper = document.getElementById('map-wrapper');
 var footer = document.getElementById('footer');
 
-menuRequest = new XMLHttpRequest();
-menuRequest.open('GET', 'menu.json');
-menuRequest.responseType = 'text';
-menuRequest.send();
-
 /**
  * Functions
 */
@@ -76,47 +71,40 @@ function scrollTo(element) {
 
 /*remove Container if screen orientation in landscape mode*/
 function unwrapContainer(el){
-  var parent = el.parentNode;
+  let parent = el.parentNode;
   while (el.firstChild) parent.insertBefore(el.firstChild, el);
   parent.removeChild(el);
 }
 
 function wrapContainers(){
-  if (!document.getElementById('container-menu')){
-    var dv = document.createElement('div');
-    dv.setAttribute('id', 'container-menu');
-
-    var divs = document.getElementsByClassName('small-menu-container');
-    for (var i = 0; i < divs.length; ){
-      dv.appendChild(divs[i]);
-    }
-
-    mediumMenuContainer.appendChild(dv);
-  }
-
-  if (!document.getElementById('container-contact')){
-    var dvC = document.createElement('div');
-    dvC.setAttribute('id', 'container-contact');
-
-    var divsC = document.getElementsByClassName('small-contact-container');
-    for (var j = 0; j < divsC.length; ){
-      dvC.appendChild(divsC[j]);
-    }
-    mediumContactContainer.appendChild(dvC);
-  }
+  wrapContainer('container-menu', 'small-menu-container', mediumMenuContainer);
+  wrapContainer('container-contact', 'small-contact-container', mediumContactContainer);
 }
 
+var wrapContainer = (className, smallContainerName, container) => {
+  if (!document.getElementById(className)){
+    let el = document.createElement('div');
+    el.setAttribute('id', className);
+
+    let elContainer = document.getElementsByClassName(smallContainerName);
+    for (let j = 0; j < elContainer.length; ){
+      el.appendChild(elContainer[j]);
+    }
+    container.appendChild(el);
+  }
+};
+
 function changeMenuMainTitle(targetChildren){
-  for (var i = 0; i < targetChildren.length; i++) {
-    if(targetChildren[i].classList.contains('menu-titles')){
-      menuMainTitle.textContent = targetChildren[i].textContent;
+  for (let child of targetChildren) {
+    if(child.classList.contains('menu-titles')){
+      menuMainTitle.textContent = child.textContent;
     }
   }
 }
 
 /*Get index of child element inside node*/
 function getElementIndex(node) {
-  var index = 0;
+  let index = 0;
   while ( (node = node.previousElementSibling) ){
     index++;
   }
@@ -124,7 +112,7 @@ function getElementIndex(node) {
 }
 
 function showIngedientsPanel(overIndex){
-  var ingredients = document.createElement('p');
+  let ingredients = document.createElement('p');
   ingredients.textContent = menuList.menu[containerIndex][overIndex].ingredients;//get text from JSON
 
   dishIngredients.innerHTML = '';
@@ -137,54 +125,53 @@ function changePhoto(overIndex){
 }
 
 /*Creates menu points and append them into list*/
-function createMenuPoint(i){
-  var dish = document.createElement('li');
-  var dishName = document.createElement('p');
-  var dishWeight = document.createElement('p');
-  var dishPrice = document.createElement('p');
+function createMenuPoint(dish){
+  let dishEl = document.createElement('li');
+  let dishName = document.createElement('p');
+  let dishWeight = document.createElement('p');
+  let dishPrice = document.createElement('p');
 
-  dishName.textContent = menuList.menu[containerIndex][i].name;
-  dishWeight.textContent = menuList.menu[containerIndex][i].calories;
-  dishPrice.textContent = menuList.menu[containerIndex][i].price;
+  dishName.textContent = dish.name;
+  dishWeight.textContent = dish.calories;
+  dishPrice.textContent = dish.price;
 
-  menuDishList.appendChild(dish);
+  menuDishList.appendChild(dishEl);
 
-  dish.appendChild(dishName);
-  dish.appendChild(dishWeight);
-  dish.appendChild(dishPrice);
+  dishEl.appendChild(dishName);
+  dishEl.appendChild(dishWeight);
+  dishEl.appendChild(dishPrice);
 
-  dish.setAttribute('class', 'menu-dish-list-item');
+  dishEl.setAttribute('class', 'menu-dish-list-item');
 }
 
 function checkAndResizeGrids(){
   if(window.innerWidth < '600'){
     if (document.getElementById('menu-dish-photo-container').style.display == 'flex') {
-      mediumMenuContainer.style.gridTemplateColumns = '1fr';
-      mediumMenuContainer.style.gridTemplateRows = '50% 50%';
+      changeTemplateColunsAndRows('1fr', '50% 50%');
       dishIngredients.style.height = '30%';
       dishIngredients.fontSize = '5px';
     } else{
-      mediumMenuContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
-      mediumMenuContainer.style.gridTemplateRows = 'repeat(3, 1fr)';
+      changeTemplateColunsAndRows('repeat(2, 1fr)', 'repeat(3, 1fr)');
       mediumMenuContainer.style.gridAutoRows = 'auto';
     }
   } else if(window.innerWidth >= '600' && window.innerWidth <= '1024'){
     if (document.getElementById('menu-dish-photo-container').style.display == 'flex') {
-      mediumMenuContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
-      mediumMenuContainer.style.gridTemplateRows = '100%';
+      changeTemplateColunsAndRows('repeat(2, 1fr)', '100%');
     } else{
-      mediumMenuContainer.style.gridTemplateColumns = '20% 60% 20%';
-      mediumMenuContainer.style.gridTemplateRows = '1fr';
+      changeTemplateColunsAndRows('20% 60% 20%', '1fr');
     }
   } else {
     if (document.getElementById('menu-dish-photo-container').style.display == 'flex') {
-      mediumMenuContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
-      mediumMenuContainer.style.gridTemplateRows = '100%';
+      changeTemplateColunsAndRows('repeat(2, 1fr)', '100%');
     } else{
-      mediumMenuContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
-      mediumMenuContainer.style.gridTemplateRows = 'repeat(2, 1fr)';
+      changeTemplateColunsAndRows('repeat(3, 1fr)', 'repeat(2, 1fr)');
     }
   }
+}
+
+function changeTemplateColunsAndRows(column, row){
+  mediumMenuContainer.style.gridTemplateColumns = column;
+  mediumMenuContainer.style.gridTemplateRows = row;
 }
 
 function smoothScroll(e){
@@ -197,11 +184,39 @@ function smoothScroll(e){
   }
 }
 
+function connectJSON(){
+  menuRequest = new XMLHttpRequest();
+  menuRequest.open('GET', 'menu.json');
+  menuRequest.responseType = 'text';
+  menuRequest.send();
+  menuRequest.addEventListener('load', function(e){
+    menuList = JSON.parse(menuRequest.response); // convert it to an object
+    for (let dish of menuList.menu[containerIndex]){
+      createMenuPoint(dish);
+    }
+  });
+}
+
+//Lazy-load of images
+function lazyLoad(){
+  ;(function() {
+    var bLazy = new Blazy({
+      offset: 600
+    });
+  })();
+}
+
+function changeDisplay(display, ...elements){
+  for (let el of elements) {
+    el.style.display = display;
+  }
+}
+
 /**
  * Event Listeners
 */
 
-window.loadMaps = function (){
+window.loadMaps = () => {
   var map = new google.maps.Map(document.getElementById('map-container'), {
     center: {lat:50.745151, lng:25.322764},
     zoom: 17,
@@ -240,20 +255,20 @@ mapReturnButton.addEventListener('click', function() {
   setTimeout(function(){
     mapWrapper.style.zIndex = 5;
   },1700);
-  for (var i = 0; i < chevronRight.length; i++) {
-    chevronRight[i].style.transform = 'rotate(180deg)';
+  for (let chevron of chevronRight) {
+    chevron.style.transform = 'rotate(180deg)';
   }
   mapReturnButton.style.marginLeft = '-20%';
   setTimeout(function(){
-    for (var i = 0; i < chevronRight.length; i++) {
-      chevronRight[i].style.transform = 'rotate(0deg)';
+    for (let chevron of chevronRight) {
+      chevron.style.transform = 'rotate(0deg)';
     }
   },1500);
 });
 
-//If page open not top, then header must be top 
 window.addEventListener('DOMContentLoaded', function(){
-  fixHeader();
+  fixHeader();//If page open not top, then header must be top 
+  lazyLoad();//Lazy load of images
 });
 
 //Sticky Header when scrolling
@@ -267,7 +282,7 @@ header.onclick = function(e){
 };
 
 //Smooth scrolling to links from footer
-footer.onclick = function(e){
+footer.onclick = e => {
   smoothScroll(e);
 };
 
@@ -282,10 +297,6 @@ window.onload = function(){
     unwrapContainer(contactContainer);
   }
 };
-
-menuRequest.addEventListener('load', function(e){
-  menuList = JSON.parse(menuRequest.response); // convert it to an object
-});
 
 menuDishList.onmouseover = function(e){
   var target = e.target;
@@ -308,40 +319,38 @@ mediumMenuContainer.onclick = function(e){
   while (target != this) {
     if (target.classList.contains('small-menu-container')) {
       containerIndex = getElementIndex(target);//get index of clicked element
-
       if(window.innerWidth < '600' || window.innerWidth > '1024'){
         containerIndex -= 2;
       }
 
-      containerMenu.style.display = 'none';
-
-      /*Hide menu parts of choosing*/
-      for (var i = 0; i < smallMenuContainer.length; i++) {
-        smallMenuContainer[i].style.display = 'none';
+      /*Connect JSON if unconnected and create dish list*/
+      if (!menuList) {
+        connectJSON();
+      } else {
+        menuDishList.innerHTML = '';//clear list
+        for (let dish of menuList.menu[containerIndex]){
+          createMenuPoint(dish);
+        }
       }
 
+      containerMenu.style.display = 'none';
       backMenuButton.style.display = 'inline-block';
-      menuPhotoContainer.style.display = 'flex';
-      menuListContainer.style.display = 'flex';
+      changeDisplay('flex', menuPhotoContainer, menuListContainer);
+      /*Hide menu main parts*/
+      for (let container of smallMenuContainer) {
+        container.style.display = 'none';
+      }
 
       changeMenuMainTitle(target.children);
-
-      menuDishList.innerHTML = '';//clear list
-      for (i = 0; i < menuList.menu[containerIndex].length; i++){
-        createMenuPoint(i);
-      }
-
       photoContainer.style.backgroundImage = window.getComputedStyle(target).getPropertyValue('background-image');
 
       /*For narrow ones screens*/
       if (window.innerWidth < '600') {
-        mediumMenuContainer.style.gridTemplateColumns = '1fr';
-        mediumMenuContainer.style.gridTemplateRows = '50% 50%';
+        changeTemplateColunsAndRows('1fr', '50% 50%');
         dishIngredients.style.height = '30%';
         dishIngredients.fontSize = '5px';
       } else {
-        mediumMenuContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
-        mediumMenuContainer.style.gridTemplateRows = '100%';
+        changeTemplateColunsAndRows('repeat(2, 1fr)', '100%');
       }
 
       return;
@@ -352,14 +361,10 @@ mediumMenuContainer.onclick = function(e){
 
 backMenuButton.addEventListener('click', function(){
   containerMenu.style.display = 'grid';
-
-  for (var i = 0; i < smallMenuContainer.length; i++) {
-    smallMenuContainer[i].style.display = 'block';
+  for (let container of smallMenuContainer) {
+    container.style.display = 'block';
   }
-
-  this.style.display = 'none';
-  menuPhotoContainer.style.display = 'none';
-  menuListContainer.style.display = 'none';
+  changeDisplay('none', this, menuPhotoContainer, menuListContainer);
 
   menuMainTitle.textContent = 'Menu';
 
@@ -382,19 +387,3 @@ window.addEventListener('resize', function(){
   }
   checkAndResizeGrids();
 });
-
-/**
- * Another
-*/
-
-//Lazy-load of images
-function lazyLoad(){
-  ;(function() {
-    var bLazy = new Blazy({
-      offset: 100
-    });
-  })();
-}
-
-lazyLoad();
-
