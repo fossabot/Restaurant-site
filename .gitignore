@@ -1,3 +1,7 @@
 
 css/.sass-cache/0277b49082e43a84ecffa5eb27411d5bdef3f51b/style.scssc
 *.map
+js/.eslintrc.js
+node_modules/
+package-lock.json
+package.json

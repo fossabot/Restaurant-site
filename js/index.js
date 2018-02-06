@@ -15,10 +15,9 @@ var headerBeforeConst = document.getElementById('header-before-const');
 var header = document.getElementById('header');  
 
 var stickyHeaderTop = headerBeforeConst.offsetTop; //Check the initial posistion of the Sticky Header
-
+var overIndex;
 var mediumMenuContainer = document.getElementById('medium-menu-container');
 var mediumContactContainer = document.getElementById('medium-contact-container');
-var menuContainer = document.getElementById('container-menu');
 var contactContainer = document.getElementById('container-contact');
 var backMenuButton = document.getElementById('menu-back-button');
 var menuPhotoContainer = document.getElementById('menu-dish-photo-container');
@@ -32,7 +31,6 @@ var smallMenuContainer = document.getElementsByClassName('small-menu-container')
 var menuList; 
 var containerIndex; 
 var menuRequest;
-var containerMenu = document.getElementById('container-menu');
 var mapWrapper = document.getElementById('map-wrapper');
 var footer = document.getElementById('footer');
 
@@ -41,11 +39,11 @@ var footer = document.getElementById('footer');
 */
 
 function loadGoogleMap(){
-  var script = document.createElement("script");
-  script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAEgnNcLXu3TxudcgyN9DnQ7uUwWy1hIpI&callback=loadMaps";
-  script.type = "text/javascript";
-  script.id ="googleMap";
-  document.getElementsByTagName("body")[0].append(script);
+  let script = document.createElement('script');
+  script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAEgnNcLXu3TxudcgyN9DnQ7uUwWy1hIpI&callback=loadMaps';
+  script.type = 'text/javascript';
+  script.id ='googleMap';
+  document.getElementsByTagName('body')[0].append(script);
 }
 
 function fixHeader(){
@@ -130,19 +128,30 @@ function createMenuPoint(dish){
   let dishName = document.createElement('p');
   let dishWeight = document.createElement('p');
   let dishPrice = document.createElement('p');
+  let addToCartWrapper = document.createElement('p');
+  let addToCart = document.createElement('i');
 
   dishName.textContent = dish.name;
   dishWeight.textContent = dish.calories;
   dishPrice.textContent = dish.price;
+  addToCart.setAttribute('class', 'fas fa-cart-plus');
+  addToCartWrapper.appendChild(addToCart);
 
   menuDishList.appendChild(dishEl);
 
   dishEl.appendChild(dishName);
   dishEl.appendChild(dishWeight);
   dishEl.appendChild(dishPrice);
+  dishEl.appendChild(addToCartWrapper);
 
   dishEl.setAttribute('class', 'menu-dish-list-item');
+
+  addToCartWrapper.addEventListener('click', function(){   
+    cart.didAlreadyIn();
+  });
 }
+
+var tempCout = 0;
 
 function checkAndResizeGrids(){
   if(window.innerWidth < '600'){
@@ -181,7 +190,7 @@ function smoothScroll(e){
       scrollTo(document.querySelector(target.getAttribute('scrollTo')));
       return;
     } else target = target.parentNode;
-  }
+  } 
 }
 
 function connectJSON(){
@@ -189,7 +198,7 @@ function connectJSON(){
   menuRequest.open('GET', 'menu.json');
   menuRequest.responseType = 'text';
   menuRequest.send();
-  menuRequest.addEventListener('load', function(e){
+  menuRequest.addEventListener('load', function(){
     menuList = JSON.parse(menuRequest.response); // convert it to an object
     for (let dish of menuList.menu[containerIndex]){
       createMenuPoint(dish);
@@ -198,13 +207,11 @@ function connectJSON(){
 }
 
 //Lazy-load of images
-function lazyLoad(){
-  ;(function() {
-    var bLazy = new Blazy({
-      offset: 600
-    });
-  })();
-}
+var lazyLoad = (function() {
+  var bLazy = new Blazy({
+    offset: 600
+  });
+})();
 
 function changeDisplay(display, ...elements){
   for (let el of elements) {
@@ -273,27 +280,27 @@ window.addEventListener('DOMContentLoaded', function(){
 
 //Sticky Header when scrolling
 window.onscroll = function(){
-  fixHeader();
+ fixHeader();
 };
 
 //Smooth scrolling to links from header
 header.onclick = function(e){
-  smoothScroll(e);
+ smoothScroll(e); 
 };
 
 //Smooth scrolling to links from footer
 footer.onclick = e => {
-  smoothScroll(e);
+ smoothScroll(e);
 };
 
 window.onload = function(){
   checkAndResizeGrids();
 
-  var menuContainer = document.getElementById('container-menu');
+  var containerMenu = document.getElementById('container-menu');
   var contactContainer = document.getElementById('container-contact');
 
   if(window.innerWidth >= '1024' || window.innerWidth < '600'){
-    unwrapContainer(menuContainer);
+    unwrapContainer(containerMenu);
     unwrapContainer(contactContainer);
   }
 };
@@ -302,7 +309,7 @@ menuDishList.onmouseover = function(e){
   var target = e.target;
   while (target != this) {
     if (target.tagName == 'LI') {
-      var overIndex = getElementIndex(target);//index of mouseover li element
+      overIndex = getElementIndex(target);//index of mouseover li element
       if (overIndex != -1) { 
         if (menuMainTitle.textContent != 'Beverages') {
           showIngedientsPanel(overIndex);
@@ -378,12 +385,217 @@ backMenuButton.addEventListener('click', function(){
 window.addEventListener('resize', function(){
   console.log(window.innerWidth);
   if(screen.orientation.angle == '0'){
-    menuContainer = document.getElementById('container-menu');
+    containerMenu = document.getElementById('container-menu');
     contactContainer = document.getElementById('container-contact');
-    unwrapContainer(menuContainer);
+    unwrapContainer(containerMenu);
     unwrapContainer(contactContainer);
   } else{
     wrapContainers();
   }
   checkAndResizeGrids();
 });
+
+/**
+ * Cart things..begins from variables
+*/
+
+var dishInCart = [];
+var cartTable = document.getElementById('cart-table');
+var cartModal = document.getElementById('cart-modal');
+var openCart = document.getElementById('cart-open');
+var closeModal = document.getElementById('close-cart-modal');
+var allCartDishTotal = document.getElementById('cart-total');
+var overIndexInCart;
+
+/**
+ * Class
+*/
+
+class Cart{
+  add(){
+    let dish = menuList.menu[containerIndex][overIndex]; 
+    dishInCart.push(dish);
+
+    let newItemWrapper = document.createElement('span');
+    let newItemName = document.createElement('span');
+    let newItemQuantity = document.createElement('span');
+    let newItemNumber = document.createElement('span');
+    let newItemPrice = document.createElement('span');
+    let newItemTotal = document.createElement('span');
+
+    newItemWrapper.setAttribute('class', 'cart-table-row');
+    newItemName.setAttribute('class', 'cart-item-name');
+    newItemName.textContent = dish.name;
+    newItemPrice.textContent = dish.price;
+    dish.number = 1;
+
+    addPlus(newItemQuantity);
+    newItemNumber.textContent = dish.number;
+    newItemNumber.setAttribute('class', 'cart-item-number');
+    newItemQuantity.setAttribute('class', 'cart-quantity');
+    newItemQuantity.appendChild(newItemNumber);
+    addMinus(newItemQuantity);
+
+    newItemTotal.setAttribute('class', 'cart-item-total');
+    newItemTotal.textContent = dish.price;
+
+    cartTable.appendChild(newItemWrapper);
+    newItemWrapper.appendChild(newItemName);
+    newItemWrapper.appendChild(newItemQuantity);
+    newItemWrapper.appendChild(newItemPrice);
+    newItemWrapper.appendChild(newItemTotal);
+
+    cartTable.children[cartTable.children.length-1].after(cartTable.children[cartTable.children.length-2]);
+
+    updateAllDishTotal();
+  }
+
+  getOverIndex(e){
+    let target = e.target;
+      while (target != this){
+        if (target){
+          if (target.className == 'cart-table-row') {
+            overIndexInCart = getElementIndex(target);//index of mouseover 
+            return;
+          } else target = target.parentNode;
+        } else break;
+      }
+  }
+
+  didAlreadyIn(){
+    for (let i = 0; i < dishInCart.length; i++){
+      if (dishInCart[i] != undefined && dishInCart[i].name == menuList.menu[containerIndex][overIndex].name){
+        let dishNumbers = document.getElementsByClassName('cart-item-number');
+        dishNumbers[i].textContent++;
+        updateTotalOfDish(i);
+        tempCout = 0;
+        break;    
+      } else {
+        tempCout++;
+      }
+    }
+    if (tempCout == dishInCart.length) {
+      cart.add();
+      tempCout = 0;
+    }
+  }
+}
+
+var cart = new Cart();
+
+/**
+ * Functions
+*/
+
+function addPlus(parentNode){
+  let spanItem = document.createElement('span');
+  let plus = document.createElement('i');
+
+  plus.setAttribute('class', 'far fa-plus-square');
+  spanItem.setAttribute('class', 'cart-plus');
+
+  spanItem.appendChild(plus);
+  parentNode.appendChild(spanItem);
+
+  spanItem.addEventListener('click', function(){
+    incrementCartItem(this);
+  });
+}
+
+function addMinus(parentNode){
+  let spanItem = document.createElement('span');
+  let minus = document.createElement('i');
+
+  minus.setAttribute('class', 'far fa-minus-square');
+  spanItem.setAttribute('class', 'cart-minus');
+
+  spanItem.appendChild(minus);
+  parentNode.appendChild(spanItem);
+
+  spanItem.addEventListener('click', function(){
+    decrementCartItem(this);
+  });
+}
+
+function incrementCartItem(item){
+  let list = item.parentNode.childNodes;
+  for (let listItem of list){
+    if (listItem.className === 'cart-item-number') {
+      listItem.textContent++;
+      updateTotalOfDish(overIndexInCart - 1);
+      break;
+    }
+  }
+}
+
+function decrementCartItem(item){
+  let list = item.parentNode.childNodes;
+  for (let listItem of list){
+    if (listItem.className === 'cart-item-number') {
+      listItem.textContent--;
+      
+      updateTotalOfDish(overIndexInCart - 1);
+      if (listItem.textContent == '0') { //if zero number,  then delete
+        let cartTableRow = document.getElementsByClassName('cart-table-row');
+        cartTableRow[overIndexInCart].remove();
+        dishInCart.splice(overIndexInCart, 1);
+        if (cartTableRow.length == 2) {
+          dishInCart = [];
+        }
+      }
+      break;
+    }
+  }
+}
+
+function updateTotalOfDish(i){
+  let dishNumbers = document.getElementsByClassName('cart-item-number');
+  let dishTotal = document.getElementsByClassName('cart-item-total');
+  let regEx = dishInCart[i].price.replace(/\$/, '');
+
+  dishInCart[i].total = dishNumbers[i].textContent * regEx;
+  dishTotal[i].textContent = '$' + Number(dishInCart[i].total).toFixed(2);
+
+  updateAllDishTotal();
+}
+
+function updateAllDishTotal(){
+  let temp = 0;
+  let dishTotal = document.getElementsByClassName('cart-item-total');
+
+  for (let dishItem of dishTotal) {
+    let regEx = Number(dishItem.textContent.replace(/\$/, ''));
+    if(temp != 0){
+      temp += regEx;
+    } else temp = regEx;
+  }
+
+  allCartDishTotal.textContent = '$' + Number(temp).toFixed(2);
+}
+
+/**
+ * Events
+*/
+
+cartTable.onmouseover = e => cart.getOverIndex(e);
+
+//open the modal
+openCart.onclick = function() {
+  cartModal.style.display = 'flex';
+};
+
+//close the modal
+closeModal.onclick = function() {
+  cartModal.style.display = 'none';
+};
+
+// close modal if clicks anywhere outside
+window.onclick = function(e) {
+  if (e.target == cartModal) {
+    cartModal.style.display = 'none';
+  }
+}; 
+
+
+
+

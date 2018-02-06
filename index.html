@@ -17,7 +17,6 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Oswald|Alegreya+Sans|Dosis|Oxygen|Raleway|Montserrat|Mukta+Malar" rel="stylesheet" rel="preconnect" crossorigin> 
 	<link href="css/style.css" rel="stylesheet">
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -29,6 +28,7 @@
 			<p class="navigation" scrollTo="#about-section">About</p>
 			<p class="navigation" scrollTo="#menu-section">Menu</p>
 			<p class="navigation" scrollTo="#contact-section">Contact us</p>
+			<p id="cart-open"><i class="fas fa-shopping-cart"></i></p>
 		</nav>
 	</header>   
 	<div id="header-before-const"></div>
@@ -96,12 +96,12 @@
 				<div class="small-contact-container">
 	        		<h1 class="titles">Twitter</h1>
 					<a class="contact-logos" href="https://www.twitter.com/#">
-	            		<i class="fa fa-twitter" aria-hidden="true"></i>
+	            		<i class="fab fa-twitter" aria-hidden="true"></i>
 	        		</a>
 				</div>
 				<div class="small-contact-container">
 					<h1 class="titles">Facebook</h1>
-					<a class="contact-logos" href="https://www.facebook.com/#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+					<a class="contact-logos" href="https://www.facebook.com/#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
 				</div>
 				
 				<div class="small-contact-container small-contact-text-container">
@@ -115,11 +115,11 @@
 				</div>
 				<div class="small-contact-container">
 					<h1 class="titles">Instagram</h1>
-					<a class="contact-logos" href="https://www.instagram.com/#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+					<a class="contact-logos" href="https://www.instagram.com/#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
 				</div>
 				<div class="small-contact-container">
 					<h1 class="titles">Email</h1>
-					<a class="contact-logos" href="mailto:#"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+					<a class="contact-logos" href="mailto:#"><i class="far fa-envelope" aria-hidden="true"></i></a>
 				</div>
 			
 				<div class="small-contact-container small-contact-text-container">
@@ -155,7 +155,25 @@
 		<p class="copyright">Copyright © 2018 <a href="https://github.com/Syarol">Oleh Yaroshchuk</a></p>
 	</footer>	
 
-	
+	<div id="cart-modal">
+	  <div class="modal-content">
+	    <span id="close-cart-modal">&times;</span>
+	    <div id="cart-table">
+	    	<span class="cart-table-row cart-first-row">
+	    		<span>Name</span>
+	    		<span>Quantity</span>
+		    	<span>Price</span>
+		    	<span>Total</span>
+	    	</span>
+	    	<span class="cart-table-row cart-last-row">
+				<span class="cart-item-name">Total</span>
+				<span id="cart-total"></span>
+	    	</span>
+	    </div>
+	  </div>
+	</div>
+
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.2/blazy.min.js"></script>
 	<script src="js/index.js"></script>
 </body>
