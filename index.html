@@ -28,7 +28,7 @@
 			<p class="navigation" scrollTo="#about-section">About</p>
 			<p class="navigation" scrollTo="#menu-section">Menu</p>
 			<p class="navigation" scrollTo="#contact-section">Contact us</p>
-			<p id="cart-open"><i class="fas fa-shopping-cart"></i></p>
+			<p id="cart-open" title="Click to open cart"><i class="fas fa-shopping-cart"></i></p>
 		</nav>
 	</header>   
 	<div id="header-before-const"></div>
@@ -157,7 +157,7 @@
 
 	<div id="cart-modal">
 	  <div class="modal-content">
-	    <span id="close-cart-modal">&times;</span>
+	    <span id="close-cart-modal" title="Close">&times;</span>
 	    <div id="cart-table">
 	    	<span class="cart-table-row cart-first-row">
 	    		<span>Name</span>
@@ -167,9 +167,12 @@
 	    	</span>
 	    	<span class="cart-table-row cart-last-row">
 				<span class="cart-item-name">Total</span>
-				<span id="cart-total"></span>
+				<span id="cart-total" title="Your total"></span>
 	    	</span>
 	    </div>
+		<div class="cart-is-empty">
+			<h2>Oops! Your cart is empty(</h2>
+		</div>
 	  </div>
 	</div>
 

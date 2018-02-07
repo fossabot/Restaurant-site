@@ -136,6 +136,8 @@ function createMenuPoint(dish){
   dishPrice.textContent = dish.price;
   addToCart.setAttribute('class', 'fas fa-cart-plus');
   addToCartWrapper.appendChild(addToCart);
+  addToCartWrapper.setAttribute('class', 'cart-plus');
+  addToCartWrapper.setAttribute('title', 'Add to cart');
 
   menuDishList.appendChild(dishEl);
 
@@ -405,6 +407,7 @@ var cartModal = document.getElementById('cart-modal');
 var openCart = document.getElementById('cart-open');
 var closeModal = document.getElementById('close-cart-modal');
 var allCartDishTotal = document.getElementById('cart-total');
+var cartIsEmpty = document.getElementsByClassName('cart-is-empty');
 var overIndexInCart;
 
 /**
@@ -417,6 +420,7 @@ class Cart{
     dishInCart.push(dish);
 
     let newItemWrapper = document.createElement('span');
+    let newItemRemove = document.createElement('span');
     let newItemName = document.createElement('span');
     let newItemQuantity = document.createElement('span');
     let newItemNumber = document.createElement('span');
@@ -424,6 +428,10 @@ class Cart{
     let newItemTotal = document.createElement('span');
 
     newItemWrapper.setAttribute('class', 'cart-table-row');
+    newItemRemove.setAttribute('class', 'cart-remove-item');
+    newItemRemove.setAttribute('title', 'Click for remove');
+    newItemRemove.textContent = closeModal.textContent;
+    newItemRemove.addEventListener('click', () => this.remove());
     newItemName.setAttribute('class', 'cart-item-name');
     newItemName.textContent = dish.name;
     newItemPrice.textContent = dish.price;
@@ -440,6 +448,7 @@ class Cart{
     newItemTotal.textContent = dish.price;
 
     cartTable.appendChild(newItemWrapper);
+    newItemWrapper.appendChild(newItemRemove);
     newItemWrapper.appendChild(newItemName);
     newItemWrapper.appendChild(newItemQuantity);
     newItemWrapper.appendChild(newItemPrice);
@@ -447,6 +456,18 @@ class Cart{
 
     cartTable.children[cartTable.children.length-1].after(cartTable.children[cartTable.children.length-2]);
 
+    updateAllDishTotal();
+  }
+
+  remove(){
+    let cartTableRow = document.getElementsByClassName('cart-table-row');
+    cartTableRow[overIndexInCart].remove();
+    dishInCart.splice(overIndexInCart, 1);
+    if (cartTableRow.length == 2) {
+      dishInCart = [];
+      cartIsEmpty[0].style.display = 'grid';
+      cartTable.style.display = 'none';
+    }
     updateAllDishTotal();
   }
 
@@ -493,6 +514,7 @@ function addPlus(parentNode){
 
   plus.setAttribute('class', 'far fa-plus-square');
   spanItem.setAttribute('class', 'cart-plus');
+  spanItem.setAttribute('title', 'Add one');
 
   spanItem.appendChild(plus);
   parentNode.appendChild(spanItem);
@@ -508,6 +530,7 @@ function addMinus(parentNode){
 
   minus.setAttribute('class', 'far fa-minus-square');
   spanItem.setAttribute('class', 'cart-minus');
+  spanItem.setAttribute('title', 'Remove one');
 
   spanItem.appendChild(minus);
   parentNode.appendChild(spanItem);
@@ -536,12 +559,7 @@ function decrementCartItem(item){
       
       updateTotalOfDish(overIndexInCart - 1);
       if (listItem.textContent == '0') { //if zero number,  then delete
-        let cartTableRow = document.getElementsByClassName('cart-table-row');
-        cartTableRow[overIndexInCart].remove();
-        dishInCart.splice(overIndexInCart, 1);
-        if (cartTableRow.length == 2) {
-          dishInCart = [];
-        }
+        cart.remove();
       }
       break;
     }
@@ -582,11 +600,16 @@ cartTable.onmouseover = e => cart.getOverIndex(e);
 //open the modal
 openCart.onclick = function() {
   cartModal.style.display = 'flex';
+  if (dishInCart.length == 0) {
+    cartIsEmpty[0].style.display = 'grid';
+  } else cartTable.style.display = 'grid';
 };
 
 //close the modal
 closeModal.onclick = function() {
   cartModal.style.display = 'none';
+  cartTable.style.display = 'none';
+  cartIsEmpty[0].style.display = 'none';
 };
 
 // close modal if clicks anywhere outside
