@@ -409,6 +409,8 @@ var closeModal = document.getElementById('close-cart-modal');
 var allCartDishTotal = document.getElementById('cart-total');
 var cartIsEmpty = document.getElementsByClassName('cart-is-empty');
 var overIndexInCart;
+var countInsideCart = document.getElementsByClassName('count-inside-cart');
+var checkOut = document.getElementById('check-out');
 
 /**
  * Class
@@ -420,43 +422,70 @@ class Cart{
     dishInCart.push(dish);
 
     let newItemWrapper = document.createElement('span');
-    let newItemRemove = document.createElement('span');
-    let newItemName = document.createElement('span');
-    let newItemQuantity = document.createElement('span');
-    let newItemNumber = document.createElement('span');
-    let newItemPrice = document.createElement('span');
-    let newItemTotal = document.createElement('span');
 
     newItemWrapper.setAttribute('class', 'cart-table-row');
-    newItemRemove.setAttribute('class', 'cart-remove-item');
-    newItemRemove.setAttribute('title', 'Click for remove');
-    newItemRemove.textContent = closeModal.textContent;
-    newItemRemove.addEventListener('click', () => this.remove());
-    newItemName.setAttribute('class', 'cart-item-name');
-    newItemName.textContent = dish.name;
-    newItemPrice.textContent = dish.price;
-    dish.number = 1;
-
-    addPlus(newItemQuantity);
-    newItemNumber.textContent = dish.number;
-    newItemNumber.setAttribute('class', 'cart-item-number');
-    newItemQuantity.setAttribute('class', 'cart-quantity');
-    newItemQuantity.appendChild(newItemNumber);
-    addMinus(newItemQuantity);
-
-    newItemTotal.setAttribute('class', 'cart-item-total');
-    newItemTotal.textContent = dish.price;
 
     cartTable.appendChild(newItemWrapper);
-    newItemWrapper.appendChild(newItemRemove);
-    newItemWrapper.appendChild(newItemName);
-    newItemWrapper.appendChild(newItemQuantity);
-    newItemWrapper.appendChild(newItemPrice);
-    newItemWrapper.appendChild(newItemTotal);
+    newItemRemoveButton(newItemWrapper);
+    newItemNamePart(newItemWrapper, dish);
+    newItemQuantityPart(newItemWrapper);
+    newItemPricePart(newItemWrapper, dish);
+    newItemTotalPart(newItemWrapper, dish);
 
-    cartTable.children[cartTable.children.length-1].after(cartTable.children[cartTable.children.length-2]);
+    swapLastTwo(cartTable);
 
     updateAllDishTotal();
+
+    function newItemRemoveButton(parent){
+      let newItemRemove = document.createElement('span');
+
+      newItemRemove.setAttribute('class', 'cart-remove-item');
+      newItemRemove.setAttribute('title', 'Click for remove');
+      newItemRemove.textContent = closeModal.textContent;
+      newItemRemove.addEventListener('click', () => cart.remove());
+
+      parent.appendChild(newItemRemove);
+    }
+
+    function newItemNamePart(parent, dish){
+      let newItemName = document.createElement('span');
+
+      newItemName.setAttribute('class', 'cart-item-name');
+      newItemName.textContent = dish.name;
+
+      parent.appendChild(newItemName);
+    }
+
+    function newItemQuantityPart(parent){
+      let newItemQuantity = document.createElement('span');
+      let newItemNumber = document.createElement('span');
+
+      addPlus(newItemQuantity);
+      newItemNumber.textContent = 1;
+      newItemNumber.setAttribute('class', 'cart-item-number');
+      newItemQuantity.setAttribute('class', 'cart-quantity');
+      newItemQuantity.appendChild(newItemNumber);
+      addMinus(newItemQuantity);
+
+      parent.appendChild(newItemQuantity);
+    }
+
+    function newItemPricePart(parent, dish){
+      let newItemPrice = document.createElement('span');
+
+      newItemPrice.textContent = dish.price;
+
+      parent.appendChild(newItemPrice);
+    }
+
+    function newItemTotalPart(parent, dish){
+      let newItemTotal = document.createElement('span');
+
+      newItemTotal.setAttribute('class', 'cart-item-total');
+      newItemTotal.textContent = dish.price;
+
+      parent.appendChild(newItemTotal);
+    }
   }
 
   remove(){
@@ -467,6 +496,7 @@ class Cart{
       dishInCart = [];
       cartIsEmpty[0].style.display = 'grid';
       cartTable.style.display = 'none';
+      checkOut.style.display = 'none';
     }
     updateAllDishTotal();
   }
@@ -566,6 +596,11 @@ function decrementCartItem(item){
   }
 }
 
+function swapLastTwo(el){
+  let elChild = el.children;
+  elChild[elChild.length-1].after(elChild[elChild.length-2]);//swap the last two rows
+}
+
 function updateTotalOfDish(i){
   let dishNumbers = document.getElementsByClassName('cart-item-number');
   let dishTotal = document.getElementsByClassName('cart-item-total');
@@ -589,6 +624,20 @@ function updateAllDishTotal(){
   }
 
   allCartDishTotal.textContent = '$' + Number(temp).toFixed(2);
+
+  allDishesCount();
+}
+
+function allDishesCount(){
+  let dishNumbers = document.getElementsByClassName('cart-item-number');
+  let allTotal = 0;
+  for (let dishItem of dishNumbers) {
+    allTotal += Number(dishItem.textContent);
+  }
+
+  if (allTotal == 0){
+    countInsideCart[0].textContent = '';
+  } else countInsideCart[0].textContent = ' (' + allTotal + ')';    
 }
 
 /**
@@ -602,13 +651,17 @@ openCart.onclick = function() {
   cartModal.style.display = 'flex';
   if (dishInCart.length == 0) {
     cartIsEmpty[0].style.display = 'grid';
-  } else cartTable.style.display = 'grid';
+  } else {
+    cartTable.style.display = 'grid';
+    checkOut.style.display = 'flex';
+  }
 };
 
 //close the modal
 closeModal.onclick = function() {
   cartModal.style.display = 'none';
   cartTable.style.display = 'none';
+  checkOut.style.display = 'none';
   cartIsEmpty[0].style.display = 'none';
 };
 
@@ -616,9 +669,9 @@ closeModal.onclick = function() {
 window.onclick = function(e) {
   if (e.target == cartModal) {
     cartModal.style.display = 'none';
+    cartTable.style.display = 'none';
+    checkOut.style.display = 'none';
+    cartIsEmpty[0].style.display = 'none';
   }
 }; 
-
-
-
 
