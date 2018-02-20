@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-	<meta id="viewport" name="viewport" content ="width=device-width"/>
+	<meta id="viewport" name="viewport" content ="width=device-width, shrink-to-fit=no"/>
 
 	<title>Barillia</title>
 
@@ -20,7 +20,7 @@
 </head>
 
 <body>
-	<section id="head-section" class="b-lazy big-size-section" data-section-name="head" data-src="css/images/Head.jpg"></section>
+	<section id="head-section" class="big-size-section" data-section-name="head"></section>
 
 	<header id="header">
 		<div class="logo"><p class="navigation" scrollTo="#head-section">Barillia</p></div>
@@ -33,19 +33,17 @@
 	</header>   
 	<div id="header-before-const"></div>
 
-	<section id="about-section" class="b-lazy big-size-section" data-section-name="about" data-src="css/images/About.jpeg">
+	<section id="about-section" class="big-size-section" data-section-name="about">
 		<div class="about-content-block">
 			<h1 class="titles">About us</h1>
 			<p>Nestled in the heart of Lutsk, Barillia provides an inviting pub-style experience, offering authentic casual cuisine using fresh locally sourced ingredients.</p>
 		</div>
 	</section>
 
-	<section id="menu-section" class="b-lazy big-size-section" data-section-name="menu" data-src="css/images/Menu.jpg">
+	<section id="menu-section" class="big-size-section" data-section-name="menu">
 		<div class="big-menu-container" id="big-menu-container-id">
-			<div id="menu-back-button">
-      			<div class="bar arrow-top-r"></div>
-				<div class="bar arrow-middle-r"></div>
-				<div class="bar arrow-bottom-r"></div>	    
+			<div id="menu-back-button" class="back-button">
+      			<i class="fas fa-arrow-left"></i>    
 			</div>
 			<h1 class="titles" id="menu-main-title">Menu</h1>
 			<div id="medium-menu-container">
@@ -88,7 +86,7 @@
 		</div>
 	</section>
 
-	<section id="contact-section" class="b-lazy big-size-section" data-section-name="contact" data-src="css/images/Contact.jpg">
+	<section id="contact-section" class="big-size-section" data-section-name="contact">
 		<h1 class="titles">Contact us</h1>
 
 		<div id="medium-contact-container">
@@ -170,17 +168,13 @@
 				<span id="cart-total" title="Your total"></span>
 	    	</span>
 	    </div>
-	    <div id="check-out">
+	    <div class="cart-button">
 	    	<span>Check out</span>
 	    </div>
-		<div class="cart-is-empty">
-			<h2>Oops! Your cart is empty(</h2>
-		</div>
 	  </div>
 	</div>
 
 	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/blazy/1.8.2/blazy.min.js"></script>
 	<script src="js/index.js"></script>
 </body>
 

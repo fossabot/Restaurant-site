@@ -18,7 +18,7 @@ html, body {
   background-repeat: no-repeat; }
 
 #head-section {
-  background-image: url(images/Head_Small.jpg); }
+  background-image: url(images/Head.jpg); }
 
 #header {
   color: black;
@@ -60,7 +60,7 @@ a {
   cursor: pointer; }
 
 #about-section {
-  background-image: url(images/About_Small.jpg); }
+  background-image: url(images/About.jpeg); }
 
 .about-content-block {
   justify-items: center;
@@ -87,7 +87,7 @@ a {
 
 #menu-section {
   display: flex;
-  background-image: url(images/Menu_Small.jpg); }
+  background-image: url(images/Menu.jpg); }
 
 .big-menu-container {
   height: 90%;
@@ -187,7 +187,7 @@ a {
   display: grid;
   grid-template-rows: 12.5% 87.5%;
   z-index: 10;
-  background-image: url(images/Contact_Small.jpg); }
+  background-image: url(images/Contact.jpg); }
   #contact-section .titles {
     color: white; }
 
@@ -364,6 +364,8 @@ a {
   border-radius: 2em;
   background: rgba(0, 0, 0, 0.7);
   box-shadow: 0 0 5px #000; }
+  #map-return-arrow-container svg {
+    transition: all 1s ease 0s; }
 
 .fa-chevron-right {
   font-size: 2em !important;
@@ -431,7 +433,7 @@ a {
 
 #menu-dish-list {
   height: 90%;
-  width: 100%;
+  width: 95%;
   overflow-y: auto;
   list-style-type: none;
   margin: auto;
@@ -467,32 +469,13 @@ a {
   .menu-dish-list-item:hover .cart-plus:not(:hover) {
     transform: scale(1); }
 
-#menu-back-button {
+.back-button {
   position: absolute;
   cursor: pointer;
   display: none;
-  margin: 0;
-  transition: all .7s ease;
-  top: 2.5%;
-  left: 2.5%; }
-
-.bar {
-  height: 4px;
-  width: 40px;
-  background: black;
-  margin: 10px auto;
-  transition: all .7s ease; }
-
-.arrow-top-r {
-  transform: rotateZ(-45deg) translateY(11px);
-  width: 21px; }
-
-.arrow-middle-r {
-  transform: translateX(21px); }
-
-.arrow-bottom-r {
-  transform: rotateZ(45deg) translateY(-11px);
-  width: 21px; }
+  top: 4%;
+  left: 2.5%;
+  font-size: 2em; }
 
 #cart-modal {
   height: 100%;
@@ -514,6 +497,14 @@ a {
   height: 50%;
   position: relative; }
 
+.cart-header {
+  margin-bottom: 5px;
+  text-align: center;
+  margin-top: 0;
+  font-family: Raleway;
+  height: 10%;
+  font-weight: 100; }
+
 #close-cart-modal {
   float: right;
   position: absolute;
@@ -534,14 +525,15 @@ a {
 
 #cart-table {
   width: 90%;
-  height: 88%;
+  height: 78%;
   display: none;
   grid-template-columns: 1fr;
   grid-auto-rows: 15%;
   font-family: 'Alegreya Sans', sans-serif;
   overflow-y: auto;
   overflow-x: hidden;
-  margin: auto; }
+  margin: auto;
+  margin-bottom: 2%; }
   #cart-table .cart-first-row {
     position: sticky;
     top: 0; }
@@ -570,25 +562,48 @@ a {
   #cart-table #cart-total {
     grid-column-start: 5; }
 
-#check-out {
-  height: 10%;
-  width: 40%;
+.cart-button {
+  height: 30px;
+  width: 115px;
   margin: auto;
-  margin-top: 2%;
   display: none;
   background-color: #c3c4bd;
   cursor: pointer; }
-  #check-out span {
+  .cart-button span {
     margin: auto;
     font-family: 'Oxygen'; }
 
-.cart-is-empty {
+.order-list {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  grid-template-rows: 10%; }
+  .order-list *:not(:first-child):not(:nth-child(2)) {
+    border-bottom: .5px solid grey; }
+  .order-list *:nth-child(2n) {
+    justify-items: center;
+    align-items: center;
+    text-align: center; }
+
+#checkout-container {
+  height: 80%;
+  width: 80%;
+  margin: auto;
+  font-size: .85em;
+  font-family: Mukta Malar;
+  overflow-y: auto;
+  overflow-x: hidden; }
+
+.cart-buttons-container {
+  display: flex;
+  height: 15%; }
+
+.cart-one-text-container {
   height: 80%;
   width: 80%;
   justify-items: center;
   align-items: center;
   text-align: center;
-  display: none;
+  display: grid;
   margin: auto;
   color: #443f3f; }
 
@@ -635,6 +650,9 @@ a {
   .logo, .menu-titles {
     font-size: 1.5em; }
 
+  .fa-cart-plus {
+    opacity: 1; }
+
   #close-cart-modal {
     right: 5px !important;
     font-size: 1em;
@@ -669,7 +687,7 @@ a {
   #menu-dish-ingredients p {
     font-size: .75em; }
 
-  #menu-dish-list, #cart-table, .cart-remove-item {
+  #menu-dish-list, #cart-table, .cart-remove-item, #check-out {
     font-size: .8em; }
 
   #close-cart-modal {
@@ -732,6 +750,15 @@ a {
     height: 80%; }
 
   .cart-remove-item {
+    font-size: 1em; }
+
+  #checkout-container {
+    font-size: 1em; } }
+@media screen and (min-width: 900px) {
+  .modal-content {
+    width: 60%; }
+
+  #checkout-container {
     font-size: 1em; } }
 
 /*# sourceMappingURL=style.css.map */
