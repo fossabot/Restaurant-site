@@ -81,8 +81,7 @@ function wrapContainers(){
 
 var wrapContainer = (className, smallContainerName, container) => {
   if (!document.getElementById(className)){
-    let el = document.createElement('div');
-    el.setAttribute('id', className);
+    let el = createElWithAttr('div', {id : className});
 
     let elContainer = document.getElementsByClassName(smallContainerName);
     for (let j = 0; j < elContainer.length; ){
@@ -124,20 +123,17 @@ function changePhoto(overIndex){
 
 /*Creates menu points and append them into list*/
 function createMenuPoint(dish){
-  let dishEl = document.createElement('li');
+  let dishEl = createElWithAttr('li', {class : 'menu-dish-list-item'});
   let dishName = document.createElement('p');
   let dishWeight = document.createElement('p');
   let dishPrice = document.createElement('p');
-  let addToCartWrapper = document.createElement('p');
-  let addToCart = document.createElement('i');
+  let addToCartWrapper = createElWithAttr('p', {class : 'cart-plus'}, {title : 'Add to cart'});
+  let addToCart = createElWithAttr('i', {class : 'fas fa-cart-plus'});
 
   dishName.textContent = dish.name;
   dishWeight.textContent = dish.calories;
   dishPrice.textContent = dish.price;
-  addToCart.setAttribute('class', 'fas fa-cart-plus');
   addToCartWrapper.appendChild(addToCart);
-  addToCartWrapper.setAttribute('class', 'cart-plus');
-  addToCartWrapper.setAttribute('title', 'Add to cart');
 
   menuDishList.appendChild(dishEl);
 
@@ -146,14 +142,10 @@ function createMenuPoint(dish){
   dishEl.appendChild(dishPrice);
   dishEl.appendChild(addToCartWrapper);
 
-  dishEl.setAttribute('class', 'menu-dish-list-item');
-
   addToCartWrapper.addEventListener('click', function(){   
     cart.didAlreadyIn();
   });
 }
-
-var tempCout = 0;
 
 function checkAndResizeGrids(){
   if(window.innerWidth < '600'){
@@ -187,7 +179,7 @@ function changeTemplateColunsAndRows(column, row){
 
 function smoothScroll(e){
   var target = e.target;
-  while (target != this) {
+  while (target != document.querySelector('body')) {
     if (target.classList.contains('navigation')) {
       scrollTo(document.querySelector(target.getAttribute('scrollTo')));
       return;
@@ -202,6 +194,9 @@ function connectJSON(){
   menuRequest.send();
   menuRequest.addEventListener('load', function(){
     menuList = JSON.parse(menuRequest.response); // convert it to an object
+
+    cart = new Cart(menuList.menu);//
+
     for (let dish of menuList.menu[containerIndex]){
       createMenuPoint(dish);
     }
@@ -300,16 +295,16 @@ window.onload = function(){
 };
 
 menuDishList.onmouseover = function(e){
-  var target = e.target;
-  while (target != this) {
+  let target = e.target;
+  while (target != document.getElementById('menu-dish-list')) {
     if (target.tagName == 'LI') {
       overIndex = getElementIndex(target);//index of mouseover li element
-      if (overIndex != -1) { 
+      //if (overIndex != -1) { 
         if (menuMainTitle.textContent != 'Beverages') {
           showIngedientsPanel(overIndex);
         }
         changePhoto(overIndex);
-      }
+      //}
       return;
     } else target = target.parentNode;
   }
@@ -393,15 +388,13 @@ window.addEventListener('resize', function(){
  * Cart things..begins from variables
 */
 
-var dishInCart = [];
 var cartTable = document.getElementById('cart-table');
 var cartModal = document.getElementById('cart-modal');
 var openCart = document.getElementById('cart-open');
 var closeModal = document.getElementById('close-cart-modal');
 var allCartDishTotal = document.getElementById('cart-total');
-var overIndexInCart;
 var countInsideCart = document.getElementsByClassName('count-inside-cart');
-var cartNextButton = document.getElementsByClassName('cart-button')[0];
+var toCheckoutButton = document.getElementById('to-checkout-button');
 var modalContent = document.getElementsByClassName('modal-content')[0];
 var cartHeader = document.getElementsByClassName('cart-header');
 
@@ -410,90 +403,92 @@ var cartHeader = document.getElementsByClassName('cart-header');
 */
 
 class Cart{
+  constructor(dataset){
+    this.menu = dataset;
+    this.inCart = [];//array of dishes in cart
+  }
+
+  open(){
+    cartModal.style.display = 'flex';
+    if (cart.inCart.length == 0) {
+      addSentenceContainer(modalContent, 'Oops! Your cart is empty(');
+    } else {
+      if (cartHeader[0].textContent != 'Cart'){
+        cartHeader[0].textContent = 'Cart';
+        cartHeader[0].style.display = 'block';
+      }
+      cartTable.style.display = 'grid';
+      toCheckoutButton.style.display = 'flex';
+      this.createCartHeader();
+    }
+  }
+
   add(){
-    let dish = menuList.menu[containerIndex][overIndex]; 
+    let dish = this.menu[containerIndex][overIndex]; 
     dish.total = Number(dish.price.replace(/\$/, ''));
-    dishInCart.push({name : dish.name, price: dish.price, number: 1, total: dish.total});
-    createCartHeader();
-    let newItemWrapper = document.createElement('span');
+    this.inCart.push({name : dish.name, price: dish.price, number: 1, total: dish.total});
+    this.createCartHeader();
 
-    newItemWrapper.setAttribute('class', 'cart-table-row');
-
+    let newItemWrapper = createElWithAttr('span', {class : 'cart-table-row'});
     cartTable.appendChild(newItemWrapper);
-    newItemRemoveButton(newItemWrapper);
-    newItemNamePart(newItemWrapper, dishInCart[dishInCart.length - 1]);
-    newItemQuantityPart(newItemWrapper, dishInCart[dishInCart.length - 1]);
-    newItemPricePart(newItemWrapper, dishInCart[dishInCart.length - 1]);
-    newItemTotalPart(newItemWrapper, dishInCart[dishInCart.length - 1]);
+
+    let lastCartItem = this.inCart[this.inCart.length - 1];
+    this.newItemRemoveButton(newItemWrapper);
+    newItem(newItemWrapper, lastCartItem.name, 'cart-item-name');
+    this.newItemQuantityPart(newItemWrapper, lastCartItem);
+    newItem(newItemWrapper, lastCartItem.price);
+    newItem(newItemWrapper, lastCartItem.price, 'cart-item-total');
 
     swapLastTwo(cartTable);
 
-    updateAllDishTotal();
+    this.updateAllDishTotal();
 
-    function newItemRemoveButton(parent){
-      let newItemRemove = document.createElement('span');
+    function newItem(parent, text, ...className){
+      let item;
 
-      newItemRemove.setAttribute('class', 'cart-remove-item');
-      newItemRemove.setAttribute('title', 'Click for remove');
-      newItemRemove.textContent = closeModal.textContent;
-      newItemRemove.addEventListener('click', () => cart.removeC());
+      if (className.length == 1){
+        item = createElWithAttr('span', {class : className});
+      } else if (className.length == 0){
+        item = document.createElement('span');
+      } else return;
+      item.textContent = text;
 
-      parent.appendChild(newItemRemove);
+      parent.appendChild(item);
     }
+  }
+    
+  newItemQuantityPart(parent, dish){
+    let newItemQuantity = createElWithAttr('span', {class : 'cart-quantity'});
+    let newItemNumber = createElWithAttr('span', {class : 'cart-item-number'});
 
-    function newItemNamePart(parent, dish){
-      let newItemName = document.createElement('span');
+    cart.addPlus(newItemQuantity);
+    newItemNumber.textContent = dish.number;
+    newItemQuantity.appendChild(newItemNumber);
+    cart.addMinus(newItemQuantity);
 
-      newItemName.setAttribute('class', 'cart-item-name');
-      newItemName.textContent = dish.name;
+    parent.appendChild(newItemQuantity);
+  }
 
-      parent.appendChild(newItemName);
-    }
+  newItemRemoveButton(parent){
+    let newItemRemove = createElWithAttr('span', {class : 'cart-remove-item'}, {title : 'Click for remove'});
+    newItemRemove.textContent = closeModal.textContent;
+    newItemRemove.addEventListener('click', () => this.removeC());
 
-    function newItemQuantityPart(parent, dish){
-      let newItemQuantity = document.createElement('span');
-      let newItemNumber = document.createElement('span');
-
-      cart.addPlus(newItemQuantity);
-      newItemNumber.textContent = dish.number;
-      newItemNumber.setAttribute('class', 'cart-item-number');
-      newItemQuantity.setAttribute('class', 'cart-quantity');
-      newItemQuantity.appendChild(newItemNumber);
-      cart.addMinus(newItemQuantity);
-
-      parent.appendChild(newItemQuantity);
-    }
-
-    function newItemPricePart(parent, dish){
-      let newItemPrice = document.createElement('span');
-
-      newItemPrice.textContent = dish.price;
-
-      parent.appendChild(newItemPrice);
-    }
-
-    function newItemTotalPart(parent, dish){
-      let newItemTotal = document.createElement('span');
-
-      newItemTotal.setAttribute('class', 'cart-item-total');
-      newItemTotal.textContent = dish.price;
-
-      parent.appendChild(newItemTotal);
-    }
+    parent.appendChild(newItemRemove);
   }
 
   removeC(){
     let cartTableRow = document.getElementsByClassName('cart-table-row');
-    cartTableRow[overIndexInCart].remove();
-    dishInCart.splice(overIndexInCart - 1, 1);
+    cartTableRow[overIndex].remove();
+    this.inCart.splice(overIndex - 1, 1);
     if (cartTableRow.length == 2) {
-      dishInCart = [];
+      this.inCart = [];
       cartHeader[0].remove();
-      cartOneTextContainer('Oops! Your cart is empty(');
+      addSentenceContainer(modalContent, 'Oops! Your cart is empty(');
       cartTable.style.display = 'none';
-      cartNextButton.style.display = 'none';
+      toCheckoutButton.style.display = 'none';
     }
-    updateAllDishTotal();
+    this.updateAllDishTotal();
   }
 
   getOverIndex(e){
@@ -501,54 +496,50 @@ class Cart{
       while (target != this){
         if (target){
           if (target.className == 'cart-table-row') {
-            overIndexInCart = getElementIndex(target);//index of mouseover 
+            overIndex = getElementIndex(target);//index of mouseover 
             return;
           } else target = target.parentNode;
         } else break;
       }
   }
 
+  /*Checks whether the dish is already in the cart. If not, then add*/
   didAlreadyIn(){
-    for (let i = 0; i < dishInCart.length; i++){
-      if (dishInCart[i] != undefined && dishInCart[i].name == menuList.menu[containerIndex][overIndex].name){
+    let tempCout = 0;
+    for (let i = 0; i < this.inCart.length; i++){
+      if (this.inCart[i] != undefined && this.inCart[i].name == menuList.menu[containerIndex][overIndex].name){
         let dishNumbers = document.getElementsByClassName('cart-item-number');
-        dishInCart[i].number++;
-        dishNumbers[i].textContent = dishInCart[i].number;
-        updateTotalOfDish(i);
-        tempCout = 0;
+        this.inCart[i].number++;
+        dishNumbers[i].textContent = this.inCart[i].number;
+        this.updateTotalOfDish(i);
         break;    
       } else {
         tempCout++;
       }
     }
-    if (tempCout == dishInCart.length) {
+    if (tempCout == this.inCart.length) {
       this.add();
-      tempCout = 0;
     }
   }
 
   addPlus(parentNode){
-    let spanItem = document.createElement('span');
-    let plus = document.createElement('i');
-
-    plus.setAttribute('class', 'far fa-plus-square');
-    spanItem.setAttribute('class', 'cart-plus');
-    spanItem.setAttribute('title', 'Add one');
+    let spanItem = createElWithAttr('span', {class : 'cart-plus'}, {title : 'Add one'});
+    let plus = createElWithAttr('i', {class : 'far fa-plus-square'});
 
     spanItem.appendChild(plus);
     parentNode.appendChild(spanItem);
 
     spanItem.addEventListener('click', () => {
-      incrementCartItem(spanItem);
+      incrementCartItem(spanItem, this);
     });
 
-    function incrementCartItem(item){
+    function incrementCartItem(item, parentObj){
       let list = item.parentNode.childNodes;
       for (let listItem of list){
         if (listItem.className === 'cart-item-number') {
-          dishInCart[overIndexInCart - 1].number++;
-          listItem.textContent = dishInCart[overIndexInCart - 1].number;
-          updateTotalOfDish(overIndexInCart - 1);
+          parentObj.inCart[overIndex - 1].number++;
+          listItem.textContent = parentObj.inCart[overIndex - 1].number;
+          parentObj.updateTotalOfDish(overIndex - 1);
           break;
         }
       }
@@ -556,155 +547,190 @@ class Cart{
   }
 
   addMinus(parentNode){
-    let spanItem = document.createElement('span');
-    let minus = document.createElement('i');
-
-    minus.setAttribute('class', 'far fa-minus-square');
-    spanItem.setAttribute('class', 'cart-minus');
-    spanItem.setAttribute('title', 'Remove one');
+    let spanItem = createElWithAttr('span', {class : 'cart-minus'}, {title : 'Remove one'});
+    let minus = createElWithAttr('i', {class : 'far fa-minus-square'});
 
     spanItem.appendChild(minus);
     parentNode.appendChild(spanItem);
 
     spanItem.addEventListener('click', () => {
-      decrementCartItem(spanItem);
+      decrementCartItem(spanItem, this);
     });
 
-    function decrementCartItem(item){
+    function decrementCartItem(item, parentObj){
       let list = item.parentNode.childNodes;
       for (let listItem of list){
         if (listItem.className === 'cart-item-number') {
-          dishInCart[overIndexInCart - 1].number--;
-          listItem.textContent = dishInCart[overIndexInCart - 1].number;
-          updateTotalOfDish(overIndexInCart - 1);
+          parentObj.inCart[overIndex - 1].number--;
+          listItem.textContent = parentObj.inCart[overIndex - 1].number;
+          parentObj.updateTotalOfDish(overIndex - 1);
           if (listItem.textContent == '0') { //if zero number,  then delete
-            cart.removeC();
+            parentObj.removeC();
           }
           break;
         }
       }
     }
   }
+
+  updateTotalOfDish(i){
+    let dishTotal = document.getElementsByClassName('cart-item-total');
+    let priceRegEx = this.inCart[i].price.replace(/\$/, '');
+
+    this.inCart[i].total = this.inCart[i].number * priceRegEx;
+    dishTotal[i].textContent = '$' + this.inCart[i].total.toFixed(2);
+
+    this.updateAllDishTotal();
+  }
+
+  updateAllDishTotal(){
+    let temp = 0;
+    for (let dish of this.inCart){
+      if(temp != 0){
+        temp += dish.total;
+      } else temp = dish.total;
+    }
+
+    allCartDishTotal.textContent = '$' + temp.toFixed(2);
+
+    this.allDishesCount();    
+  }
+
+  allDishesCount(){
+    let allTotal = 0;
+    for (let dish of this.inCart){
+      allTotal += dish.number;
+    }
+
+    if (allTotal == 0){
+      countInsideCart[0].textContent = '';
+    } else countInsideCart[0].textContent = ' (' + allTotal + ')';    
+  }
+
+  createCartHeader(){
+    if (document.getElementsByClassName('cart-header').length === 0) {
+      let cartHeader = createElWithAttr('h2', {class : 'cart-header'});
+      cartHeader.textContent = 'Cart';
+      modalContent.insertBefore(cartHeader, cartTable);
+      cartHeader = document.getElementsByClassName('cart-header');
+    }
+  }
+
+  createCashoutButtons(){
+    let buttonsContainer = createElWithAttr('div', {class : 'cart-buttons-container'}); 
+
+    backButton();
+    nextButton();
+
+    modalContent.appendChild(buttonsContainer);
+
+    function backButton(){
+      let button = createElWithAttr('div', {class : 'cart-button'}, {id : 'cashout-back-button'}, {style : 'display : flex'});
+
+      button.addEventListener('click', () => {
+        cartTable.style.display = 'grid';
+        toCheckoutButton.style.display = 'flex';
+        buttonsContainer.remove();
+        cartHeader[0].textContent = 'Cart';
+        document.getElementById('checkout-container').remove();
+      });
+
+      addTextElAndAppend(button, 'span', 'Back');
+      buttonsContainer.appendChild(button);
+    }
+
+    function nextButton(){
+      let button = createElWithAttr('div', {class : 'cart-button'}, {style : 'display : flex'});
+
+      button.addEventListener('click', () => {
+        buttonsContainer.remove();
+        document.getElementById('checkout-container').remove();
+        cartHeader[0].style.display = 'none';
+        cart.inCart = [];
+        let cartTableRow = document.getElementsByClassName('cart-table-row');
+        while(cartTableRow.length > 2) {
+          cartTableRow[1].remove();
+        }
+        cart.updateAllDishTotal();
+
+        addSentenceContainer(modalContent, 'Thanks for Your order!');
+      });
+      addTextElAndAppend(button, 'span', 'Confirm');
+      buttonsContainer.appendChild(button);
+    }
+  }
+
+  openCheckout(){
+    cartTable.style.display = 'none';
+    toCheckoutButton.style.display = 'none';
+    cartHeader[0].textContent = 'Confirm order list';
+
+    let checkOutContainer = createElWithAttr('div', {id : 'checkout-container'});
+    let orderList = createElWithAttr('div', {class : 'order-list'});
+
+    addTextElAndAppend(orderList, 'span', 'Product');
+    addTextElAndAppend(orderList, 'span', 'Total');
+
+    for (let dish of cart.inCart) {
+      addTextElAndAppend(orderList, 'span', dish.number + ' ' + closeModal.textContent + ' ' + dish.name);
+      addTextElAndAppend(orderList, 'span', '$' + dish.total.toFixed(2));
+    }
+     
+    addTextElAndAppend(orderList, 'span', 'Total');
+    addTextElAndAppend(orderList, 'span', allCartDishTotal.textContent);  
+
+    checkOutContainer.appendChild(orderList);
+    modalContent.appendChild(checkOutContainer);
+
+    this.createCashoutButtons();
+  }
+
+  close(){
+    cartModal.style.display = 'none';
+    cartTable.style.display = 'none';
+    toCheckoutButton.style.display = 'none';
+    if (document.getElementsByClassName('cart-one-text-container').length != 0) {
+      document.getElementsByClassName('cart-one-text-container')[0].remove();
+    }
+    if (document.getElementById('checkout-container')) {
+      document.getElementById('checkout-container').remove();
+      document.getElementsByClassName('cart-buttons-container')[0].remove();
+    }
+  }
 }
 
-var cart = new Cart();
+var cart;
 
 /**
  * Functions
 */
 
-
+ /*Swap the last two children of the node*/
 function swapLastTwo(el){
-  let elChild = el.children;
-  elChild[elChild.length-1].after(elChild[elChild.length-2]);//swap the last two rows
-}
-
-function updateTotalOfDish(i){
-  let dishTotal = document.getElementsByClassName('cart-item-total');
-  let priceRegEx = dishInCart[i].price.replace(/\$/, '');
-
-  dishInCart[i].total = dishInCart[i].number * priceRegEx;
-  dishTotal[i].textContent = '$' + dishInCart[i].total.toFixed(2);
-
-  updateAllDishTotal();
-}
-
-function updateAllDishTotal(){
-  let temp = 0;
-
-  for (let dish of dishInCart){
-    if(temp != 0){
-      temp += dish.total;
-    } else temp = dish.total;
+    let elChild = el.children;//return collection of rows
+    elChild[elChild.length-1].after(elChild[elChild.length-2]);//swap the last two rows
   }
 
-  allCartDishTotal.textContent = '$' + temp.toFixed(2);
-
-  allDishesCount();
-}
-
-function allDishesCount(){
-  let allTotal = 0;
-
-  for (let dish of dishInCart){
-    allTotal += dish.number;
-  }
-
-  if (allTotal == 0){
-    countInsideCart[0].textContent = '';
-  } else countInsideCart[0].textContent = ' (' + allTotal + ')';    
-}
-
-function closeModalAndEntry(){
-  cartModal.style.display = 'none';
-  cartTable.style.display = 'none';
-  cartNextButton.style.display = 'none';
-  if (document.getElementsByClassName('cart-one-text-container').length != 0) {
-    document.getElementsByClassName('cart-one-text-container')[0].remove();
-  }
-  if (document.getElementById('checkout-container')) {
-    document.getElementById('checkout-container').remove();
-    document.getElementsByClassName('cart-buttons-container')[0].remove();
-  }
-}
-
-function createCartHeader(){
-  if (document.getElementsByClassName('cart-header').length === 0) {
-    let cartHeader = document.createElement('h2');
-    cartHeader.setAttribute('class', 'cart-header');
-    cartHeader.textContent = 'Cart';
-    modalContent.insertBefore(cartHeader, cartTable);
-    cartHeader = document.getElementsByClassName('cart-header');
-  }
-}
-
-function createElWithTextAndAppend(parent, el, text){
+function addTextElAndAppend(parent, el, text){
   let newEl = document.createElement(el);
   newEl.textContent = text;
   parent.appendChild(newEl);
 }
 
-function cartOneTextContainer(text){
-  let div = document.createElement('div');
-  div.setAttribute('class', 'cart-one-text-container');
-
-  createElWithTextAndAppend(div, 'h2', text);
-
-  modalContent.appendChild(div);
+function addSentenceContainer(parent, text){
+  let div = createElWithAttr('div', {class : 'cart-one-text-container'});
+  addTextElAndAppend(div, 'h2', text);
+  parent.appendChild(div);
 }
 
-function createCashoutButtons(){
-  let buttonsContainer = document.createElement('div');
-  buttonsContainer.setAttribute('class', 'cart-buttons-container');
-
-  let cashoutBackButton = document.createElement('div');
-  cashoutBackButton.setAttribute('class', 'cart-button');
-  cashoutBackButton.setAttribute('id', 'cashout-back-button');
-  cashoutBackButton.style.display = 'flex';
-  cashoutBackButton.onclick = () => {
-    cartTable.style.display = 'grid';
-    cartNextButton.style.display = 'flex';
-    buttonsContainer.remove();
-    cartHeader[0].textContent = 'Cart';
-    document.getElementById('checkout-container').remove();
-  };
-  createElWithTextAndAppend(cashoutBackButton, 'span', 'Back');
-  buttonsContainer.appendChild(cashoutBackButton);
-
-  let cashoutNextButton = document.createElement('div');
-  cashoutNextButton.setAttribute('class', 'cart-button');
-  cashoutNextButton.style.display = 'flex';
-  cashoutNextButton.onclick = () => {
-    buttonsContainer.remove();
-    document.getElementById('checkout-container').remove();
-    cartHeader[0].style.display = 'none';
-
-    cartOneTextContainer('Thanks for Your order!');
-  };
-  createElWithTextAndAppend(cashoutNextButton, 'span', 'Confirm');
-  buttonsContainer.appendChild(cashoutNextButton);
-
-  modalContent.appendChild(buttonsContainer);
+function createElWithAttr(tagNme, ...attr){
+  let el = document.createElement(tagNme);
+  for (let temp of attr) {
+    for (var key in temp) {
+      el.setAttribute(key, temp[key]);
+    }
+  }
+  return el;
 }
 
 /**
@@ -715,55 +741,21 @@ cartTable.onmouseover = e => cart.getOverIndex(e);
 
 //open the modal
 openCart.onclick = function() {
-  cartModal.style.display = 'flex';
-  if (dishInCart.length == 0) {
-    cartOneTextContainer('Oops! Your cart is empty(');
-  } else {
-    if (cartHeader[0].textContent != 'Cart'){
-      cartHeader[0].textContent = 'Cart';
-    }
-    cartTable.style.display = 'grid';
-    cartNextButton.style.display = 'flex';
-    createCartHeader();
+  if (!cart){
+    cart = new Cart();
   }
+  cart.open();
 };
 
 //close the modal
-closeModal.onclick = () => closeModalAndEntry();
+closeModal.onclick = () => cart.close();
 
 // close modal if clicks anywhere outside
 window.onclick = function(e) {
   if (e.target == cartModal) {
-    closeModalAndEntry();
+    cart.close();
   }
 }; 
 
-cartNextButton.onclick = () => {
-  cartTable.style.display = 'none';
-  cartNextButton.style.display = 'none';
-  cartHeader[0].textContent = 'Confirm order list';
-
-  let checkOutContainer = document.createElement('div');
-  checkOutContainer.setAttribute('id', 'checkout-container');
-
-  let orderList = document.createElement('div');
-  orderList.setAttribute('class', 'order-list');
-
-  createElWithTextAndAppend(orderList, 'span', 'Product');
-  createElWithTextAndAppend(orderList, 'span', 'Total');
-
-  for (let dish of dishInCart) {
-    createElWithTextAndAppend(orderList, 'span', dish.number + ' ' + closeModal.textContent + ' ' + dish.name);
-    createElWithTextAndAppend(orderList, 'span', '$' + dish.total.toFixed(2));
-  }
-   
-  createElWithTextAndAppend(orderList, 'span', 'Total');
-  createElWithTextAndAppend(orderList, 'span', allCartDishTotal.textContent);  
-
-  checkOutContainer.appendChild(orderList);
-  modalContent.appendChild(checkOutContainer);
-
-  createCashoutButtons();
-};
-
+toCheckoutButton.onclick = () => cart.openCheckout();
 

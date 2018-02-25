@@ -85,8 +85,9 @@ a{
     color: black;
 }
 
-.navigation{
+.navigation, .cart-plus{
     cursor: pointer;
+    user-select: none;  
 }
 
 #about-section{
@@ -535,7 +536,6 @@ a{
 }
 
 .fa-cart-plus{
-    cursor: pointer;
     opacity: 0;
     transition: 1s;
 }
@@ -548,7 +548,6 @@ a{
     margin: 2.5%;
     padding: 1.5%;
     transition: 1s;
-    cursor: pointer;
     align-items: center;
 
 	p{
